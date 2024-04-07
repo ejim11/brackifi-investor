@@ -1,0 +1,155 @@
+import {
+  applyToBeShareholder,
+  forgotPassword,
+  login,
+  resetPassword,
+  updatePassword,
+} from '@/services/shareholderService';
+import { shareholderAction } from '@/slices/shareholderSlice';
+
+export const applyToBeShareholderDispatch = (
+  data: any,
+  setIsLoading: any,
+  toastSuccess: any,
+  toastError: any,
+  iconSuccess: any,
+  iconError: any,
+  resetForm: any
+) => {
+  return async (
+    dispatch: (arg0: {
+      payload: any;
+      type: 'shareholder/setShareholderDetails';
+    }) => void
+  ) => {
+    setIsLoading(true);
+    try {
+      const res = await applyToBeShareholder(data);
+      //   dispatch(shareholderAction.setShareholderDetails(res.data));
+      // console.log(res);
+      setIsLoading(false);
+      toastSuccess('Application submitted!', iconSuccess);
+      resetForm();
+    } catch (err: any) {
+      console.log(err);
+      toastError(err.response.data.message, iconError);
+      setIsLoading(false);
+    }
+  };
+};
+
+export const loginShareholderHandler = (
+  data: any,
+  setIsLoading: any,
+  toastSuccess: any,
+  toastError: any,
+  iconSuccess: any,
+  iconError: any,
+  resetForm: any,
+  navFunc: Function
+) => {
+  return async (dispatch: any) => {
+    setIsLoading(true);
+    try {
+      const res = await login(data);
+      console.log(res.data.data);
+      const { name, email, _id: id } = res.data.data.shareholder;
+      setIsLoading(false);
+      dispatch(shareholderAction.setShareHolderToken(res.data.token));
+      dispatch(shareholderAction.setShareholderDetails({ id, name, email }));
+      navFunc({ id, name });
+      toastSuccess('Login successfully!', iconSuccess);
+      resetForm();
+    } catch (err: any) {
+      setIsLoading(false);
+      console.log(err);
+      toastError(err.response.data.message, iconError);
+    }
+  };
+};
+
+export const forgotPasswordDispatch =
+  (
+    data: { email: string },
+    setIsLoading: Function,
+    toastSuccess: any,
+    toastError: any,
+    iconSuccess: any,
+    iconError: any,
+    resetForm: Function
+  ) =>
+  async (dispatch: any) => {
+    setIsLoading(true);
+
+    try {
+      const res = await forgotPassword(data);
+      console.log(res);
+      setIsLoading(false);
+      toastSuccess('Email sent successfully!', iconSuccess);
+      resetForm();
+    } catch (err: any) {
+      console.log(err);
+      setIsLoading(false);
+      toastError(err.response.data.message, iconError);
+    }
+  };
+
+export const resetPasswordDispatch =
+  (
+    data: { password: string; passwordConfirm: string },
+    resetToken: string,
+    setIsLoading: Function,
+    toastSuccess: any,
+    toastError: any,
+    iconSuccess: any,
+    iconError: any,
+    resetForm: Function,
+    navFunc: Function
+  ) =>
+  async (dispatch: any) => {
+    setIsLoading(true);
+    try {
+      const res = await resetPassword(data, resetToken);
+      console.log(res);
+      setIsLoading(false);
+      toastSuccess('Password reset successfully!', iconSuccess);
+      resetForm();
+      navFunc();
+    } catch (err: any) {
+      console.log(err);
+      setIsLoading(false);
+      toastError(err.response.data.message, iconError);
+    }
+  };
+
+export const updateMyPasswordDispatch =
+  (
+    data: {
+      passwordCurrent: string;
+      newPassword: string;
+      confirmNewPassword: string;
+    },
+    jwtToken: string,
+    setIsLoading: Function,
+    toastSuccess: any,
+    toastError: any,
+    iconSuccess: any,
+    iconError: any,
+    resetForm: Function,
+    logoutHandler: Function
+  ) =>
+  async (dispatch: any) => {
+    setIsLoading(true);
+    try {
+      const res = await updatePassword(data, jwtToken);
+      console.log(res);
+      setIsLoading(false);
+      toastSuccess('Password updated successfully!', iconSuccess);
+      resetForm();
+      logoutHandler();
+    } catch (err: any) {
+      console.log(err);
+      setIsLoading(false);
+      toastError(err.response.data.message, iconError);
+    }
+  };

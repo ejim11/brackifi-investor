@@ -1,0 +1,238 @@
+'use client';
+import React, { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { registrationOption } from '@/utils/inputValidators';
+import InputComponent from './InputComponent';
+import { fileHandler, toastError, toastSuccess } from '@/utils/helperFns';
+import ProofImgComp from './ProofImgComp';
+import { useAppDispatch } from '@/hooks/customHook';
+import { applyToBeShareholderDispatch } from '@/actions/shareholderAction';
+import { FallingLines } from 'react-loader-spinner';
+import noImg from '../assets/no-image-svgrepo-com.svg';
+import { FaRegCircleCheck } from 'react-icons/fa6';
+import { LuBadgeAlert } from 'react-icons/lu';
+
+type FormData = {
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  proofOfIdentity: string;
+  proofOfAddress: string;
+  nextOfKinName: string;
+  nextOfKinEmail: string;
+  nextOfKinAddress: string;
+};
+
+const AddMemberForm = () => {
+  const dispatch = useAppDispatch();
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [proofOfIdentityImg, setProofOfIdentityImg] = useState<any>();
+  const [proofOfIdentityImgObj, setProofOfIdentityImgObj] = useState<any>();
+  const [proofOfAddressImg, setProofOfAddressImg] = useState<any>();
+  const [proofOfAddressImgObj, setProofOfAddressImgObj] = useState<any>();
+  const [identityErr, setIdentityErr] = useState<boolean>(false);
+  const [addressErr, setAddressErr] = useState<boolean>(false);
+
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: {
+      fullName: '',
+      email: '',
+      phoneNumber: '',
+      proofOfAddress: '',
+      proofOfIdentity: ' ',
+      nextOfKinName: '',
+      nextOfKinEmail: '',
+      nextOfKinAddress: '',
+    },
+  });
+
+  const proofOfIdentityImgHandler = (e: { target: { files: any } }) => {
+    setProofOfIdentityImg(fileHandler(e.target.files[0]));
+    setProofOfIdentityImgObj(e.target.files[0]);
+  };
+
+  const proofOfAddressImgHandler = (e: { target: { files: any } }) => {
+    setProofOfAddressImg(fileHandler(e.target.files[0]));
+    setProofOfAddressImgObj(e.target.files[0]);
+  };
+
+  const resetForm = () => {
+    reset({
+      fullName: '',
+      email: '',
+      phoneNumber: '',
+      proofOfIdentity: '',
+      proofOfAddress: '',
+      nextOfKinName: '',
+      nextOfKinEmail: '',
+      nextOfKinAddress: '',
+    });
+
+    setProofOfIdentityImg(noImg);
+    setProofOfIdentityImgObj(noImg);
+
+    setProofOfAddressImg(noImg);
+    setProofOfAddressImgObj(noImg);
+  };
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    if (!proofOfAddressImg) {
+      setAddressErr(true);
+    } else {
+      setAddressErr(false);
+    }
+    if (!proofOfIdentityImg) {
+      setIdentityErr(true);
+    } else {
+      setIdentityErr(false);
+    }
+    if (!proofOfAddressImg || !proofOfIdentityImg) {
+      return;
+    }
+
+    const potentialShareholderData = {
+      name: data.fullName,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      proofOfIdentity: proofOfIdentityImg,
+      proofOfAddress: proofOfAddressImg,
+      nextOfKinName: data.nextOfKinName,
+      nextOfKinEmail: data.nextOfKinEmail,
+      nextOfKinAddress: data.nextOfKinAddress,
+    };
+
+    dispatch(
+      applyToBeShareholderDispatch(
+        potentialShareholderData,
+        setIsLoading,
+        toastSuccess,
+        toastError,
+        <FaRegCircleCheck className="w-[2.3rem] h-[2.3rem] text-color-primary-1" />,
+        <LuBadgeAlert className="w-[2.3rem] h-[2.3rem] red" />,
+        resetForm
+      )
+    );
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="w-full">
+      <div>
+        <p className="mb-[1.5rem] text-[1.8rem] text-color-secondary-1">
+          Shareholder Info
+        </p>
+        <div className="flex flex-wrap  w-full justify-between">
+          <InputComponent
+            placeholder={'Adams West'}
+            type={'text'}
+            register={register}
+            error={errors}
+            name={'fullName'}
+            label="Full Name"
+            pl="pl-[1rem]"
+            containerWidth="w-[45%]"
+            validation={registrationOption.name}
+          />
+          <InputComponent
+            placeholder={'adams@gmail.com'}
+            type={'email'}
+            register={register}
+            error={errors}
+            name={'email'}
+            pl="pl-[1rem]"
+            label="Email"
+            containerWidth="w-[45%]"
+            validation={registrationOption.email}
+          />
+          <InputComponent
+            placeholder={'0204-9384-8393'}
+            type={'text'}
+            register={register}
+            error={errors}
+            name={'phoneNumber'}
+            pl="pl-[1rem]"
+            label="Phone Number"
+            containerWidth="w-[45%]"
+            validation={registrationOption.phoneNumber}
+          />
+          <div className="w-full mt-[1rem] mb-[3rem] flex justify-between ">
+            <ProofImgComp
+              name="Proof of Identity"
+              img={proofOfIdentityImg}
+              setImg={proofOfIdentityImgHandler}
+              text="Passports, Drivers license, Id card, Birth certificate, etc"
+              err={identityErr}
+            />
+            <ProofImgComp
+              name="Proof of Address"
+              img={proofOfAddressImg}
+              setImg={proofOfAddressImgHandler}
+              text="Bank statement, Utility, etc"
+              err={addressErr}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="mt-[2rem]">
+        <p className="mb-[1.5rem] text-[1.8rem] text-color-secondary-1">
+          Next of Kin Info
+        </p>
+        <div className="flex flex-wrap  w-full justify-between">
+          <InputComponent
+            placeholder={'Sandra Jones'}
+            type={'text'}
+            register={register}
+            error={errors}
+            name={'nextOfKinName'}
+            label="Full Name"
+            pl="pl-[1rem]"
+            containerWidth="w-[45%]"
+            validation={registrationOption.name}
+          />
+          <InputComponent
+            placeholder={'sandraj@gmail.com'}
+            type={'email'}
+            register={register}
+            error={errors}
+            name={'nextOfKinEmail'}
+            pl="pl-[1rem]"
+            label="Email"
+            containerWidth="w-[45%]"
+            validation={registrationOption.email}
+          />
+        </div>
+        <InputComponent
+          placeholder={'Ibiza, Spain'}
+          type={'text'}
+          register={register}
+          error={errors}
+          name={'nextOfKinAddress'}
+          pl="pl-[1rem]"
+          label="Address"
+          containerWidth="w-[45%]"
+          validation={registrationOption.address}
+        />
+      </div>
+      <button
+        disabled={isLoading}
+        type="submit"
+        className={`mt-[4rem] py-[1rem] flex justify-center items-center bg-color-primary-1 text-color-white w-auto px-[2rem] border border-color-primary-1 rounded-lg transition-all duration-300 ease-in ${
+          isLoading && 'opacity-75'
+        }`}
+      >
+        {isLoading ? (
+          <FallingLines height="20" width="20" color={'white'} visible={true} />
+        ) : (
+          'Submit'
+        )}
+      </button>
+    </form>
+  );
+};
+
+export default AddMemberForm;

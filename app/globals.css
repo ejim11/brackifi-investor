@@ -2,32 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+html {
+  box-sizing: border-box;
+  font-size: 100%; /*1rem = 16px;*/
+
+  @media all and (max-width: 2000px) {
+    font-size: 87.5%; /*1rem = 14px;*/
+  }
+
+  @media all and (max-width: 1700px) {
+    font-size: 75%; /*1rem = 12px;*/
+  }
+
+  @media all and (max-width: 1440px) {
+    font-size: 62.5%; /*1rem = 10px;*/
+  }
+
+  @media all and (max-width: 300px) {
+    font-size: 56.25%; /*1rem = 9px;*/
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-size: 1.6rem;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+img {
+  max-width: 100%;
+}
+
+input {
+  font-size: 16px !important;
+}
+
+@keyframes titleAnimation {
+  0% {
+    transform: translateX(-40%);
+    opacity: 0;
+    clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
   }
+
+  20% {
+    transform: translateX(0);
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0 100%);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+  }
+
+  80% {
+    transform: translateX(0);
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0 100%);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.logo-animation {
+  animation: titleAnimation 3s ease-in;
+}
+
+/* toatisfy styles */
+.Toastify__toast {
+  width: 30rem;
+  font-size: 1.6rem;
+
+  @media all and (max-width: 700px) {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+  }
+}
+
+.Toastify__toast-theme--light {
+  color: 'rgba(67, 104, 80)' !important;
+}
+
+.Toastify__toast-body > * {
+  color: 'red' !important;
+}
+
+.task-item {
+  padding: 1rem 0;
+  color: #949494;
+  font-weight: 600;
 }
