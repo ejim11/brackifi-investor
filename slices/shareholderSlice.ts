@@ -11,6 +11,11 @@ const shareholderSlice = createSlice({
       id: '',
       name: '',
       email: '',
+      address: '',
+      phoneNumber: '',
+      nextOfKinName: '',
+      nextOfKinEmail: '',
+      nextOfKinAddress: '',
     },
   },
   reducers: {
@@ -25,6 +30,8 @@ const shareholderSlice = createSlice({
       state.details.name = action.payload.name;
       state.details.email = action.payload.email;
       state.details.id = action.payload.id;
+      state.details.address = action.payload.address;
+      state.details.phoneNumber = action.payload.phoneNumber;
       localStorage.setItem(
         'shareholderDetails',
         JSON.stringify(action.payload)

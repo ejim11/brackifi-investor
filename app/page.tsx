@@ -13,12 +13,20 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       const storedToken = window.localStorage.getItem('shareholderToken');
 
-      const { name, id } = JSON.parse(
+      const { name, id, email, phoneNumber, address } = JSON.parse(
         window.localStorage.getItem('shareholderDetails') || '{}'
       );
 
       dispatch(shareholderAction.setShareHolderToken(storedToken || ''));
-      dispatch(shareholderAction.setShareholderDetails({ name, id }));
+      dispatch(
+        shareholderAction.setShareholderDetails({
+          name,
+          id,
+          email,
+          phoneNumber,
+          address,
+        })
+      );
 
       if (!storedToken) {
         router.replace('/auth/login');

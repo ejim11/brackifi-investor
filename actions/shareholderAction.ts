@@ -4,6 +4,7 @@ import {
   login,
   resetPassword,
   updatePassword,
+  updateInfo,
 } from '@/services/shareholderService';
 import { shareholderAction } from '@/slices/shareholderSlice';
 
@@ -53,10 +54,24 @@ export const loginShareholderHandler = (
     try {
       const res = await login(data);
       console.log(res.data.data);
-      const { name, email, _id: id } = res.data.data.shareholder;
+      const {
+        name,
+        email,
+        _id: id,
+        phoneNumber,
+        address,
+      } = res.data.data.shareholder;
       setIsLoading(false);
       dispatch(shareholderAction.setShareHolderToken(res.data.token));
-      dispatch(shareholderAction.setShareholderDetails({ id, name, email }));
+      dispatch(
+        shareholderAction.setShareholderDetails({
+          id,
+          name,
+          email,
+          phoneNumber,
+          address,
+        })
+      );
       navFunc({ id, name });
       toastSuccess('Login successfully!', iconSuccess);
       resetForm();
@@ -147,6 +162,50 @@ export const updateMyPasswordDispatch =
       toastSuccess('Password updated successfully!', iconSuccess);
       resetForm();
       logoutHandler();
+    } catch (err: any) {
+      console.log(err);
+      setIsLoading(false);
+      toastError(err.response.data.message, iconError);
+    }
+  };
+
+export const updateInfoDispatch =
+  (
+    data: any,
+    jwtToken: string,
+    setIsLoading: Function,
+    toastSuccess: any,
+    toastError: any,
+    iconSuccess: any,
+    iconError: any,
+    resetForm: Function
+  ) =>
+  async (dispatch: any) => {
+    setIsLoading(true);
+    try {
+      const res = await updateInfo(data, jwtToken);
+      const {
+        name,
+        email,
+        _id: id,
+        phoneNumber,
+        address,
+      } = res.data.data.shareholder;
+      setIsLoading(false);
+      // dispatch(shareholderAction.setShareHolderToken(res.data.token));
+      dispatch(
+        shareholderAction.setShareholderDetails({
+          id,
+          name,
+          email,
+          phoneNumber,
+          address,
+        })
+      );
+      // navFunc({ id, name });
+      setIsLoading(false);
+      toastSuccess('Updated successfully!', iconSuccess);
+      resetForm();
     } catch (err: any) {
       console.log(err);
       setIsLoading(false);
