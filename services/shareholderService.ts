@@ -37,3 +37,11 @@ export const updatePassword = async (
     },
   });
 };
+
+export const updateInfo = async (data: any, jwtToken: string) => {
+  return await shareholder.patch(`/updateMe`, data, {
+    headers: {
+      Authorization: 'Bearer ' + jwtToken,
+    },
+  });
+};
