@@ -9,7 +9,7 @@ import { HiCircleStack } from 'react-icons/hi2';
 
 const shareholderPortfolioData = [
   {
-    title: 'Share value',
+    title: 'Investment value',
     valueInUsd: '$20,000',
     valueInToken: '100,000',
     valueInPercent: '',
@@ -54,14 +54,14 @@ const shareholderPortfolioData = [
 const DashboardFirstSec = () => {
   const { name, id } = useAppSelector((state) => state.shareholder.details);
   return (
-    <div className="flex flex-col font-nunito justify-between h-full font-bold">
+    <div className="grid grid-cols-5 gap-x-[2rem] font-nunito justify-betwee font-bold bg-color-secondary-1 px-[1rem] py-[2rem] rounded-lg w-full">
       {shareholderPortfolioData.map((item, i) => (
         <div
           key={i}
-          className="w-full h-auto rounded-md flex  flex-col mb-[1rem] bg-[#161616] p-[1rem]  text-color-secondary-2 text-[1.7rem] font-bold last:mb-0"
+          className=" h-auto rounded-md flex   flex-col items-center  text-center  bg-[#161616] px-[1rem] py-[2rem] shadow-md  text-color-secondary-1 text-[1.7rem] font-bold "
         >
-          <div className="flex items-center  mb-[.5rem]">
-            <div className=" text-color-primary-1 mr-[1rem]">{item?.icon}</div>
+          <div className="flex flex-col items-center  mb-[.5rem]">
+            <div className=" text-color-primary-1 mb-[1rem]">{item?.icon}</div>
             <p className="text-[1.8rem] font-semibold text-color-primary-1 uppercase ">
               {item.title}
             </p>

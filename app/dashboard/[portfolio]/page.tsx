@@ -7,19 +7,19 @@ import ManagerCommentaries from '@/components/ManagerCommentaries';
 import FundPerformanceCommentary from '@/components/FundPerformanceCommentary';
 import Performance from '@/components/Performance';
 import InvestmentPositions from '@/components/InvestmentPositions';
+import DocumentLibraryAndReport from '@/components/DocumentLibraryAndReport';
+import Messages from '@/components/Messages';
 
 const page = () => {
   const { name, id } = useAppSelector((state) => state.shareholder.details);
 
   return (
-    <main className="bg-[#161616] font-nunito w-full">
-      <section className="bg-home-db-bg bg-no-repeat bg-cover bg-center  bg-color-primary-1 rounded-bl-xl rounded-br-xl pt-[12rem] pl-[5rem] flex pb-[5rem] items-center w-full flex-wrap">
-        {/* <DashboardFirstSec /> */}
-        <div className="flex-1">
+    <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full">
+      <section className="bg-home-db-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full flex-wrap flex-col min-h-screen">
+        <DashboardFirstSec />
+        <div className="w-full flex mt-[5rem] justify-between">
           <ReturnPerMonthGraph />
-        </div>
-        <div className="w-[30rem] ml-[5rem] rounded-tl-lg rounded-bl-lg bg-color-secondary-1 p-[1rem]">
-          <DashboardFirstSec />
+          <DocumentLibraryAndReport />
         </div>
       </section>
       <section className="py-[5rem] px-[5rem] flex justify-between ">
@@ -55,16 +55,19 @@ const page = () => {
         </div>
       </section>
       <section className="pb-[5rem] px-[5rem] flex justify-between">
-        <div className="bg-color-secondary-1 w-[48%] h-[40rem] rounded-md">
+        <div className="bg-color-secondary-1 w-[48%] h-[40rem] rounded-md flex flex-col">
           <p className="p-[1rem] shadow-md text-[1.8rem] text-color-primary-1 font-bold uppercase">
             Investment Positions
           </p>
-          <div className="p-[1.5rem]">
+          <div className="p-[1.5rem] flex-1 overflow-y-auto">
             <InvestmentPositions />
           </div>
         </div>
-        <div className="bg-color-secondary-2 w-[48%] h-[40rem]">
-          <p>Document library and reports</p>
+        <div className="w-[48%] h-[40rem] bg-color-secondary-1 rounded-md flex flex-col">
+          <p className="p-[1rem] shadow-md text-[1.8rem] text-color-primary-1 font-bold uppercase">
+            Messages and Notifications
+          </p>
+          <Messages />
         </div>
       </section>
       {/* <section className="bg-home-bg h-[50rem] bg-center bg-no-repeat bg-cover"></section> */}

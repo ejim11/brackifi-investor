@@ -34,8 +34,8 @@ const positions = [
 
 const InvestmentPositions = () => {
   return (
-    <div className="w-full bg-color-primary-1">
-      <table className="w-full ">
+    <div className="w-full h-full  ">
+      <table className="w-full  table-auto h-full " id="customers">
         <thead>
           <tr>
             {tableHeaders.map((header) => (

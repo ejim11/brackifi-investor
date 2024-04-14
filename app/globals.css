@@ -43,6 +43,43 @@ input {
   font-size: 16px !important;
 }
 
+#customers {
+  /* font-family: Arial, Helvetica, sans-serif; */
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td,
+#customers th {
+  border: 1px solid #555335;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+  background-color: rgba(67, 104, 80);
+  color: #eef0e5;
+}
+
+#customers tr:nth-child(odd) {
+  color: #555335;
+}
+
+/* #customers tr:hover {
+  background-color: #eef0e5;
+} */
+
+#customers th {
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  text-align: center;
+  background-color: rgba(67, 104, 80);
+  color: white;
+}
+
+.position-item-row {
+  color: white;
+}
+
 @keyframes titleAnimation {
   0% {
     transform: translateX(-40%);

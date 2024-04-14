@@ -5,9 +5,11 @@ import logo from '../assets/logo2.png';
 import Link from 'next/link';
 import { FaUser } from 'react-icons/fa6';
 import { useAppSelector } from '@/hooks/customHook';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const DashboardNav = () => {
+  const router = useRouter();
+
   const { name, id } = useAppSelector((state) => state.shareholder.details);
 
   const pathname = usePathname();
@@ -30,9 +32,16 @@ const DashboardNav = () => {
     },
   ];
 
+  const logoutHandler = () => {
+    localStorage.removeItem('shareholderToken');
+    localStorage.removeItem('shareholderDetails');
+    router.replace('/auth/login');
+    console.log('logout');
+  };
+
   return (
     <header
-      className={`w-full h-[9rem] px-[5rem] xlg:px-[5rem] xmd:px-[3.5rem] smd:px-[2.5rem]   ssm:px-[1.5rem] flex items-center absolute top-0 left-0 right-0 justify-between bg-[#161616]`}
+      className={`w-full h-[8rem] px-[5rem] xlg:px-[5rem] xmd:px-[3.5rem] smd:px-[2.5rem]   ssm:px-[1.5rem] flex items-center absolute top-0 left-0 right-0 justify-between bg-[#161616]`}
     >
       <div className="flex items-center ">
         <Image
@@ -70,6 +79,13 @@ const DashboardNav = () => {
           <FaUser className="mr-[1rem]" />
           <p className="text-[1.8rem] font-semibold">{name.split(' ')[0]}</p>
         </Link>
+        <button
+          type="button"
+          className="font-semibold text-color-primary-1 bg-color-secondary-1 px-[1rem] py-[.5rem] rounded-md ml-[1rem] "
+          onClick={logoutHandler}
+        >
+          Sign Out
+        </button>
       </div>
     </header>
   );

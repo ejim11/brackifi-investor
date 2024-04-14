@@ -6,7 +6,7 @@ import { labels, returnMonthsData } from '@/utils/returnsPerMonthGraphData';
 
 ChartJS.register(...registerables);
 
-ChartJS.defaults.color = 'rgba(210, 183, 116, 1)';
+ChartJS.defaults.color = 'rgba(67, 104, 80)';
 
 const ReturnPerMonthGraph = () => {
   // data for the line chart
@@ -14,10 +14,10 @@ const ReturnPerMonthGraph = () => {
     labels: labels,
     datasets: [
       {
-        label: 'Returns per month',
+        label: 'ROI per month',
         data: returnMonthsData.map((item) => item.return),
-        borderColor: 'rgba(210, 183, 116, 1)',
-        backgroundColor: 'rgba(210, 183, 116, 1)',
+        borderColor: 'rgba(67, 104, 80)',
+        backgroundColor: 'rgba(67, 104, 80)',
       },
     ],
   };
@@ -41,7 +41,7 @@ const ReturnPerMonthGraph = () => {
 
         grid: {
           display: true,
-          color: 'rgba(210, 183, 116, .3)',
+          color: 'rgba(67, 104, 80, .3)',
         },
       },
       y: {
@@ -51,7 +51,7 @@ const ReturnPerMonthGraph = () => {
         },
         grid: {
           display: true,
-          color: 'rgba(210, 183, 116, .3)',
+          color: 'rgba(67, 104, 80, .3)',
         },
         ticks: {
           // Include a dollar sign in the ticks
@@ -75,8 +75,13 @@ const ReturnPerMonthGraph = () => {
     },
   };
   return (
-    <div className=" p-[1.5rem] flex items-center justify-center flex-col">
-      <Line data={graphData} options={options} />
+    <div className=" flex  flex-col w-[50%] bg-color-secondary-1 rounded-lg shadow-lg">
+      <p className="p-[1rem] shadow-md text-[1.8rem] font-semibold text-color-primary-1 uppercase">
+        Return on Investment
+      </p>
+      <div className="p-[1.5rem] flex-1 w-full">
+        <Line data={graphData} options={options} />
+      </div>
     </div>
   );
 };

@@ -79,6 +79,8 @@ const config: Config = {
           'linear-gradient(to right,  rgba(67, 104, 80, .95) 15%,  rgba(0,0,0,1) 100%), url(../assets/home-bg.jpg)',
         'home-db':
           'linear-gradient(to right bottom,  rgba(67, 104, 80, 1) 15%,  rgba(0,0,0,1) 100%)',
+        'rect-light':
+          'linear-gradient(to right bottom,  rgba(67, 104, 80, .2) 15%,  rgba(0,0,0,1) 100%), url(../assets/rect-light.svg)',
       },
       // url(../assets/Hexagon.svg)
     },
