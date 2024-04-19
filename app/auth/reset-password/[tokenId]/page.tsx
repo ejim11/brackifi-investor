@@ -68,7 +68,7 @@ const page = () => {
     <div className="w-full h-screen bg-home-bg bg-no-repeat bg-cover bg-center flex justify-center items-center font-nunito">
       <div className="bg-color-primary-2 w-[30%]  rounded-md p-[3rem] ">
         <p className="text-[2rem] text-[#767e86] text-center uppercase">
-          Shareholder Portal
+          Investor Portal
         </p>
         <p className="text-[2.5rem] text-color-secondary-2 uppercase text-center mt-[2rem]">
           Reset Password
