@@ -8,7 +8,7 @@ import FundPerformanceCommentary from '@/components/FundPerformanceCommentary';
 import Performance from '@/components/Performance';
 import InvestmentPositions from '@/components/InvestmentPositions';
 import DocumentLibraryAndReport from '@/components/DocumentLibraryAndReport';
-import Messages from '@/components/Messages';
+import Messages from '@/components/News';
 
 const page = () => {
   const { name, id } = useAppSelector((state) => state.shareholder.details);
@@ -65,7 +65,7 @@ const page = () => {
         </div>
         <div className="w-[48%] h-[40rem] bg-color-secondary-1 rounded-md flex flex-col">
           <p className="p-[1rem] shadow-md text-[1.8rem] text-color-primary-1 font-bold uppercase">
-            Messages and Notifications
+            Business News
           </p>
           <Messages />
         </div>
