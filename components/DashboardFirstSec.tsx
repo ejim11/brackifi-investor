@@ -11,16 +11,15 @@ const shareholderPortfolioData = [
   {
     title: 'Investment value',
     valueInUsd: '$20,000',
-    valueInToken: '100,000',
     valueInPercent: '',
     icon: (
       <MdAccountBalanceWallet className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
     ),
   },
   {
-    title: 'Total Returns',
-    valueInUsd: '$10,000',
-    valueInPercent: '10.00',
+    title: 'Roi',
+    valueInPercent: '$10,000 (10)',
+    // valueInPercent: '10.00',
     valueInToken: '',
     icon: (
       <PiKeyReturnFill className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
@@ -36,25 +35,25 @@ const shareholderPortfolioData = [
     ),
   },
   {
-    title: 'Token Valuation',
+    title: 'Next Payout',
     icon: (
       <RiStackFill className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
     ),
-    text: '1BRAC = 100 USD',
+    text: '3rd May, 2024',
   },
   {
-    title: 'Tokens available',
+    title: 'Payout available',
     icon: (
       <HiCircleStack className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
     ),
-    text: '8,000,000 BRAC',
+    text: '$5,000',
   },
 ];
 
 const DashboardFirstSec = () => {
   const { name, id } = useAppSelector((state) => state.shareholder.details);
   return (
-    <div className="grid grid-cols-5 gap-x-[2rem] font-nunito justify-betwee font-bold bg-color-secondary-1 px-[1rem] py-[2rem] rounded-lg w-full">
+    <div className="grid grid-cols-5 gap-x-[2rem] font-nunito justify-betwee font-bold bg-color-secondary-1  p-[2rem] rounded-lg w-full">
       {shareholderPortfolioData.map((item, i) => (
         <div
           key={i}
@@ -66,18 +65,9 @@ const DashboardFirstSec = () => {
               {item.title}
             </p>
           </div>
-          {item.valueInToken && (
-            <p>
-              {item.valueInToken} BRAC ({item.valueInUsd})
-            </p>
-          )}
+          {item.valueInUsd && <p>{item.valueInUsd}</p>}
           {/* {item.valueInUsd && <p>{item.valueInUsd}</p>} */}
-          {item.valueInPercent && (
-            <p>
-              {' '}
-              {item.valueInUsd} ({item.valueInPercent}%)
-            </p>
-          )}
+          {item.valueInPercent && <p>{item.valueInPercent}%</p>}
           {item.text && <p>{item.text}</p>}
         </div>
       ))}

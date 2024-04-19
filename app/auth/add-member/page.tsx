@@ -7,13 +7,13 @@ const page = () => {
   return (
     <main className="pt-[12rem]   px-[12rem] pb-[5rem] xlg:px-[5rem] smd:px-[2.5rem] ssm:px-[1.5rem] font-nunito bg-color-primary-2  flex flex-col ">
       <p className="text-[3rem] text-color-primary-1 ">
-        Shareholder Portal Access Request Form
+        Investor Portal Access Request Form
       </p>
       <div className="w-full flex-1 flex justify-between mt-[2rem] overflow-auto ">
         <div className="flex-1 mr-[3rem] ">
           <div className="bg-color-white rounded-md p-[3rem] text-color-secondary-2">
             <p className="text-[2.5rem] text-color-secondary-1">
-              Thank you for your interest in accessing Brackifi's Shareholder
+              Thank you for your interest in accessing Brackifi's Investor
               Portal.
             </p>
             <p className="text-color-secondary-2 text-justify mt-[1.5rem]">
@@ -44,7 +44,7 @@ const page = () => {
               at{' '}
               <span className="text-color-secondary-1">
                 <a href="mailto:favourejim56@gmail.com">
-                  shareholderrelations@brackifi.com
+                  Investorrelations@brackifi.com
                 </a>
               </span>
               .
