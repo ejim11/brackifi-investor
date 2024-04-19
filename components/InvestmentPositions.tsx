@@ -50,6 +50,7 @@ const InvestmentPositions = () => {
         <tbody>
           {positions.map((position, i) => (
             <PositionTableItem
+              key={i}
               asset={position.asset}
               returns={position.returns}
               position={position.position}
