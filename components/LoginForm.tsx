@@ -99,7 +99,7 @@ const LoginForm = () => {
         }`}
       >
         {isLoading ? (
-          <FallingLines height="20" width="20" color={'white'} visible={true} />
+          <FallingLines height="25" width="25" color={'white'} visible={true} />
         ) : (
           'Login'
         )}
