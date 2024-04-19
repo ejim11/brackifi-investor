@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import shareholderReducer from './slices/shareholderSlice';
+import reportsReducer from './slices/docsAndReportsSlice';
 
 const store = configureStore({
   reducer: {
     shareholder: shareholderReducer,
+    reports: reportsReducer,
   },
 });
 
