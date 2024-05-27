@@ -6,7 +6,7 @@ import {
   updatePassword,
   updateInfo,
 } from '@/services/investorService';
-import { shareholderAction } from '@/slices/shareholderSlice';
+import { investorAction } from '@/slices/investorSlice';
 
 export const applyToBeInvestorDispatch = (
   data: any,
@@ -25,9 +25,8 @@ export const applyToBeInvestorDispatch = (
   ) => {
     setIsLoading(true);
     try {
-      const res = await applyToBeInvestor(data);
-      //   dispatch(shareholderAction.setShareholderDetails(res.data));
-      // console.log(res);
+      await applyToBeInvestor(data);
+
       setIsLoading(false);
       toastSuccess('Application submitted!', iconSuccess);
       resetForm();
@@ -39,7 +38,7 @@ export const applyToBeInvestorDispatch = (
   };
 };
 
-export const loginShareholderHandler = (
+export const loginInvestorHandler = (
   data: any,
   setIsLoading: any,
   toastSuccess: any,
@@ -53,18 +52,17 @@ export const loginShareholderHandler = (
     setIsLoading(true);
     try {
       const res = await login(data);
-      console.log(res.data.data);
       const {
         name,
         email,
         _id: id,
         phoneNumber,
         address,
-      } = res.data.data.shareholder;
+      } = res.data.data.investor;
       setIsLoading(false);
-      dispatch(shareholderAction.setShareHolderToken(res.data.token));
+      dispatch(investorAction.setInvestorToken(res.data.token));
       dispatch(
-        shareholderAction.setShareholderDetails({
+        investorAction.setInvestorDetails({
           id,
           name,
           email,
@@ -192,9 +190,9 @@ export const updateInfoDispatch =
         address,
       } = res.data.data.shareholder;
       setIsLoading(false);
-      // dispatch(shareholderAction.setShareHolderToken(res.data.token));
+      // dispatch(investorAction.setInvestorActionToken(res.data.token));
       dispatch(
-        shareholderAction.setShareholderDetails({
+        investorAction.setInvestorDetails({
           id,
           name,
           email,

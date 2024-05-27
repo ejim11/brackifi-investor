@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// const storedToken = window.localStorage.getItem('shareholderToken');
+// const storedToken = window.localStorage.getItem('investorToken');
 
-const shareholderSlice = createSlice({
-  name: 'shareholder',
+const investorSlice = createSlice({
+  name: 'investor',
   initialState: {
     isLoggedIn: false,
     token: '',
@@ -19,11 +19,11 @@ const shareholderSlice = createSlice({
     },
   },
   reducers: {
-    setShareHolderToken(state, action: { payload: string }) {
+    setInvestorToken(state, action: { payload: string }) {
       state.token = action.payload;
-      localStorage.setItem('shareholderToken', action.payload);
+      localStorage.setItem('investorToken', action.payload);
     },
-    setShareholderDetails(state, action) {
+    setInvestorDetails(state, action) {
       if (!action.payload) {
         return;
       }
@@ -32,18 +32,15 @@ const shareholderSlice = createSlice({
       state.details.id = action.payload.id;
       state.details.address = action.payload.address;
       state.details.phoneNumber = action.payload.phoneNumber;
-      localStorage.setItem(
-        'shareholderDetails',
-        JSON.stringify(action.payload)
-      );
+      localStorage.setItem('investorDetails', JSON.stringify(action.payload));
     },
-    updateShareholder(state, action) {
+    updateInvestor(state, action) {
       state.token = action.payload.token;
       // state.details = action.payload.details;
     },
   },
 });
 
-export const shareholderAction = shareholderSlice.actions;
+export const investorAction = investorSlice.actions;
 
-export default shareholderSlice.reducer;
+export default investorSlice.reducer;

@@ -6,7 +6,7 @@ import InputComponent from './InputComponent';
 import { AiOutlineMail } from 'react-icons/ai';
 import { IoMdLock } from 'react-icons/io';
 import { useAppDispatch } from '@/hooks/customHook';
-import { loginShareholderHandler } from '@/actions/shareholderAction';
+import { loginInvestorHandler } from '@/actions/investorAction';
 import { toastError, toastSuccess } from '@/utils/helperFns';
 import { FaRegCircleCheck } from 'react-icons/fa6';
 import { LuBadgeAlert } from 'react-icons/lu';
@@ -54,7 +54,7 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     dispatch(
-      loginShareholderHandler(
+      loginInvestorHandler(
         data,
         setIsLoading,
         toastSuccess,
