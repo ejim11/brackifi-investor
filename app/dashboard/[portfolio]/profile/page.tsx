@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import UpdatePasswordForm from '@/components/UpdatePasswordForm';
-import UpdateShareholderInfo from '@/components/UpdateShareholderForm';
+import UpdateShareholderInfo from '@/components/UpdateInvestorForm';
 import noUserImg from '../../../../assets/image_255.svg';
 import Image from 'next/image';
 import { fileHandler } from '@/utils/helperFns';

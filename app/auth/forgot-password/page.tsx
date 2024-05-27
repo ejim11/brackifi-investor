@@ -5,7 +5,7 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { registrationOption } from '@/utils/inputValidators';
 import InputComponent from '@/components/InputComponent';
 import { useAppDispatch } from '@/hooks/customHook';
-import { forgotPasswordDispatch } from '@/actions/shareholderAction';
+import { forgotPasswordDispatch } from '@/actions/investorAction';
 import { FaRegCircleCheck } from 'react-icons/fa6';
 import { LuBadgeAlert } from 'react-icons/lu';
 import { FallingLines } from 'react-loader-spinner';
@@ -86,8 +86,8 @@ const page = () => {
             >
               {isLoading ? (
                 <FallingLines
-                  height="20"
-                  width="20"
+                  height="25"
+                  width="25"
                   color={'white'}
                   visible={true}
                 />

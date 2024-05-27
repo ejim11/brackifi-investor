@@ -6,10 +6,7 @@ import InputComponent from './InputComponent';
 import { AiOutlineMail } from 'react-icons/ai';
 import { IoMdLock } from 'react-icons/io';
 import { useAppDispatch } from '@/hooks/customHook';
-import {
-  loginShareholderHandler,
-  updateMyPasswordDispatch,
-} from '@/actions/shareholderAction';
+import { updateMyPasswordDispatch } from '@/actions/investorAction';
 import { toastError, toastSuccess } from '@/utils/helperFns';
 import { FaRegCircleCheck } from 'react-icons/fa6';
 import { LuBadgeAlert } from 'react-icons/lu';

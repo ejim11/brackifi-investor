@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { registrationOption } from '@/utils/inputValidators';
 import InputComponent from '@/components/InputComponent';
 import { useAppDispatch } from '@/hooks/customHook';
-import { resetPasswordDispatch } from '@/actions/shareholderAction';
+import { resetPasswordDispatch } from '@/actions/investorAction';
 import { IoMdLock } from 'react-icons/io';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
@@ -110,8 +110,8 @@ const page = () => {
             >
               {isLoading ? (
                 <FallingLines
-                  height="20"
-                  width="20"
+                  height="25"
+                  width="25"
                   color={'white'}
                   visible={true}
                 />

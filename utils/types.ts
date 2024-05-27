@@ -1,4 +1,4 @@
-export type ShareholderDetails = {
+export type InvestorDetails = {
   name: string;
   email: string;
   phoneNumber: string;

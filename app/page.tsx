@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/hooks/customHook';
-import { shareholderAction } from '@/slices/shareholderSlice';
+import { investorAction } from '@/slices/investorSlice';
 
 export default function Home() {
   const router = useRouter();
@@ -11,15 +11,15 @@ export default function Home() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const storedToken = window.localStorage.getItem('shareholderToken');
+      const storedToken = window.localStorage.getItem('investorToken');
 
       const { name, id, email, phoneNumber, address } = JSON.parse(
-        window.localStorage.getItem('shareholderDetails') || '{}'
+        window.localStorage.getItem('investorDetails') || '{}'
       );
 
-      dispatch(shareholderAction.setShareHolderToken(storedToken || ''));
+      dispatch(investorAction.setInvestorToken(storedToken || ''));
       dispatch(
-        shareholderAction.setShareholderDetails({
+        investorAction.setInvestorDetails({
           name,
           id,
           email,
@@ -31,11 +31,7 @@ export default function Home() {
       if (!storedToken) {
         router.replace('/auth/login');
       } else {
-        router.replace(
-          `/dashboard/${[...name.toLowerCase().split(' '), id.slice(0, 5)].join(
-            '-'
-          )}`
-        );
+        router.replace(`/dashboard/${[...name.toLowerCase().split(' ')]}`);
       }
     }
   }, []);
