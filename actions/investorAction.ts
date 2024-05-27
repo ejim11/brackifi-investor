@@ -155,7 +155,6 @@ export const updateMyPasswordDispatch =
     setIsLoading(true);
     try {
       const res = await updatePassword(data, jwtToken);
-      console.log(res);
       setIsLoading(false);
       toastSuccess('Password updated successfully!', iconSuccess);
       resetForm();
@@ -188,7 +187,7 @@ export const updateInfoDispatch =
         _id: id,
         phoneNumber,
         address,
-      } = res.data.data.shareholder;
+      } = res.data.data.investor;
       setIsLoading(false);
       // dispatch(investorAction.setInvestorActionToken(res.data.token));
       dispatch(
