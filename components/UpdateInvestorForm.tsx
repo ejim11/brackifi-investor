@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '@/hooks/customHook';
 import { toastError, toastSuccess } from '@/utils/helperFns';
 import { FaRegCircleCheck } from 'react-icons/fa6';
 import { LuBadgeAlert } from 'react-icons/lu';
-import { updateInfoDispatch } from '@/actions/shareholderAction';
+import { updateInfoDispatch } from '@/actions/investorAction';
 
 const UpdateShareholderForm = () => {
   const dispatch = useAppDispatch();
