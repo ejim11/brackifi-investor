@@ -6,7 +6,7 @@ import InputComponent from './InputComponent';
 import { fileHandler, toastError, toastSuccess } from '@/utils/helperFns';
 import ProofImgComp from './ProofImgComp';
 import { useAppDispatch } from '@/hooks/customHook';
-import { applyToBeShareholderDispatch } from '@/actions/shareholderAction';
+import { applyToBeInvestorDispatch } from '@/actions/shareholderAction';
 import { FallingLines } from 'react-loader-spinner';
 import noImg from '../assets/no-image-svgrepo-com.svg';
 import { FaRegCircleCheck } from 'react-icons/fa6';
@@ -108,7 +108,7 @@ const AddMemberForm = () => {
     };
 
     dispatch(
-      applyToBeShareholderDispatch(
+      applyToBeInvestorDispatch(
         potentialShareholderData,
         setIsLoading,
         toastSuccess,

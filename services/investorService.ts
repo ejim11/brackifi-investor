@@ -1,16 +1,16 @@
-import { shareholder } from '../axios.config';
-import { ShareholderDetails } from '@/utils/types';
+import { investor } from '../axios.config';
+import { InvestorDetails } from '@/utils/types';
 
-export const applyToBeShareholder = async (data: any) => {
-  return await shareholder.post('/potential-shareholders', data);
+export const applyToBeInvestor = async (data: any) => {
+  return await investor.post('/potential-investors', data);
 };
 
 export const login = async (data: any) => {
-  return await shareholder.post('/login', data);
+  return await investor.post('/login', data);
 };
 
 export const forgotPassword = async (data: { email: string }) => {
-  return await shareholder.post('/forgotPassword', data);
+  return await investor.post('/forgotPassword', data);
 };
 
 export const resetPassword = async (
@@ -20,7 +20,7 @@ export const resetPassword = async (
   },
   resetToken: string
 ) => {
-  return await shareholder.patch(`/resetPassword/${resetToken}`, data);
+  return await investor.patch(`/resetPassword/${resetToken}`, data);
 };
 
 export const updatePassword = async (
@@ -31,7 +31,7 @@ export const updatePassword = async (
   },
   jwtToken: string
 ) => {
-  return await shareholder.patch(`/updateMyPassword`, data, {
+  return await investor.patch(`/updateMyPassword`, data, {
     headers: {
       Authorization: 'Bearer ' + jwtToken,
     },
@@ -39,7 +39,7 @@ export const updatePassword = async (
 };
 
 export const updateInfo = async (data: any, jwtToken: string) => {
-  return await shareholder.patch(`/updateMe`, data, {
+  return await investor.patch(`/updateMe`, data, {
     headers: {
       Authorization: 'Bearer ' + jwtToken,
     },

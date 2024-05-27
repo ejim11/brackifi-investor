@@ -1,5 +1,5 @@
 import axios from 'axios';
-export const shareholder = axios.create({
+export const investor = axios.create({
   baseURL:
     process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
       ? process.env.NEXT_PUBLIC_DEV_BASE_URL

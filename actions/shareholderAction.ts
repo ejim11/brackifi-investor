@@ -1,14 +1,14 @@
 import {
-  applyToBeShareholder,
+  applyToBeInvestor,
   forgotPassword,
   login,
   resetPassword,
   updatePassword,
   updateInfo,
-} from '@/services/shareholderService';
+} from '@/services/investorService';
 import { shareholderAction } from '@/slices/shareholderSlice';
 
-export const applyToBeShareholderDispatch = (
+export const applyToBeInvestorDispatch = (
   data: any,
   setIsLoading: any,
   toastSuccess: any,
@@ -25,7 +25,7 @@ export const applyToBeShareholderDispatch = (
   ) => {
     setIsLoading(true);
     try {
-      const res = await applyToBeShareholder(data);
+      const res = await applyToBeInvestor(data);
       //   dispatch(shareholderAction.setShareholderDetails(res.data));
       // console.log(res);
       setIsLoading(false);
