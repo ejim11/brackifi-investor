@@ -8,8 +8,8 @@ export const getAllReportsDispatch = (setIsLoading: Function) => {
     try {
       const res = await getAllReports();
       console.log(res);
-      const { allReports } = res.data.data;
-      dispatch(reportsAction.setReports(allReports));
+      const { docs } = res.data.data;
+      dispatch(reportsAction.setReports(docs));
       setIsLoading(false);
     } catch (err: any) {
       console.log(err.message);

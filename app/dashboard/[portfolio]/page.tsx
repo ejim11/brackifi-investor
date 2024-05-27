@@ -15,7 +15,7 @@ const page = () => {
 
   return (
     <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full">
-      <section className="bg-home-db-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full flex-wrap flex-col min-h-screen">
+      <section className="bg-home-db-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full flex-wrap flex-col ">
         <DashboardFirstSec />
         <div className="w-full flex mt-[5rem] justify-between">
           <ReturnPerMonthGraph />
