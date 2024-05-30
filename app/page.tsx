@@ -31,7 +31,7 @@ export default function Home() {
       if (!storedToken) {
         router.replace('/auth/login');
       } else {
-        router.replace(`/dashboard/${[...name.toLowerCase().split(' ')]}`);
+        router.replace(`/dashboard/${name.toLowerCase().split(' ').join('-')}`);
       }
     }
   }, []);

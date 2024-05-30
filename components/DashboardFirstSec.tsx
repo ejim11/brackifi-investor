@@ -18,7 +18,7 @@ const shareholderPortfolioData = [
   },
   {
     title: 'Roi',
-    valueInPercent: '$10,000 (10)',
+    valueInPercent: '10',
     // valueInPercent: '10.00',
     valueInToken: '',
     icon: (
@@ -51,26 +51,35 @@ const shareholderPortfolioData = [
 ];
 
 const DashboardFirstSec = () => {
-  const { name, id } = useAppSelector((state) => state.shareholder.details);
+  const { name } = useAppSelector((state) => state.shareholder.details);
   return (
-    <div className="grid grid-cols-5 gap-x-[2rem] font-nunito justify-betwee font-bold bg-color-secondary-1  p-[2rem] rounded-lg w-full">
-      {shareholderPortfolioData.map((item, i) => (
-        <div
-          key={i}
-          className=" h-auto rounded-md flex   flex-col items-center  text-center  bg-[#161616] px-[1rem] py-[2rem] shadow-md  text-color-secondary-1 text-[1.7rem] font-bold "
-        >
-          <div className="flex flex-col items-center  mb-[.5rem]">
-            <div className=" text-color-primary-1 mb-[1rem]">{item?.icon}</div>
-            <p className="text-[1.8rem] font-semibold text-color-primary-1 uppercase ">
-              {item.title}
-            </p>
+    <div className=" bg-color-secondary-1 p-[2rem] rounded-lg font-nunito">
+      <div className="mb-[1.5rem]">
+        <p className="text-[3rem] font-semibold text-color-primary-1">
+          Welcome {name.split(' ')[0]},
+        </p>
+      </div>
+      <div className="grid grid-cols-5 gap-x-[2rem] font-nunito justify-betwee font-bold  rounded-lg w-full">
+        {shareholderPortfolioData.map((item, i: number) => (
+          <div
+            key={i}
+            className=" h-auto rounded-md flex   flex-col items-center  text-center  bg-[#161616] px-[1rem] py-[2rem] shadow-md  text-color-secondary-1 text-[1.7rem] font-bold "
+          >
+            <div className="flex flex-col items-center  mb-[.5rem]">
+              <div className=" text-color-primary-1 mb-[1rem]">
+                {item?.icon}
+              </div>
+              <p className="text-[1.8rem] font-semibold text-color-primary-1 uppercase ">
+                {item.title}
+              </p>
+            </div>
+            {item.valueInUsd && <p>{item.valueInUsd}</p>}
+            {/* {item.valueInUsd && <p>{item.valueInUsd}</p>} */}
+            {item.valueInPercent && <p>{item.valueInPercent}%</p>}
+            {item.text && <p>{item.text}</p>}
           </div>
-          {item.valueInUsd && <p>{item.valueInUsd}</p>}
-          {/* {item.valueInUsd && <p>{item.valueInUsd}</p>} */}
-          {item.valueInPercent && <p>{item.valueInPercent}%</p>}
-          {item.text && <p>{item.text}</p>}
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

@@ -14,12 +14,11 @@ const DashboardNav = () => {
 
   const pathname = usePathname();
 
-  console.log(pathname);
-
-  const baseLink: string = `/dashboard/${[
-    ...name.toLowerCase().split(' '),
-    id.slice(0, 5),
-  ].join('-')}`;
+  const baseLink: string = `/dashboard/${name
+    .toLowerCase()
+    .slice()
+    .split(' ')
+    .join('-')}`;
 
   const navData = [
     {
@@ -53,8 +52,8 @@ const DashboardNav = () => {
           Brackifi
         </p>
       </div>
-      <div className="flex items-center">
-        <div className="text-[1.7rem] text-color-primary-2 mr-[3rem]">
+      <div className="flex ">
+        <div className="text-[1.7rem] text-color-primary-2 mr-[3rem] flex items-center">
           {navData.map((item, i) => (
             <Link
               key={i}
@@ -70,10 +69,7 @@ const DashboardNav = () => {
           ))}
         </div>
         <Link
-          href={`/dashboard/${[
-            ...name.toLowerCase().split(' '),
-            id.slice(0, 5),
-          ].join('-')}/profile`}
+          href={`${baseLink}/profile`}
           className="rounded-md py-[.5rem] px-[1rem] bg-color-secondary-1 text-color-secondary-2 w-auto flex items-center"
         >
           <FaUser className="mr-[1rem]" />
