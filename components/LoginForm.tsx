@@ -46,9 +46,7 @@ const LoginForm = () => {
 
   const navigateFunc = ({ id, name }: { id: string; name: string }) => {
     router.replace(
-      `/dashboard/${[...name.toLowerCase().split(' '), id.slice(0, 5)].join(
-        '-'
-      )}`
+      `/dashboard/${name.toLowerCase().slice().split(' ').join('-')}`
     );
   };
 

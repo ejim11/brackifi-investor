@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { useAppSelector } from '@/hooks/customHook';
+// import { useAppSelector } from '@/hooks/customHook';
 import DashboardFirstSec from '@/components/DashboardFirstSec';
 import ReturnPerMonthGraph from '@/components/ReturnPerMonthGraph';
 import ManagerCommentaries from '@/components/ManagerCommentaries';
@@ -11,7 +11,7 @@ import DocumentLibraryAndReport from '@/components/DocumentLibraryAndReport';
 import Messages from '@/components/News';
 
 const page = () => {
-  const { name, id } = useAppSelector((state) => state.shareholder.details);
+  // const { name, id } = useAppSelector((state) => state.shareholder.details);
 
   return (
     <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full">
