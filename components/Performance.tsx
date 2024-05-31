@@ -11,8 +11,8 @@ const Performance = ({
   title: string;
 }) => {
   return (
-    <div className="shadow-lg w-[48%]  h-full rounded-lg flex items-center flex-col p-[1rem]">
-      <div className="w-[10rem] h-[10rem]">
+    <div className="shadow-lg w-[48%]  h-full bg-color-black-light rounded-lg flex items-center flex-col p-[1.5rem]">
+      <div className="w-[13rem] h-[13rem]">
         <CircularProgressbar
           value={percentage}
           text={`${percentage}%`}
@@ -33,18 +33,21 @@ const Performance = ({
             // pathTransition: 'none',
 
             // Colors
-            pathColor: `rgba(67, 104, 80)`,
-            textColor: 'rgba(67, 104, 80)',
+            pathColor: `rgba(210, 183, 116, 1)`,
+            textColor: 'rgba(210, 183, 116, 1)',
             trailColor: 'rgba(0, 0, 0,0.5)',
             backgroundColor: 'rgba(0, 0, 0)',
           })}
         />
       </div>
       <div>
-        <p className="text-[1.8rem] text-color-primary-1 font-nunito font-bold uppercase mt-[2rem] text-center">
+        <p className="text-[1.8rem] text-color-secondary-1 font-nunito font-bold uppercase mt-[2rem] text-center">
           {title}
         </p>
       </div>
+      <button className="mt-auto px-[1.5rem] py-[0.5rem] bg-color-primary-1 text-color-white border border-color-primary-1 rounded-lg">
+        Report {title.includes('Monthly') ? 'April ' : 'Monday'}
+      </button>
     </div>
   );
 };

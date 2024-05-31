@@ -18,8 +18,8 @@ const DocumentLibraryAndReport = () => {
   }, []);
 
   return (
-    <div className="w-[45%] h-[40rem] bg-color-secondary-1 rounded-lg shadow-lg flex flex-col">
-      <p className="p-[1rem] shadow-md text-[1.8rem] font-semibold text-color-primary-1 uppercase">
+    <div className="w-[45%] h-[40rem] bg-color-secondary-1 rounded-lg shadow-lg flex flex-col overflow-hidden">
+      <p className="p-[1rem] shadow-md text-[1.8rem] font-semibold text-color-secondary-1 bg-[#161616] uppercase">
         Document Library And Reports
       </p>
       {isLoading && (
@@ -43,12 +43,12 @@ const DocumentLibraryAndReport = () => {
                   {report.title}
                 </p>
                 <p className="text-color-tertiary-1">{report.summary}</p>
-                <p className="text-[1.4rem] text-color-secondary-2">
+                {/* <p className="text-[1.4rem] text-color-secondary-2">
                   {report.date}
-                </p>
+                </p> */}
               </div>
-              <button className="w-auto bg-color-primary-1 text-color-white p-[1rem] rounded-md border border-color-primary-1 hover:text-color-primary-1 hover:bg-color-transparent font-semibold transition-all duration-100 ease-in ">
-                Download
+              <button className="w-auto bg-color-primary-1 text-color-white py-[0.5rem] px-[1rem] rounded-md border border-color-primary-1 hover:text-color-primary-1 hover:bg-color-transparent font-semibold transition-all duration-100 ease-in ">
+                View
               </button>
             </div>
           ))}
