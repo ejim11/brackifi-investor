@@ -20,10 +20,12 @@ const config: Config = {
       'color-transparent': 'transparent',
       'color-white': '#fff',
       'color-black': 'rgba(0, 0, 0, 1)',
+      'color-black-light': 'rgba(0, 0, 0, 0.5)',
       'color-red': 'red',
       'color-primary': {
         1: 'rgba(67, 104, 80)',
         2: '#EEF0E5',
+        3: '#d3f9d8',
       },
       'color-secondary': {
         1: 'rgba(210, 183, 116, 1)',
@@ -60,6 +62,8 @@ const config: Config = {
       backgroundImage: {
         'home-bg':
           'linear-gradient(to right bottom,  rgba(67, 104, 80, .9) 15%,  rgba(0,0,0,1) 100%), url(../assets/home-bg.jpg)',
+        'order-bg':
+          'linear-gradient(to right bottom,  rgba(67, 104, 80, .8) 15%,  rgba(0,0,0,.9) 100%), url(../assets/order.jpg)',
         'home-bg-2':
           'linear-gradient(to right bottom,  rgba(67, 104, 80, .8) 15%,  rgba(0,0,0,1) 100%), url(../assets/home-bg.jpg)',
         'phil-bg':

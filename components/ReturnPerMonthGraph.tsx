@@ -75,8 +75,8 @@ const ReturnPerMonthGraph = () => {
     },
   };
   return (
-    <div className=" flex  flex-col w-[50%] bg-color-secondary-1 rounded-lg shadow-lg">
-      <p className="p-[1rem] shadow-md text-[1.8rem] font-semibold text-color-primary-1 uppercase">
+    <div className=" flex  flex-col w-[50%] bg-color-secondary-1 rounded-lg shadow-lg overflow-hidden">
+      <p className="p-[1rem] shadow-md text-[1.8rem] font-semibold text-color-secondary-1 bg-[#161616] uppercase">
         Return on Investment
       </p>
       <div className="p-[1.5rem] flex-1 w-full">

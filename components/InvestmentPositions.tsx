@@ -8,27 +8,27 @@ const positions = [
   {
     asset: 'BTC/USDC',
     position: 'LONG',
-    returns: '10.00% ($230,000)',
+    returns: '10.00% ',
   },
   {
     asset: 'BTC/USDC',
     position: 'LONG',
-    returns: '10.00% ($230,000)',
+    returns: '10.00% ',
   },
   {
     asset: 'BTC/USDC',
     position: 'LONG',
-    returns: '10.00% ($230,000)',
+    returns: '10.00% ',
   },
   {
     asset: 'BTC/USDC',
     position: 'LONG',
-    returns: '10.00% ($230,000)',
+    returns: '10.00% ',
   },
   {
     asset: 'BTC/USDC',
     position: 'LONG',
-    returns: '10.00% ($230,000)',
+    returns: '10.00% ',
   },
 ];
 
