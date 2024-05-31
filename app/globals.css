@@ -138,3 +138,8 @@ input {
   color: #949494;
   font-weight: 600;
 }
+
+/* clip manage investments */
+.invest-text-clip {
+  clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
+}

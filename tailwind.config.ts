@@ -30,6 +30,7 @@ const config: Config = {
       'color-secondary': {
         1: 'rgba(210, 183, 116, 1)',
         2: '#555335',
+        3: 'rgba(210, 183, 116, 0.8)',
       },
       'color-tertiary': {
         1: '#36454F',

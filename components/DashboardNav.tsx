@@ -26,8 +26,8 @@ const DashboardNav = () => {
       link: baseLink,
     },
     {
-      text: 'Shareholding',
-      link: `${baseLink}/manage-shares`,
+      text: 'Invest',
+      link: `${baseLink}/invest`,
     },
   ];
 
@@ -40,7 +40,7 @@ const DashboardNav = () => {
 
   return (
     <header
-      className={`w-full h-[8rem] px-[5rem] xlg:px-[5rem] xmd:px-[3.5rem] smd:px-[2.5rem]   ssm:px-[1.5rem] flex items-center absolute top-0 left-0 right-0 justify-between bg-[#161616]`}
+      className={`w-full h-[8rem] px-[5rem] xlg:px-[5rem] xmd:px-[3.5rem] smd:px-[2.5rem]   ssm:px-[1.5rem] flex items-center absolute top-0 left-0 right-0 justify-between bg-[#161616] z-[20]`}
     >
       <div className="flex items-center ">
         <Image
@@ -53,12 +53,12 @@ const DashboardNav = () => {
         </p>
       </div>
       <div className="flex ">
-        <div className="text-[1.7rem] text-color-primary-2 mr-[3rem] flex items-center">
+        <div className="text-[1.6rem] text-color-primary-2 mr-[3rem] flex items-center">
           {navData.map((item, i) => (
             <Link
               key={i}
               href={item.link}
-              className={`mr-[1rem] capitalize text-[1.8rem] hover:text-color-secondary-1 transition-all duration-150 ease-in ${
+              className={`mr-[1.5rem] capitalize text-[1.8rem] hover:text-color-secondary-1 transition-all duration-150 ease-in ${
                 item.link === pathname
                   ? 'text-color-secondary-1'
                   : 'text-color-white'

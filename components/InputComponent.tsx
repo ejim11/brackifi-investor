@@ -21,6 +21,8 @@ type InputProps = {
   icon?: React.ReactNode;
   error?: any;
   my?: string;
+  inputBg?: string;
+  min?: number;
 };
 
 const InputComponent: React.FC<InputProps> = (props) => {
