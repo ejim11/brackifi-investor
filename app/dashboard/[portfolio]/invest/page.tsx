@@ -31,10 +31,6 @@ const page = () => {
     dispatchFn(investmentActions.setInvestmentType('buy'));
   };
 
-  //   const withdrawInvestment = () => {
-  //     dispatchFn(investmentActions.toggleInvestmentModal());
-  //     dispatchFn(investmentActions.setInvestmentType('sell'));
-  //   };
 
   useEffect(() => {
     dispatchFn(getAllInvestmentsDispatch(token, details.id));

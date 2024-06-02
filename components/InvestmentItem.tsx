@@ -55,6 +55,9 @@ const InvestmentItem = ({
     );
   };
 
+  const btnText =
+    investmentState === 'withdraw pending' ? 'Pending' : 'Request withdrawal';
+
   return (
     <div
       className={`border border-color-primary-1 w-full h-[45rem]  rounded-lg overflow-hidden bg-color-primary-1 text-color-primary-3 flex flex-col justify-between pb-[2rem] relative`}
@@ -101,7 +104,7 @@ const InvestmentItem = ({
             visible={true}
           />
         ) : (
-          'Request withdrawal'
+          btnText
         )}
       </button>
     </div>
