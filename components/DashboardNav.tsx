@@ -10,7 +10,7 @@ import { usePathname, useRouter } from 'next/navigation';
 const DashboardNav = () => {
   const router = useRouter();
 
-  const { name, id } = useAppSelector((state) => state.shareholder.details);
+  const { name, id } = useAppSelector((state) => state.investor.details);
 
   const pathname = usePathname();
 

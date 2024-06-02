@@ -5,7 +5,7 @@ import investmentReducer from './slices/investmentSlice';
 
 const store = configureStore({
   reducer: {
-    shareholder: investorReducer,
+    investor: investorReducer,
     reports: reportsReducer,
     investments: investmentReducer,
   },

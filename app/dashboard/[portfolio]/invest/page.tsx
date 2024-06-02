@@ -1,13 +1,30 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { investmentActions } from '@/slices/investmentSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import CreateInvestmentModal from '@/components/CreateInvestmentModal';
+import { getAllInvestmentsDispatch } from '@/actions/investmentAction';
+import InvestmentItem from '@/components/InvestmentItem';
+
+export type InvestmentItemType = {
+  _id: string;
+  amount: number;
+  dateCreated: string;
+  investmentState?: string;
+  roi: number;
+  maximumDrawdown: number;
+  isActive?: boolean | string;
+  payoutAvailable: number;
+  nextPayout: string;
+};
 
 const page = () => {
   const dispatchFn = useAppDispatch();
 
-  const isOpen = useAppSelector((state) => state.investments.isOpen);
+  const { isOpen, investments } = useAppSelector((state) => state.investments);
+  const { token, details } = useAppSelector((state) => state.investor);
+
+  console.log(investments);
 
   const depoitInvestment = () => {
     dispatchFn(investmentActions.toggleInvestmentModal());
@@ -18,6 +35,10 @@ const page = () => {
   //     dispatchFn(investmentActions.toggleInvestmentModal());
   //     dispatchFn(investmentActions.setInvestmentType('sell'));
   //   };
+
+  useEffect(() => {
+    dispatchFn(getAllInvestmentsDispatch(token, details.id));
+  }, []);
 
   return (
     <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full">
@@ -38,7 +59,24 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-color-secondary-3 mt-[2rem] rounded-lg overflow-auto"></div>
+        <div className="flex-1 bg-color-secondary-3 mt-[2rem] rounded-lg overflow-auto  p-[3rem]  grid grid-cols-4 gap-[2rem] ">
+          {investments
+            .slice()
+            .reverse()
+            .map((investment: InvestmentItemType) => (
+              <InvestmentItem
+                key={investment._id}
+                _id={investment._id}
+                amount={investment.amount}
+                dateCreated={investment.dateCreated}
+                roi={investment.roi}
+                maximumDrawdown={investment.maximumDrawdown}
+                investmentState={investment.investmentState}
+                payoutAvailable={investment.payoutAvailable}
+                nextPayout={investment.nextPayout}
+              />
+            ))}
+        </div>
       </section>
     </main>
   );

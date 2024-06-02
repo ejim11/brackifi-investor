@@ -42,7 +42,7 @@ const CreateInvestmentModal = () => {
           <p className="w-full py-[2rem] px-[1rem] text-[2rem] border border-color-light-black text-color-primary-1 font-bold uppercase">
             Create {investmentType === 'buy' ? 'an investment' : 'Sell'}
           </p>
-          {investmentType === 'buy' ? <DepositInvestmentModal /> : <>/</>}
+          {investmentType === 'buy' && <DepositInvestmentModal />}
         </div>
       </motion.div>
     </div>

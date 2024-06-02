@@ -2,19 +2,19 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { registrationOption } from '@/utils/inputValidators';
-import InputComponent from './InputComponent';
 import { toastError, toastSuccess } from '@/utils/helperFns';
 import { FallingLines } from 'react-loader-spinner';
 import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
+import { createInvestmentDispatch } from '@/actions/investmentAction';
 // import { createOrderAction } from '@/actions/ordersAction';
 // import { ordersAction } from '@/slices/ordersSlice';
+import InputComponent from './InputComponent';
+import { investmentActions } from '@/slices/investmentSlice';
 
 const DepositInvestmentForm = () => {
   const dispatchFn = useAppDispatch();
 
-  const { sharevalue: perShareValue, token } = useAppSelector(
-    (state: any) => state.shareholder
-  );
+  const { maxDrawdown, token } = useAppSelector((state) => state.investor);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -42,18 +42,28 @@ const DepositInvestmentForm = () => {
     });
   };
 
-  //   const closeOrderModal = (e: any) => {
-  //     dispatchFn(ordersAction.toggleOrderModal());
-  //     dispatchFn(ordersAction.setOrderType(''));
-  //   };
+  const closeInvestModal = (e: any) => {
+    dispatchFn(investmentActions.toggleInvestmentModal());
+    dispatchFn(investmentActions.setInvestmentType(''));
+  };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    // const newData = {
-    //   orderType: 'buy',
-    //   walletAddress: data.address,
-    //   amount: data.amountPaid,
-    //   shareCost: perShareValue,
-    // };
+    const newData = {
+      address: data.address,
+      amount: data.amountPaid,
+      maximumDrawdown: maxDrawdown,
+    };
+
+    dispatchFn(
+      createInvestmentDispatch(
+        newData,
+        token,
+        resetForm,
+        closeInvestModal,
+        setIsLoading
+      )
+    );
+
     // dispatchFn(
     //   createOrderAction(
     //     newData,
