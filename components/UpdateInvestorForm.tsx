@@ -11,7 +11,7 @@ const UpdateShareholderForm = () => {
   const dispatch = useAppDispatch();
 
   const { token }: { token: string } = useAppSelector(
-    (state) => state.shareholder
+    (state) => state.investor
   );
 
   // state functions to manage inputs

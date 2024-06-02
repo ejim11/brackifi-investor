@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { registrationOption } from '@/utils/inputValidators';
 import InputComponent from './InputComponent';
-import { AiOutlineMail } from 'react-icons/ai';
 import { IoMdLock } from 'react-icons/io';
 import { useAppDispatch } from '@/hooks/customHook';
 import { updateMyPasswordDispatch } from '@/actions/investorAction';
@@ -22,7 +21,7 @@ const UpdatePasswordForm = () => {
   };
 
   const { token }: { token: string } = useAppSelector(
-    (state) => state.shareholder
+    (state) => state.investor
   );
 
   const router = useRouter();
