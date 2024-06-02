@@ -10,7 +10,7 @@ import { useAppSelector } from '@/hooks/customHook';
 
 const page = () => {
   const { name, email, phoneNumber, address } = useAppSelector(
-    (state) => state.shareholder.details
+    (state) => state.investor.details
   );
 
   console.log(phoneNumber, address);
