@@ -1,20 +1,15 @@
 'use client';
 import React from 'react';
-// import { useAppSelector } from '@/hooks/customHook';
 import DashboardFirstSec from '@/components/DashboardFirstSec';
 import ReturnPerMonthGraph from '@/components/ReturnPerMonthGraph';
-import ManagerCommentaries from '@/components/ManagerCommentaries';
 import FundPerformanceCommentary from '@/components/FundPerformanceCommentary';
 import Performance from '@/components/Performance';
-import InvestmentPositions from '@/components/InvestmentPositions';
 import DocumentLibraryAndReport from '@/components/DocumentLibraryAndReport';
 import Messages from '@/components/News';
 
 const page = () => {
-  // const { name, id } = useAppSelector((state) => state.shareholder.details);
-
   return (
-    <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full">
+    <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full relative">
       <section className="bg-order-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full flex-wrap flex-col ">
         <DashboardFirstSec />
         <div className="w-full flex mt-[5rem] justify-between">

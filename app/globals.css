@@ -138,3 +138,20 @@ input {
   color: #949494;
   font-weight: 600;
 }
+
+/* clip manage investments */
+.invest-text-clip {
+  clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}

@@ -50,4 +50,30 @@ export const registrationOption = {
       message: 'Address name cannot be greater than 150 characters',
     },
   },
+  amountPaid: {
+    required: 'Amount paid is required',
+    min: {
+      value: 1000,
+      message: 'You cannot buy shares with less than $1,000',
+    },
+  },
+  amountToSell: {
+    required: 'Amount to sell is required',
+    min: {
+      value: 1000,
+      message: 'You cannot sell less than 1,000 BRAC',
+    },
+  },
+
+  walletAddress: {
+    required: 'Wallet Address is required',
+    minLength: {
+      value: 42,
+      message: 'Address name cannot be less than 42 characters',
+    },
+    maxLength: {
+      value: 42,
+      message: 'Address name cannot be greater than 42 characters',
+    },
+  },
 };

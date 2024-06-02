@@ -51,7 +51,8 @@ const shareholderPortfolioData = [
 ];
 
 const DashboardFirstSec = () => {
-  const { name } = useAppSelector((state) => state.shareholder.details);
+  const { name } = useAppSelector((state) => state.investor.details);
+
   return (
     <div className=" bg-color-secondary-1 p-[2rem] rounded-lg font-nunito">
       <div className="mb-[1.5rem]">

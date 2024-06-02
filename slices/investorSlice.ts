@@ -7,6 +7,7 @@ const investorSlice = createSlice({
   initialState: {
     isLoggedIn: false,
     token: '',
+    maxDrawdown: 20,
     details: {
       id: '',
       name: '',
