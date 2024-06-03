@@ -113,7 +113,7 @@ const DashboardFirstSec = () => {
               <div className=" text-color-primary-1 mb-[1rem]">
                 {item?.icon}
               </div>
-              <p className="text-[1.8rem] font-semibold text-color-primary-1 uppercase ">
+              <p className="text-[1.8rem] font-semibold text-color-primary-1 uppercase mb-[1rem]">
                 {item.title}
               </p>
               <p>{item.value}</p>

@@ -35,7 +35,7 @@ const DocumentLibraryAndReport = () => {
           {reports.map((report: any, i: number) => (
             <div
               key={i}
-              className="w-full flex p-[1rem] mb-[1rem] last:mb-0 items-center"
+              className="w-full flex p-[1.5rem] mb-[1.5rem] last:mb-0 items-center  bg-color-black-light-2 rounded-lg sm:flex-col"
             >
               <div className="w-[10rem] h-[10rem] bg-color-secondary-2 rounded-md"></div>
               <div className="mx-[1rem] flex-1">

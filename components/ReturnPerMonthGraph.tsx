@@ -3,19 +3,34 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { labels, returnMonthsData } from '@/utils/returnsPerMonthGraphData';
+import { useAppSelector } from '@/hooks/customHook';
 
 ChartJS.register(...registerables);
 
 ChartJS.defaults.color = 'rgba(67, 104, 80)';
 
 const ReturnPerMonthGraph = () => {
+  const history = useAppSelector((state) => state.roivalue.history);
+
+  const historyGraphData = history.map((item: any) => {
+    // it has value, month and id
+    // i need id, value and month
+    let month = labels[new Date(item.month).getMonth()];
+
+    return {
+      id: item._id,
+      value: item.value,
+      month,
+    };
+  });
+
   // data for the line chart
   const graphData = {
-    labels: labels,
+    labels: historyGraphData.map((item: any) => item.month),
     datasets: [
       {
         label: 'ROI per month',
-        data: returnMonthsData.map((item) => item.return),
+        data: history.map((item: any) => item.value),
         borderColor: 'rgba(67, 104, 80)',
         backgroundColor: 'rgba(67, 104, 80)',
       },
@@ -56,7 +71,7 @@ const ReturnPerMonthGraph = () => {
         ticks: {
           // Include a dollar sign in the ticks
           callback: function (val: any, value: number) {
-            return '$' + val;
+            return val + ' %';
           },
         },
       },
@@ -79,8 +94,8 @@ const ReturnPerMonthGraph = () => {
       <p className="p-[1rem] shadow-md text-[1.8rem] font-semibold text-color-secondary-1 bg-[#161616] uppercase">
         Return on Investment
       </p>
-      <div className="p-[1.5rem] flex-1 w-full">
-        <Line data={graphData} options={options} />
+      <div className="p-[1rem] sm:p-0 flex-1 w-full  flex items-center justify-center bg-color-black-light-2">
+        <Line data={graphData} options={options} className="  flex-1" />
       </div>
     </div>
   );
