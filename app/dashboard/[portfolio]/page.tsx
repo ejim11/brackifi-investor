@@ -9,6 +9,7 @@ import Messages from '@/components/News';
 import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { getRoiDetails } from '@/actions/roiValueAction';
 import { getPerformanceReportDispatch } from '@/actions/fundsPerformanceAction';
+import { getAllBusinessNewsDispatch } from '@/actions/businessNewsAction';
 
 const page = () => {
   const dispatch = useAppDispatch();
@@ -22,6 +23,7 @@ const page = () => {
   useEffect(() => {
     dispatch(getRoiDetails());
     dispatch(getPerformanceReportDispatch());
+    dispatch(getAllBusinessNewsDispatch());
   }, []);
 
   return (

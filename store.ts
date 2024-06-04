@@ -4,6 +4,7 @@ import reportsReducer from './slices/docsAndReportsSlice';
 import investmentReducer from './slices/investmentSlice';
 import roiValueReducer from './slices/roiValueSlice';
 import fundsPerformanceReducer from './slices/fundPerformanceSlice';
+import businessNewsReducer from './slices/businessNewsSlice';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     investments: investmentReducer,
     roivalue: roiValueReducer,
     fundPerformance: fundsPerformanceReducer,
+    businessNews: businessNewsReducer,
   },
 });
 

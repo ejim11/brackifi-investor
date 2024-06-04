@@ -34,6 +34,13 @@ export const fundsPerformance = axios.create({
       : process.env.NEXT_PUBLIC_FUND_PERFORMANCE_URL_PROD,
 });
 
+export const businessNews = axios.create({
+  baseURL:
+    process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
+      ? process.env.NEXT_PUBLIC_BUSINESS_NEWS_URL_DEV
+      : process.env.NEXT_PUBLIC_BUSINESS_NEWS_URL_PROD,
+});
+
 // process.env.ENVIROMENT === 'development'
 // ? process.env.DEV_BASE_URL
 // : process.env.PROD_BASE_URL,
