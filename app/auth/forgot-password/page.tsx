@@ -10,6 +10,7 @@ import { FaRegCircleCheck } from 'react-icons/fa6';
 import { LuBadgeAlert } from 'react-icons/lu';
 import { FallingLines } from 'react-loader-spinner';
 import { toastError, toastSuccess } from '@/utils/helperFns';
+import Link from 'next/link';
 
 const page = () => {
   const dispatch = useAppDispatch();
@@ -53,7 +54,7 @@ const page = () => {
 
   return (
     <div className="w-full h-screen bg-home-bg bg-no-repeat bg-cover bg-center flex justify-center items-center font-nunito">
-      <div className="bg-color-primary-2 w-[30%]  rounded-md p-[3rem] ">
+      <div className="bg-color-primary-2 w-[38%]  rounded-md p-[3rem] ">
         <p className="text-[2rem] text-[#767e86] text-center uppercase">
           Investor Portal
         </p>
@@ -97,14 +98,19 @@ const page = () => {
             </button>
           </form>
         </div>
-
-        <p className="text-color-secondary-2 text-center">
+        <div className=" mt-[2rem] text-color-secondary-1 flex items-center justify-center">
+          <p className="mr-[1rem] text-color-primary-1">
+            Remembered login details?{' '}
+          </p>
+          <Link href={'/auth/login'}>Login</Link>
+        </div>
+        {/* <p className="text-color-secondary-2 text-center">
           Please{' '}
           <span className="text-color-secondary-1">
             <a href="mailto:favourejim56@gmail.com">email our help desk</a>
           </span>{' '}
           with any login-related issues.
-        </p>
+        </p> */}
       </div>
     </div>
   );

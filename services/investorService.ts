@@ -45,3 +45,26 @@ export const updateInfo = async (data: any, jwtToken: string) => {
     },
   });
 };
+
+export const signUp = async (data: any) => {
+  const config = {
+    headers: { 'content-type': 'multipart/form-data' },
+  };
+
+  console.log();
+
+  let formData = new FormData();
+  formData.append('name', data.name);
+  formData.append('email', data.email);
+  formData.append('address', data.address);
+  formData.append('phoneNumber', data.phoneNumber);
+  formData.append('proofOfIdentity', data.proofOfIdentityFile);
+  formData.append('proofOfAddress', data.proofOfAddressFile);
+  formData.append('nextOfKinName', data.nextOfKinName);
+  formData.append('nextOfKinEmail', data.nextOfKinEmail);
+  formData.append('nextOfKinAddress', data.nextOfKinAddress);
+  formData.append('password', data.password);
+  formData.append('passwordConfirm', data.passwordConfirm);
+
+  return await investor.post('/', formData, config);
+};

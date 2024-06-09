@@ -66,7 +66,7 @@ const page = () => {
 
   return (
     <div className="w-full h-screen bg-home-bg bg-no-repeat bg-cover bg-center flex justify-center items-center font-nunito">
-      <div className="bg-color-primary-2 w-[30%]  rounded-md p-[3rem] ">
+      <div className="bg-color-primary-2 w-[38%]  rounded-md p-[3rem] ">
         <p className="text-[2rem] text-[#767e86] text-center uppercase">
           Investor Portal
         </p>
@@ -122,13 +122,13 @@ const page = () => {
           </form>
         </div>
 
-        <p className="text-color-secondary-2 text-center">
+        {/* <p className="text-color-secondary-2 text-center">
           Please{' '}
           <span className="text-color-secondary-1">
             <a href="mailto:favourejim56@gmail.com">email our help desk</a>
           </span>{' '}
           with any login-related issues.
-        </p>
+        </p> */}
       </div>
     </div>
   );
