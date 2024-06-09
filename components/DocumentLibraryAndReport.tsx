@@ -18,6 +18,8 @@ const DocumentLibraryAndReport = () => {
     dispatch(getAllReportsDispatch(setIsLoading));
   }, []);
 
+  console.log(process.env.NEXT_PUBLIC_ENVIROMENT);
+
   const imgHost =
     process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
       ? `http://127.0.0.1:3009`
