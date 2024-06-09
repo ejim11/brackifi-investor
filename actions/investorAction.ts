@@ -7,6 +7,7 @@ import {
   updateInfo,
   signUp,
   getInvestorService,
+  updateInvestorProfileImg,
 } from '@/services/investorService';
 import { investmentActions } from '@/slices/investmentSlice';
 import { investorAction } from '@/slices/investorSlice';
@@ -231,6 +232,17 @@ export const getInvestorDispatch =
           image,
         })
       );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+export const updateInvestorProfileImgDispatch =
+  (jwtToken: string, imgFile: any) => async (dispatch: any) => {
+    try {
+      const res = await updateInvestorProfileImg(jwtToken, imgFile);
+      dispatch(investorAction.updateProfileImage(res.data.data.image));
+      console.log(res);
     } catch (err) {
       console.log(err);
     }

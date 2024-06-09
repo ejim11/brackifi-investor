@@ -79,3 +79,17 @@ export const getInvestorService = async (
     },
   });
 };
+
+export const updateInvestorProfileImg = async (
+  jwtToken: string,
+  imgFile: any
+) => {
+  const formData = new FormData();
+  formData.append('image', imgFile);
+
+  return await investor.patch(`update-profile-img`, formData, {
+    headers: {
+      Authorization: 'Bearer ' + jwtToken,
+    },
+  });
+};
