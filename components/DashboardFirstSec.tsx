@@ -9,6 +9,7 @@ import { HiCircleStack } from 'react-icons/hi2';
 import { InvestmentItemType } from '@/app/dashboard/[portfolio]/invest/page';
 import { formatNumber } from '@/utils/numberFormatter';
 import formatDate from '@/utils/dateFormatter';
+import { dateDiffInDays } from '@/utils/helperFns';
 
 const DashboardFirstSec = () => {
   const { name } = useAppSelector((state) => state.investor.details);
@@ -17,10 +18,35 @@ const DashboardFirstSec = () => {
     (state) => state.investments.investments
   ).filter((inv: InvestmentItemType) => inv.investmentState === 'active');
 
+  const avgRoi = () => {
+    let staticRoi = 0.1;
+    const roi = investments
+      .map((inv: InvestmentItemType) => {
+        const dateDiff = dateDiffInDays(
+          new Date(inv.activeDate).getTime(),
+          new Date().getTime()
+        );
+        return dateDiff * staticRoi;
+      })
+      .reduce((acc, cur) => acc + cur, 0);
+
+    return Math.round(roi);
+  };
+
   const getOverallInvestmentValue = () => {
     const investmentValue = investments
-
       .map((inv: InvestmentItemType) => {
+        const dateDiff = dateDiffInDays(
+          new Date(inv.activeDate).getTime(),
+          new Date().getTime()
+        );
+
+        return {
+          amount: inv.amount,
+          roi: dateDiff * 0.1,
+        };
+      })
+      .map((inv: { amount: number; roi: number }) => {
         if (inv.roi === 0) {
           return inv.amount;
         } else {
@@ -30,14 +56,6 @@ const DashboardFirstSec = () => {
       .reduce((acc, cur) => acc + cur, 0);
 
     return investmentValue;
-  };
-
-  const avgRoi = () => {
-    const avgVal = investments
-      .map((inv: InvestmentItemType) => inv.roi)
-      .reduce((acc, cur) => acc + cur, 0);
-    // return avgVal;
-    return Math.round(avgVal / investments.length);
   };
 
   const getLatestInvestment = (): InvestmentItemType => {
@@ -52,6 +70,8 @@ const DashboardFirstSec = () => {
   };
 
   const latestInv = getLatestInvestment();
+
+  console.log(latestInv);
 
   const shareholderPortfolioData = [
     {
