@@ -129,7 +129,9 @@ const DashboardFirstSec = () => {
       ),
       value: `$ ${
         latestInv
-          ? formatNumber((latestInv?.amount * getLatestInvRoi()) / 100)
+          ? formatNumber(
+              Math.round((latestInv?.amount * getLatestInvRoi()) / 100)
+            )
           : 0
       }`,
     },
