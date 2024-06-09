@@ -11,6 +11,18 @@ import { formatNumber } from '@/utils/numberFormatter';
 import formatDate from '@/utils/dateFormatter';
 import { dateDiffInDays } from '@/utils/helperFns';
 
+export const getLatestInvRoi = (inv: any) => {
+  let roi = inv.activeDate
+    ? dateDiffInDays(new Date(inv.activeDate).getTime(), new Date().getTime()) *
+      0.1
+    : 0;
+
+  if (roi >= inv.maximumDrawdown) {
+    return inv.maximumDrawdown;
+  }
+  return roi;
+};
+
 const DashboardFirstSec = () => {
   const { name } = useAppSelector((state) => state.investor.details);
 
@@ -79,15 +91,6 @@ const DashboardFirstSec = () => {
 
   const latestInv = getLatestInvestment();
 
-  const getLatestInvRoi = () => {
-    const roi =
-      dateDiffInDays(
-        new Date(latestInv.activeDate).getTime(),
-        new Date().getTime()
-      ) * 0.1;
-    return roi;
-  };
-
   const shareholderPortfolioData = [
     {
       title: 'Investment value',
@@ -130,7 +133,7 @@ const DashboardFirstSec = () => {
       value: `$ ${
         latestInv
           ? formatNumber(
-              Math.round((latestInv?.amount * getLatestInvRoi()) / 100)
+              Math.round((latestInv?.amount * getLatestInvRoi(latestInv)) / 100)
             )
           : 0
       }`,
