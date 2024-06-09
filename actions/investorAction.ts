@@ -6,6 +6,7 @@ import {
   updatePassword,
   updateInfo,
   signUp,
+  getInvestorService,
 } from '@/services/investorService';
 import { investmentActions } from '@/slices/investmentSlice';
 import { investorAction } from '@/slices/investorSlice';
@@ -208,5 +209,29 @@ export const updateInfoDispatch =
       console.log(err);
       setIsLoading(false);
       toastError(err.response.data.message, iconError);
+    }
+  };
+
+export const getInvestorDispatch =
+  (investorId: string, jwtToken: string) => async (dispatch: any) => {
+    try {
+      const res = await getInvestorService(investorId, jwtToken);
+      console.log(res);
+      const { name, email, id, phoneNumber, address, shareholding, image } =
+        res.data.data.doc;
+
+      dispatch(
+        investorAction.setInvestorDetails({
+          id,
+          name,
+          email,
+          phoneNumber,
+          address,
+          shareholding,
+          image,
+        })
+      );
+    } catch (err) {
+      console.log(err);
     }
   };

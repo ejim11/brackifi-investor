@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { investmentActions } from '@/slices/investmentSlice';
 import { makeWithdrawalRequestDispatch } from '@/actions/investmentAction';
 import { FallingLines } from 'react-loader-spinner';
+import { dateDiffInDays } from '@/utils/helperFns';
 
 const InvestmentItem = ({
   _id,
@@ -55,8 +56,10 @@ const InvestmentItem = ({
     );
   };
 
-  const btnText =
-    investmentState === 'withdraw pending' ? 'Pending' : 'Request withdrawal';
+  const btnText = dateDiffInDays(
+    new Date(data[4].val).getTime(),
+    new Date().getTime()
+  );
 
   return (
     <div
@@ -92,8 +95,8 @@ const InvestmentItem = ({
         ))}
       </div>
       <button
-        disabled={false}
-        className="py-[1rem] w-[90%] text-center rounded-lg flex items-center justify-center self-center bg-color-primary-3 text-color-primary-1 font-semibold"
+        disabled={btnText > 0}
+        className="py-[1rem] w-[90%] text-center rounded-lg flex items-center justify-center self-center bg-color-primary-3 text-color-primary-1 font-semibold disabled:bg-[#dee2e6] disabled:text-[#868e96] disabled:cursor-not-allowed "
         onClick={withdrawInvestmentHandler}
       >
         {isLoading ? (
@@ -104,7 +107,7 @@ const InvestmentItem = ({
             visible={true}
           />
         ) : (
-          btnText
+          'Request Withdrawal'
         )}
       </button>
     </div>

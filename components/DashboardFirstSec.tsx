@@ -26,7 +26,12 @@ const DashboardFirstSec = () => {
           new Date(inv.activeDate).getTime(),
           new Date().getTime()
         );
-        return dateDiff * staticRoi;
+
+        const newRoi = dateDiff * staticRoi;
+        if (newRoi >= inv.maximumDrawdown) {
+          return inv.maximumDrawdown;
+        }
+        return newRoi;
       })
       .reduce((acc, cur) => acc + cur, 0);
 
@@ -40,10 +45,13 @@ const DashboardFirstSec = () => {
           new Date(inv.activeDate).getTime(),
           new Date().getTime()
         );
-
+        const newRoi = dateDiff * 0.1;
         return {
           amount: inv.amount,
-          roi: dateDiff * 0.1,
+          roi:
+            newRoi >= inv.maximumDrawdown
+              ? inv.maximumDrawdown
+              : dateDiff * 0.1,
         };
       })
       .map((inv: { amount: number; roi: number }) => {
@@ -70,8 +78,6 @@ const DashboardFirstSec = () => {
   };
 
   const latestInv = getLatestInvestment();
-
-  console.log(latestInv);
 
   const shareholderPortfolioData = [
     {
@@ -112,7 +118,9 @@ const DashboardFirstSec = () => {
       icon: (
         <HiCircleStack className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
       ),
-      value: `$ ${formatNumber((latestInv.amount * latestInv.roi) / 100)}`,
+      value: `$ ${
+        latestInv ? formatNumber((latestInv?.amount * latestInv?.roi) / 100) : 0
+      }`,
     },
   ];
 

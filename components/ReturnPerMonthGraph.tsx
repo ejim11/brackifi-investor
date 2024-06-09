@@ -94,7 +94,7 @@ const ReturnPerMonthGraph = () => {
       <p className="p-[1rem] shadow-md text-[1.8rem] font-semibold text-color-secondary-1 bg-[#161616] uppercase">
         Return on Investment
       </p>
-      <div className="p-[1rem] sm:p-0 flex-1 w-full  flex items-center justify-center bg-color-black-light-2">
+      <div className="p-[1rem] sm:p-0 flex-1 w-full  flex items-center justify-center ">
         <Line data={graphData} options={options} className="  flex-1" />
       </div>
     </div>

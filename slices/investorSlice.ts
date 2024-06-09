@@ -7,11 +7,11 @@ const investorSlice = createSlice({
   initialState: {
     isLoggedIn: false,
     token: '',
-    maxDrawdown: 20,
     details: {
       id: '',
       name: '',
       email: '',
+      image: '',
       address: '',
       phoneNumber: '',
       nextOfKinName: '',
@@ -33,6 +33,7 @@ const investorSlice = createSlice({
       state.details.id = action.payload.id;
       state.details.address = action.payload.address;
       state.details.phoneNumber = action.payload.phoneNumber;
+      state.details.image = action.payload.image;
       localStorage.setItem('investorDetails', JSON.stringify(action.payload));
     },
     updateInvestor(state, action) {

@@ -14,13 +14,14 @@ import { investmentActions } from '@/slices/investmentSlice';
 const DepositInvestmentForm = () => {
   const dispatchFn = useAppDispatch();
 
-  const { maxDrawdown, token } = useAppSelector((state) => state.investor);
+  const { token } = useAppSelector((state) => state.investor);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   type FormData = {
     address: string;
     amountPaid: string;
+    maxDrawDown: number;
   };
 
   const {
@@ -32,6 +33,7 @@ const DepositInvestmentForm = () => {
     defaultValues: {
       address: '',
       amountPaid: '',
+      maxDrawDown: undefined,
     },
   });
 
@@ -39,6 +41,7 @@ const DepositInvestmentForm = () => {
     reset({
       address: '',
       amountPaid: '',
+      maxDrawDown: undefined,
     });
   };
 
@@ -51,7 +54,7 @@ const DepositInvestmentForm = () => {
     const newData = {
       address: data.address,
       amount: data.amountPaid,
-      maximumDrawdown: maxDrawdown,
+      maximumDrawdown: data.maxDrawDown,
     };
 
     dispatchFn(
@@ -87,6 +90,19 @@ const DepositInvestmentForm = () => {
         pl="pl-[2rem]"
         validation={registrationOption.walletAddress}
         inputBg="bg-color-primary-2"
+        labelTextColor="text-color-primary-1"
+      />
+      <InputComponent
+        placeholder={'80%'}
+        type={'number'}
+        label="Maximum Drawdown"
+        register={register}
+        error={errors}
+        name={'maxDrawDown'}
+        pl="pl-[2rem]"
+        min={10000}
+        inputBg="bg-color-primary-2"
+        validation={registrationOption.maxDrawDown}
         labelTextColor="text-color-primary-1"
       />
       <InputComponent
