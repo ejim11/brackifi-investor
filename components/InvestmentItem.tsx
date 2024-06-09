@@ -42,11 +42,11 @@ const InvestmentItem = ({
     },
     {
       text: 'payout available',
-      val: `$ ${formatNumber(payoutAvailable)}`,
+      val: `$ ${payoutAvailable}`,
     },
     {
       text: 'next payout',
-      val: nextPayout,
+      val: `${formatDate(nextPayout)}`,
     },
   ];
 
