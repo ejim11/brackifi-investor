@@ -5,39 +5,35 @@ import {
   resetPassword,
   updatePassword,
   updateInfo,
+  signUp,
 } from '@/services/investorService';
 import { investmentActions } from '@/slices/investmentSlice';
 import { investorAction } from '@/slices/investorSlice';
 
-export const applyToBeInvestorDispatch = (
-  data: any,
-  setIsLoading: any,
-  toastSuccess: any,
-  toastError: any,
-  iconSuccess: any,
-  iconError: any,
-  resetForm: any
-) => {
-  return async (
-    dispatch: (arg0: {
-      payload: any;
-      type: 'shareholder/setShareholderDetails';
-    }) => void
-  ) => {
+export const createInvestorDispatch =
+  (
+    data: any,
+    setIsLoading: any,
+    toastSuccess: any,
+    toastError: any,
+    iconSuccess: any,
+    iconError: any,
+    resetForm: any
+  ) =>
+  async (dispatch: any) => {
     setIsLoading(true);
     try {
-      await applyToBeInvestor(data);
-
-      setIsLoading(false);
+      const res = await signUp(data);
+      console.log(res);
       toastSuccess('Application submitted!', iconSuccess);
       resetForm();
+      setIsLoading(false);
     } catch (err: any) {
       console.log(err);
-      toastError(err.response.data.message, iconError);
       setIsLoading(false);
+      toastError(err.response.data.message, iconError);
     }
   };
-};
 
 export const loginInvestorHandler = (
   data: any,

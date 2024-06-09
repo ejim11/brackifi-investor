@@ -6,25 +6,31 @@ import InputComponent from './InputComponent';
 import { fileHandler, toastError, toastSuccess } from '@/utils/helperFns';
 import ProofImgComp from './ProofImgComp';
 import { useAppDispatch } from '@/hooks/customHook';
-import { applyToBeInvestorDispatch } from '@/actions/investorAction';
+import { createInvestorDispatch } from '@/actions/investorAction';
 import { FallingLines } from 'react-loader-spinner';
 import noImg from '../assets/no-image-svgrepo-com.svg';
 import { FaRegCircleCheck } from 'react-icons/fa6';
 import { LuBadgeAlert } from 'react-icons/lu';
+import { IoMdLock } from 'react-icons/io';
+import { useRouter } from 'next/navigation';
 
 type FormData = {
   fullName: string;
   email: string;
+  address: string;
   phoneNumber: string;
   proofOfIdentity: string;
   proofOfAddress: string;
   nextOfKinName: string;
   nextOfKinEmail: string;
   nextOfKinAddress: string;
+  password: string;
+  confirmPassword: string;
 };
 
 const AddMemberForm = () => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [proofOfIdentityImg, setProofOfIdentityImg] = useState<any>();
@@ -43,12 +49,15 @@ const AddMemberForm = () => {
     defaultValues: {
       fullName: '',
       email: '',
+      address: '',
       phoneNumber: '',
       proofOfAddress: '',
       proofOfIdentity: ' ',
       nextOfKinName: '',
       nextOfKinEmail: '',
       nextOfKinAddress: '',
+      password: '',
+      confirmPassword: '',
     },
   });
 
@@ -66,16 +75,20 @@ const AddMemberForm = () => {
     reset({
       fullName: '',
       email: '',
+      address: '',
       phoneNumber: '',
       proofOfIdentity: '',
       proofOfAddress: '',
       nextOfKinName: '',
       nextOfKinEmail: '',
       nextOfKinAddress: '',
+      password: '',
+      confirmPassword: '',
     });
 
     setProofOfIdentityImg(noImg);
     setProofOfIdentityImgObj(noImg);
+    router.push('/auth/login');
 
     setProofOfAddressImg(noImg);
     setProofOfAddressImgObj(noImg);
@@ -95,21 +108,32 @@ const AddMemberForm = () => {
     if (!proofOfAddressImg || !proofOfIdentityImg) {
       return;
     }
+    if (data.password !== data.confirmPassword) {
+      console.log(data.confirmPassword);
+      toastError(
+        `Passwords don't match `,
+        <LuBadgeAlert className="w-[2.3rem] h-[2.3rem] text-color-red" />
+      );
+      return;
+    }
 
-    const potentialShareholderData = {
+    const potentialInvestorData = {
       name: data.fullName,
       email: data.email,
       phoneNumber: data.phoneNumber,
-      proofOfIdentity: proofOfIdentityImg,
-      proofOfAddress: proofOfAddressImg,
+      address: data.address,
+      proofOfIdentityFile: proofOfIdentityImgObj,
+      proofOfAddressFile: proofOfAddressImgObj,
       nextOfKinName: data.nextOfKinName,
       nextOfKinEmail: data.nextOfKinEmail,
       nextOfKinAddress: data.nextOfKinAddress,
+      password: data.password,
+      passwordConfirm: data.confirmPassword,
     };
 
     dispatch(
-      applyToBeInvestorDispatch(
-        potentialShareholderData,
+      createInvestorDispatch(
+        potentialInvestorData,
         setIsLoading,
         toastSuccess,
         toastError,
@@ -159,6 +183,17 @@ const AddMemberForm = () => {
             label="Phone Number"
             containerWidth="w-[45%]"
             validation={registrationOption.phoneNumber}
+          />
+          <InputComponent
+            placeholder={'Ibiza, Spain'}
+            type={'text'}
+            register={register}
+            error={errors}
+            name={'address'}
+            pl="pl-[1rem]"
+            label="Address"
+            containerWidth="w-[45%] smd:w-[48%] sm:w-full"
+            validation={registrationOption.address}
           />
           <div className="w-full mt-[1rem] mb-[3rem] flex justify-between ">
             <ProofImgComp
@@ -216,6 +251,34 @@ const AddMemberForm = () => {
           label="Address"
           containerWidth="w-[45%]"
           validation={registrationOption.address}
+        />
+      </div>
+      <div className="flex justify-between mt-[2rem]">
+        <InputComponent
+          placeholder={'Password'}
+          label="Password"
+          type={'password'}
+          register={register}
+          error={errors}
+          name={'password'}
+          validation={registrationOption.password}
+          containerWidth="w-[45%] smd:w-[48%] sm:w-full"
+          icon={
+            <IoMdLock className="absolute w-[2.2rem] h-[2.2rem] top-[1rem] left-[1rem] text-color-primary-1" />
+          }
+        />
+        <InputComponent
+          placeholder={'Confirm Password'}
+          label="Confirm Password"
+          type={'password'}
+          register={register}
+          error={errors}
+          name={'confirmPassword'}
+          validation={registrationOption.password}
+          containerWidth="w-[45%] smd:w-[48%] sm:w-full"
+          icon={
+            <IoMdLock className="absolute w-[2.2rem] h-[2.2rem] top-[1rem] left-[1rem] text-color-primary-1" />
+          }
         />
       </div>
       <button

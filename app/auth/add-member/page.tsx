@@ -2,10 +2,18 @@
 import React from 'react';
 import Link from 'next/link';
 import AddMemberForm from '@/components/AddMemberForm';
+import { FiChevronsLeft } from 'react-icons/fi';
 
 const page = () => {
   return (
     <main className="pt-[12rem]   px-[12rem] pb-[5rem] xlg:px-[5rem] smd:px-[2.5rem] ssm:px-[1.5rem] font-nunito bg-color-primary-2  flex flex-col ">
+      <Link
+        href={'/auth/login'}
+        className="self-start text-[1.7rem] text-color-primary-1 mb-[3rem] flex items-center "
+      >
+        <FiChevronsLeft className="w-[2.2rem] h-[2.2rem] text-color-curentColor" />
+        <span>Login</span>
+      </Link>
       <p className="text-[3rem] text-color-primary-1 ">
         Investor Portal Access Request Form
       </p>
