@@ -34,7 +34,7 @@ const InvestmentItem = ({
     },
     {
       text: 'roi',
-      val: `${roi} %`,
+      val: `${roi ? roi : 0} %`,
     },
     {
       text: 'max drawdown',
@@ -46,7 +46,7 @@ const InvestmentItem = ({
     },
     {
       text: 'next payout',
-      val: formatDate(nextPayout),
+      val: nextPayout,
     },
   ];
 

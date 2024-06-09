@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import CreateInvestmentModal from '@/components/CreateInvestmentModal';
 import { getAllInvestmentsDispatch } from '@/actions/investmentAction';
 import InvestmentItem from '@/components/InvestmentItem';
+import { getLatestInvRoi } from '@/components/DashboardFirstSec';
+import { formatNumber } from '@/utils/numberFormatter';
 
 export type InvestmentItemType = {
   _id: string;
@@ -15,7 +17,7 @@ export type InvestmentItemType = {
   roi: number;
   maximumDrawdown: number;
   isActive?: boolean | string;
-  payoutAvailable: number;
+  payoutAvailable: any;
   nextPayout: string;
 };
 
@@ -66,10 +68,19 @@ const page = () => {
                 activeDate={investment.activeDate}
                 amount={investment.amount}
                 dateCreated={investment.dateCreated}
-                roi={investment.roi}
+                roi={getLatestInvRoi(investment)}
                 maximumDrawdown={investment.maximumDrawdown}
                 investmentState={investment.investmentState}
-                payoutAvailable={investment.payoutAvailable}
+                payoutAvailable={
+                  getLatestInvRoi(investment)
+                    ? formatNumber(
+                        Math.round(
+                          (investment.amount * getLatestInvRoi(investment)) /
+                            100
+                        )
+                      )
+                    : 0
+                }
                 nextPayout={investment.nextPayout}
               />
             ))}

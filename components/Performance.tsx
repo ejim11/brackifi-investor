@@ -49,9 +49,9 @@ const Performance = ({
         </p>
       </div>
       {title.includes('Month') ? (
-        <button className="mt-auto px-[1.5rem] py-[0.5rem] bg-color-primary-1 text-color-white border border-color-primary-1 rounded-lg capitalize">
+        <p className="mt-auto px-[1.5rem] py-[0.5rem] bg-color-primary-1 text-color-white border border-color-primary-1 rounded-lg capitalize">
           {report}
-        </button>
+        </p>
       ) : (
         ''
       )}
