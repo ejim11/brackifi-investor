@@ -40,6 +40,9 @@ const investorSlice = createSlice({
       state.token = action.payload.token;
       // state.details = action.payload.details;
     },
+    updateProfileImage(state, action) {
+      state.details.image = action.payload;
+    },
   },
 });
 

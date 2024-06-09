@@ -1,27 +1,40 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UpdatePasswordForm from '@/components/UpdatePasswordForm';
 import UpdateShareholderInfo from '@/components/UpdateInvestorForm';
 import noUserImg from '../../../../assets/image_255.svg';
 import Image from 'next/image';
 import { fileHandler } from '@/utils/helperFns';
 import { FaRegEdit } from 'react-icons/fa';
-import { useAppSelector } from '@/hooks/customHook';
+import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
+import { updateInvestorProfileImgDispatch } from '@/actions/investorAction';
 
 const page = () => {
-  const { name, email, phoneNumber, address } = useAppSelector(
+  const { name, email, phoneNumber, address, image } = useAppSelector(
     (state) => state.investor.details
   );
 
-  console.log(phoneNumber, address);
+  const token = useAppSelector((state: any) => state.investor.token);
+
+  const dispatch = useAppDispatch();
 
   const [profileImg, setProfileImg] = useState<any>(noUserImg);
   const [profileImgObj, setProfileImgObj] = useState<any>();
 
   const setProfileImage = (e: any) => {
+    dispatch(updateInvestorProfileImgDispatch(token, e.target.files[0]));
     setProfileImg(fileHandler(e.target.files[0]));
-    setProfileImgObj(e.target.files[0]);
+    // setProfileImgObj(e.target.files[0]);
   };
+
+  const imgHost =
+    process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
+      ? `http://127.0.0.1:3009`
+      : 'https://brackifi-be.onrender.com';
+
+  useEffect(() => {
+    if (image) setProfileImg(`${imgHost}/${image}`);
+  }, []);
 
   return (
     <div className="min-h-screen font-nunito">
@@ -35,8 +48,8 @@ const page = () => {
               src={profileImg}
               alt="profile-img"
               className="w-full h-full rounded-full object-cover"
-              width={10}
-              height={10}
+              width={100}
+              height={100}
             />
             <input
               type="file"
