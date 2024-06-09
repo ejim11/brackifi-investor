@@ -57,6 +57,7 @@ export const loginInvestorHandler = (
         _id: id,
         phoneNumber,
         address,
+        image,
       } = res.data.data.investor;
       console.log(res.data.data.investor);
       dispatch(investorAction.setInvestorToken(res.data.token));
@@ -67,6 +68,7 @@ export const loginInvestorHandler = (
           email,
           phoneNumber,
           address,
+          image,
         })
       );
       dispatch(
