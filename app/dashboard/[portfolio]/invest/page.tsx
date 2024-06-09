@@ -9,6 +9,7 @@ import InvestmentItem from '@/components/InvestmentItem';
 export type InvestmentItemType = {
   _id: string;
   amount: number;
+  activeDate: string;
   dateCreated: string;
   investmentState?: string;
   roi: number;
@@ -30,11 +31,6 @@ const page = () => {
     dispatchFn(investmentActions.toggleInvestmentModal());
     dispatchFn(investmentActions.setInvestmentType('buy'));
   };
-
-  //   const withdrawInvestment = () => {
-  //     dispatchFn(investmentActions.toggleInvestmentModal());
-  //     dispatchFn(investmentActions.setInvestmentType('sell'));
-  //   };
 
   useEffect(() => {
     dispatchFn(getAllInvestmentsDispatch(token, details.id));
@@ -67,6 +63,7 @@ const page = () => {
               <InvestmentItem
                 key={investment._id}
                 _id={investment._id}
+                activeDate={investment.activeDate}
                 amount={investment.amount}
                 dateCreated={investment.dateCreated}
                 roi={investment.roi}

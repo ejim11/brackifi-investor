@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/hooks/customHook';
 import { investorAction } from '@/slices/investorSlice';
+import { investmentActions } from '@/slices/investmentSlice';
+import { getRoiDetails } from '@/actions/roiValueAction';
 
 export default function Home() {
   const router = useRouter();
@@ -17,6 +19,10 @@ export default function Home() {
         window.localStorage.getItem('investorDetails') || '{}'
       );
 
+      const investments = JSON.parse(
+        window.localStorage.getItem('investments') || '[]'
+      );
+
       dispatch(investorAction.setInvestorToken(storedToken || ''));
       dispatch(
         investorAction.setInvestorDetails({
@@ -27,6 +33,8 @@ export default function Home() {
           address,
         })
       );
+      dispatch(investmentActions.setInvestmentsList(investments));
+   
 
       if (!storedToken) {
         router.replace('/auth/login');

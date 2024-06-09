@@ -43,3 +43,9 @@ export const isImage = (url: string) => {
   const imageExtensions = /\.(jpg|jpeg|png|webp|avif|gif|svg)$/i;
   return imageExtensions.test(url);
 };
+
+export const dateDiffInDays = (date1: number, date2: number) => {
+  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+  const diffInMilliseconds = Math.abs(date2 - date1);
+  return Math.round(diffInMilliseconds / oneDay);
+};

@@ -21,6 +21,7 @@ const config: Config = {
       'color-white': '#fff',
       'color-black': 'rgba(0, 0, 0, 1)',
       'color-black-light': 'rgba(0, 0, 0, 0.5)',
+      'color-black-light-2': 'rgba(0, 0, 0, 0.2)',
       'color-red': 'red',
       'color-primary': {
         1: 'rgba(67, 104, 80)',

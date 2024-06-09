@@ -6,6 +6,7 @@ import {
   updatePassword,
   updateInfo,
 } from '@/services/investorService';
+import { investmentActions } from '@/slices/investmentSlice';
 import { investorAction } from '@/slices/investorSlice';
 
 export const applyToBeInvestorDispatch = (
@@ -59,7 +60,7 @@ export const loginInvestorHandler = (
         phoneNumber,
         address,
       } = res.data.data.investor;
-      setIsLoading(false);
+      console.log(res.data.data.investor);
       dispatch(investorAction.setInvestorToken(res.data.token));
       dispatch(
         investorAction.setInvestorDetails({
@@ -70,9 +71,13 @@ export const loginInvestorHandler = (
           address,
         })
       );
+      dispatch(
+        investmentActions.setInvestmentsList(res.data.data.investor.investments)
+      );
       navFunc({ id, name });
       toastSuccess('Login successfully!', iconSuccess);
       resetForm();
+      setIsLoading(false);
     } catch (err: any) {
       setIsLoading(false);
       console.log(err);

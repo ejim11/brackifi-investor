@@ -28,7 +28,7 @@ const NewsTemp = ({ title, summary }: { title: string; summary: string }) => {
             onHoverState ? 'text-color-secondary-1' : 'text-color-secondary-2'
           } `}
         >
-          {summary}
+          {summary.slice(0, 80)}...
         </p>
       </div>
     </div>
