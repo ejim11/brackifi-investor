@@ -8,9 +8,9 @@ const News = () => {
 
   return (
     <div className="p-[1.5rem]  overflow-y-auto flex-1 flex flex-col justify-between h-full ">
-      {news.map((item: any, i: number) => (
+      {/* {news.map((item: any, i: number) => (
         <NewsTemp title={item.title} summary={item.summary} key={i} />
-      ))}
+      ))} */}
     </div>
   );
 };
