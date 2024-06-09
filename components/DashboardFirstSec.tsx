@@ -79,6 +79,15 @@ const DashboardFirstSec = () => {
 
   const latestInv = getLatestInvestment();
 
+  const getLatestInvRoi = () => {
+    const roi =
+      dateDiffInDays(
+        new Date(latestInv.activeDate).getTime(),
+        new Date().getTime()
+      ) * 0.1;
+    return roi;
+  };
+
   const shareholderPortfolioData = [
     {
       title: 'Investment value',
@@ -119,7 +128,9 @@ const DashboardFirstSec = () => {
         <HiCircleStack className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
       ),
       value: `$ ${
-        latestInv ? formatNumber((latestInv?.amount * latestInv?.roi) / 100) : 0
+        latestInv
+          ? formatNumber((latestInv?.amount * getLatestInvRoi()) / 100)
+          : 0
       }`,
     },
   ];
