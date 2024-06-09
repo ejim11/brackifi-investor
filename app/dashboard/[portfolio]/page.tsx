@@ -68,7 +68,7 @@ const page = () => {
           </p>
           <div className="flex w-full  px-[2rem] py-[3rem] justify-between flex-1  ">
             <Performance
-              percentage={latestInv.maximumDrawdown}
+              percentage={latestInv ? latestInv.maximumDrawdown : 0}
               title="Maximum Drawdown"
             />
             <Performance
