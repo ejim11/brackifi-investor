@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 
 const page = () => {
+  console.log(process.env.NEXT_PUBLIC_ENVIROMENT);
   return (
     <div className="w-full h-screen bg-home-bg bg-no-repeat bg-cover bg-center flex justify-center items-center font-nunito">
       <div className="bg-color-primary-2 w-[38%]  rounded-md p-[3rem] ">
