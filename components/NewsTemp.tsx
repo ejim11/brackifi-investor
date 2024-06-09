@@ -7,11 +7,13 @@ const NewsTemp = ({
   summary,
   image,
   file,
+  link,
 }: {
   title: string;
   summary: string;
   image: string;
-  file: string;
+  file?: string;
+  link?: string;
 }) => {
   const [onHoverState, setOnHoverState] = useState<boolean>(false);
 
@@ -22,7 +24,7 @@ const NewsTemp = ({
 
   return (
     <a
-      href={`${imgHost}/${file}`}
+      href={`${file ? `${imgHost}/${file}` : link}`}
       target="blank"
       className="flex mb-[1rem] items-center hover:bg-color-black-light duration-150 transition-all ease-in cursor-pointer rounded-lg hover:text-color-secondary-1 "
       onMouseOver={() => {
@@ -49,13 +51,13 @@ const NewsTemp = ({
         >
           {title}
         </p>
-        <p
+        {/* <p
           className={`text-[1.4rem]   ${
             onHoverState ? 'text-color-secondary-1' : 'text-color-secondary-2'
           } `}
         >
-          {summary.slice(0, 80)}...
-        </p>
+          {summary.slice(0, 60)}...
+        </p> */}
       </div>
     </a>
   );
