@@ -68,3 +68,14 @@ export const signUp = async (data: any) => {
 
   return await investor.post('/', formData, config);
 };
+
+export const getInvestorService = async (
+  investorId: string,
+  jwtToken: string
+) => {
+  return await investor.get(`/${investorId}`, {
+    headers: {
+      Authorization: 'Bearer ' + jwtToken,
+    },
+  });
+};

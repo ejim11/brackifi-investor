@@ -1,4 +1,5 @@
 'use client';
+import formatDate from '@/utils/dateFormatter';
 import React from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -47,9 +48,13 @@ const Performance = ({
           {title}
         </p>
       </div>
-      <button className="mt-auto px-[1.5rem] py-[0.5rem] bg-color-primary-1 text-color-white border border-color-primary-1 rounded-lg capitalize">
-        {title.includes('Month') ? report : 'Monday'}
-      </button>
+      {title.includes('Month') ? (
+        <button className="mt-auto px-[1.5rem] py-[0.5rem] bg-color-primary-1 text-color-white border border-color-primary-1 rounded-lg capitalize">
+          {report}
+        </button>
+      ) : (
+        ''
+      )}
     </div>
   );
 };

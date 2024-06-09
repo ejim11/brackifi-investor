@@ -57,6 +57,17 @@ export const registrationOption = {
       message: 'You cannot buy shares with less than $1,000',
     },
   },
+  maxDrawDown: {
+    required: 'Amount paid is required',
+    min: {
+      value: 20,
+      message: 'You cannot buy shares with less than 20%',
+    },
+    max: {
+      value: 100,
+      message: '100% is the maximum',
+    },
+  },
   amountToSell: {
     required: 'Amount to sell is required',
     min: {

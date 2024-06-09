@@ -10,20 +10,40 @@ import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { getRoiDetails } from '@/actions/roiValueAction';
 import { getPerformanceReportDispatch } from '@/actions/fundsPerformanceAction';
 import { getAllBusinessNewsDispatch } from '@/actions/businessNewsAction';
+import { InvestmentItemType } from './invest/page';
+import { dateDiffInDays } from '@/utils/helperFns';
+import { getInvestorDispatch } from '@/actions/investorAction';
 
 const page = () => {
   const dispatch = useAppDispatch();
-  const roiValue = useAppSelector((state) => state.roivalue.value);
   const prevMonthData: any = useAppSelector((state) => state.roivalue.history)
     .slice()
     .reverse()[0];
 
-  console.log(prevMonthData);
+  const { token, details } = useAppSelector((state: any) => state.investor);
+
+  const investments = useAppSelector(
+    (state) => state.investments.investments
+  ).filter((inv: InvestmentItemType) => inv.investmentState === 'active');
+
+  const getLatestInvestment = (): InvestmentItemType => {
+    const inv = investments
+      .slice()
+      .sort(
+        (a: any, b: any) =>
+          new Date(a.dateCreated).getTime() - new Date(b.dateCreated).getTime()
+      )[0];
+
+    return inv;
+  };
+
+  const latestInv = getLatestInvestment();
 
   useEffect(() => {
     dispatch(getRoiDetails());
     dispatch(getPerformanceReportDispatch());
     dispatch(getAllBusinessNewsDispatch());
+    dispatch(getInvestorDispatch(details.id, token));
   }, []);
 
   return (
@@ -47,7 +67,10 @@ const page = () => {
             Perfomance Metrics
           </p>
           <div className="flex w-full  px-[2rem] py-[3rem] justify-between flex-1  ">
-            <Performance percentage={roiValue} title="Daily ROI" />
+            <Performance
+              percentage={latestInv.maximumDrawdown}
+              title="Maximum Drawdown"
+            />
             <Performance
               percentage={prevMonthData ? prevMonthData.value : 0}
               title="Past Month ROI"
