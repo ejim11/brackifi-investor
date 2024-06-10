@@ -18,7 +18,7 @@ const ProofImgComp = ({
   err: boolean;
 }) => {
   return (
-    <div className="w-[45%] ">
+    <div className="w-[45%] sm:w-full sm:mb-[2rem]">
       <p className="text-color-secondary-2 mb-[1rem] font-nunito font-medium">
         {name}
       </p>

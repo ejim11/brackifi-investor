@@ -54,7 +54,7 @@ const page = () => {
 
   return (
     <div className="w-full h-screen bg-home-bg bg-no-repeat bg-cover bg-center flex justify-center items-center font-nunito">
-      <div className="bg-color-primary-2 w-[38%]  rounded-md p-[3rem] ">
+      <div className="bg-color-primary-2 w-[38%]  rounded-md p-[3rem] 2xl:w-[36%] xlg:w-[40%] lg:w-[50%] md:w-[60%] smd:w-[90%]  sm:p-[1.5rem] ">
         <p className="text-[2rem] text-[#767e86] text-center uppercase">
           Investor Portal
         </p>

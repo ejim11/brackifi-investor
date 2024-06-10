@@ -14,21 +14,21 @@ const page = () => {
         <FiChevronsLeft className="w-[2.2rem] h-[2.2rem] text-color-curentColor" />
         <span>Login</span>
       </Link>
-      <p className="text-[3rem] text-color-primary-1 ">
+      <p className="text-[3rem] sm:text-[2rem] text-color-primary-1 ">
         Investor Portal Access Request Form
       </p>
       <div className="w-full flex-1 flex justify-between mt-[2rem] overflow-auto ">
-        <div className="flex-1 mr-[3rem] ">
-          <div className="bg-color-white rounded-md p-[3rem] text-color-secondary-2">
-            <p className="text-[2.5rem] text-color-secondary-1">
+        <div className="flex-1 mr-[3rem] lg:mr-0 ">
+          <div className="bg-color-white rounded-md p-[3rem] sm:p-[1.5rem] text-color-secondary-2">
+            <p className="text-[2.5rem] sm:text-[2rem] text-color-secondary-1">
               Thank you for your interest in accessing Brackifi's Investor
               Portal.
             </p>
             <p className="text-color-secondary-2 text-justify mt-[1.5rem]">
-              Access to www.brackifi.com is restricted. In order to obtain
-              access, please complete and submit this form. A member of our
-              Client Relationship Group will contact you within 24 hours to
-              verify the information you submit and complete your registration.
+              Access to brackifi is restricted. In order to obtain access,
+              please complete and submit this form. A member of our Client
+              Relationship Group will contact you within 24 hours to verify the
+              information you submit and complete your registration.
             </p>
             <p className="text-justify my-[1rem]">
               All information provided on this questionnaire will be held in
@@ -39,12 +39,12 @@ const page = () => {
               as in effect from time to time.
             </p>
           </div>
-          <div className="w-full bg-color-white rounded-md  mt-[2rem] p-[3rem]">
+          <div className="w-full bg-color-white rounded-md  mt-[2rem] p-[3rem] sm:p-[1.5rem]">
             <AddMemberForm />
           </div>
         </div>
 
-        <div className=" w-[30rem] ">
+        <div className=" w-[30rem] lg:hidden ">
           <div className="bg-color-white p-[2rem] w-full ">
             <p className="text-justify">
               If you have any questions or experience any difficulty completing
