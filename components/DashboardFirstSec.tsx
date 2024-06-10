@@ -47,7 +47,7 @@ const DashboardFirstSec = () => {
       })
       .reduce((acc, cur) => acc + cur, 0);
 
-    return Math.round(roi);
+    return roi.toFixed(2);
   };
 
   const getOverallInvestmentValue = () => {
