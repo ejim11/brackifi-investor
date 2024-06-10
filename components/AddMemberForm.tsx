@@ -159,7 +159,7 @@ const AddMemberForm = () => {
             name={'fullName'}
             label="Full Name"
             pl="pl-[1rem]"
-            containerWidth="w-[45%]"
+            containerWidth="w-[45%] smd:w-[48%] sm:w-full"
             validation={registrationOption.name}
           />
           <InputComponent
@@ -170,7 +170,7 @@ const AddMemberForm = () => {
             name={'email'}
             pl="pl-[1rem]"
             label="Email"
-            containerWidth="w-[45%]"
+            containerWidth="w-[45%] smd:w-[48%] sm:w-full"
             validation={registrationOption.email}
           />
           <InputComponent
@@ -181,7 +181,7 @@ const AddMemberForm = () => {
             name={'phoneNumber'}
             pl="pl-[1rem]"
             label="Phone Number"
-            containerWidth="w-[45%]"
+            containerWidth="w-[45%] smd:w-[48%] sm:w-full"
             validation={registrationOption.phoneNumber}
           />
           <InputComponent
@@ -195,7 +195,7 @@ const AddMemberForm = () => {
             containerWidth="w-[45%] smd:w-[48%] sm:w-full"
             validation={registrationOption.address}
           />
-          <div className="w-full mt-[1rem] mb-[3rem] flex justify-between ">
+          <div className="w-full mt-[1rem] mb-[3rem] flex justify-between  sm:flex-col">
             <ProofImgComp
               name="Proof of Identity"
               img={proofOfIdentityImg}
@@ -226,7 +226,7 @@ const AddMemberForm = () => {
             name={'nextOfKinName'}
             label="Full Name"
             pl="pl-[1rem]"
-            containerWidth="w-[45%]"
+            containerWidth="w-[45%] smd:w-[48%] sm:w-full"
             validation={registrationOption.name}
           />
           <InputComponent
@@ -237,7 +237,7 @@ const AddMemberForm = () => {
             name={'nextOfKinEmail'}
             pl="pl-[1rem]"
             label="Email"
-            containerWidth="w-[45%]"
+            containerWidth="w-[45%] smd:w-[48%] sm:w-full"
             validation={registrationOption.email}
           />
         </div>
@@ -249,11 +249,11 @@ const AddMemberForm = () => {
           name={'nextOfKinAddress'}
           pl="pl-[1rem]"
           label="Address"
-          containerWidth="w-[45%]"
+          containerWidth="w-[45%] smd:w-[48%] sm:w-full"
           validation={registrationOption.address}
         />
       </div>
-      <div className="flex justify-between mt-[2rem]">
+      <div className="flex justify-between mt-[2rem] sm:flex-col">
         <InputComponent
           placeholder={'Password'}
           label="Password"
@@ -284,7 +284,7 @@ const AddMemberForm = () => {
       <button
         disabled={isLoading}
         type="submit"
-        className={`mt-[4rem] py-[1rem] flex justify-center items-center bg-color-primary-1 text-color-white w-auto px-[2rem] border border-color-primary-1 rounded-lg transition-all duration-300 ease-in ${
+        className={`mt-[4rem] py-[1rem] flex justify-center items-center bg-color-primary-1 text-color-white w-auto px-[2rem] border border-color-primary-1 rounded-lg transition-all duration-300 ease-in sm:w-full ${
           isLoading && 'opacity-75'
         }`}
       >
