@@ -28,8 +28,10 @@
     "react-loading-skeleton": "^3.4.0",
     "react-qr-code": "^2.0.13",
     "react-redux": "^9.1.0",
+    "react-responsive": "^10.0.0",
     "react-toastify": "^10.0.5",
-    "react-use-clipboard": "^1.0.9"
+    "react-use-clipboard": "^1.0.9",
+    "swiper": "^11.1.4"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -4,12 +4,18 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { labels, returnMonthsData } from '@/utils/returnsPerMonthGraphData';
 import { useAppSelector } from '@/hooks/customHook';
+import GraphSkeleton from './skeletons/GraphSkeleton';
+import { useMediaQuery } from 'react-responsive';
 
 ChartJS.register(...registerables);
 
 ChartJS.defaults.color = 'rgba(67, 104, 80)';
 
 const ReturnPerMonthGraph = () => {
+  const isPhone = useMediaQuery({
+    query: '(max-width: 630px)',
+  });
+
   const history = useAppSelector((state) => state.roivalue.history);
 
   const historyGraphData = history.map((item: any) => {
@@ -40,6 +46,7 @@ const ReturnPerMonthGraph = () => {
   // options for the line chart
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
 
     elements: {
       point: {
@@ -50,7 +57,7 @@ const ReturnPerMonthGraph = () => {
     scales: {
       x: {
         title: {
-          display: true,
+          display: !isPhone,
           text: 'Month',
         },
 
@@ -61,7 +68,7 @@ const ReturnPerMonthGraph = () => {
       },
       y: {
         title: {
-          display: true,
+          display: !isPhone,
           text: 'USD',
         },
         grid: {
@@ -90,13 +97,25 @@ const ReturnPerMonthGraph = () => {
     },
   };
   return (
-    <div className=" flex  flex-col w-[50%] bg-color-secondary-1 rounded-lg shadow-lg overflow-hidden">
-      <p className="p-[1rem] shadow-md text-[1.8rem] font-semibold text-color-secondary-1 bg-[#161616] uppercase">
+    <div className=" flex  flex-col w-[50%] lg:w-[85%] xmd:w-full  bg-color-secondary-1 rounded-lg shadow-lg overflow-hidden xlg:w-[48%] sm:h-[50rem]">
+      <p className="p-[1rem]  shadow-md text-[1.8rem] font-semibold text-color-secondary-1 bg-[#161616] uppercase">
         Return on Investment
       </p>
-      <div className="p-[1rem] sm:p-0 flex-1 w-full  flex items-center justify-center ">
-        <Line data={graphData} options={options} className="  flex-1" />
-      </div>
+      {history.length !== 0 && (
+        <div className="p-[1rem] sm:p-0 flex-1 w-full items-center   flex justify-center">
+          <Line
+            data={graphData}
+            options={options}
+            className="flex-1"
+            // height={'100%'}
+          />
+        </div>
+      )}
+      {history.length === 0 && (
+        <div className="w-full h-full p-[3rem] sm:p-[2rem]">
+          <GraphSkeleton />
+        </div>
+      )}
     </div>
   );
 };

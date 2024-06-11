@@ -10,6 +10,7 @@ import { InvestmentItemType } from '@/app/dashboard/[portfolio]/invest/page';
 import { formatNumber } from '@/utils/numberFormatter';
 import formatDate from '@/utils/dateFormatter';
 import { dateDiffInDays } from '@/utils/helperFns';
+import ShareParamsSlider from './ShareParamsSlider';
 
 export const getLatestInvRoi = (inv: any) => {
   let roi = inv.activeDate
@@ -91,7 +92,7 @@ const DashboardFirstSec = () => {
 
   const latestInv = getLatestInvestment();
 
-  const shareholderPortfolioData = [
+  const investorPortfolioData = [
     {
       title: 'Investment value',
       value: `$ ${formatNumber(getOverallInvestmentValue())}`,
@@ -141,14 +142,14 @@ const DashboardFirstSec = () => {
   ];
 
   return (
-    <div className=" bg-color-secondary-1 p-[2rem] rounded-lg font-nunito">
+    <div className=" font-nunito  font-bold bg-color-secondary-3  p-[2rem] rounded-lg w-full flex flex-col  xlg:flex-wrap">
       <div className="mb-[1.5rem]">
-        <p className="text-[3rem] font-semibold text-color-primary-1">
+        <p className="text-[3rem] font-semibold text-color-primary-1 capitalize">
           Welcome {name.split(' ')[0]},
         </p>
       </div>
-      <div className="grid grid-cols-4 gap-x-[2rem] font-nunito justify-betwee font-bold  rounded-lg w-full">
-        {shareholderPortfolioData.map((item, i: number) => (
+      <div className="grid grid-cols-4 xmd:grid-cols-2 gap-[2rem] font-nunito justify-between font-bold  rounded-lg w-full sm:hidden">
+        {investorPortfolioData.map((item, i: number) => (
           <div
             key={i}
             className=" h-auto rounded-md flex    flex-col items-center  text-center  bg-[#161616] px-[1rem] py-[2rem] shadow-md  text-color-secondary-1 text-[1.7rem] font-bold "
@@ -165,6 +166,7 @@ const DashboardFirstSec = () => {
           </div>
         ))}
       </div>
+      <ShareParamsSlider shareParams={investorPortfolioData} />
     </div>
   );
 };

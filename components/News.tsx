@@ -7,7 +7,7 @@ const News = () => {
   const news = useAppSelector((state) => state.businessNews.news);
 
   return (
-    <div className="p-[1.5rem]  overflow-y-auto flex-1 flex flex-col justify-between h-full ">
+    <div className="p-[1.5rem] xl:p-[3rem] xmd:p-[1.5rem]  overflow-y-auto flex-1 flex flex-col justify-between h-full  ">
       {news.map((item: any, i: number) => (
         <NewsTemp
           title={item.title}
@@ -15,6 +15,7 @@ const News = () => {
           image={item.image}
           link={item.link}
           key={i}
+          type={'business'}
         />
       ))}
     </div>
