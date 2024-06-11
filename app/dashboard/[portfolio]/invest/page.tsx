@@ -41,7 +41,7 @@ const page = () => {
   return (
     <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full">
       {isOpen && <CreateInvestmentModal />}
-      <section className="bg-order-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full  flex-col h-screen">
+      <section className="bg-order-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full  flex-col h-screen xl:px-[3rem]">
         <div className="w-full flex justify-end ">
           <div className="bg-color-primary-3  w-auto flex rounded-lg overflow-hidden ">
             <p className="bg-color-primary-1 text-color-primary-3 px-[1.5rem] invest-text-clip flex items-center justify-center">
@@ -57,7 +57,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-color-secondary-3 mt-[2rem] rounded-lg overflow-auto  p-[3rem]  grid grid-cols-4 gap-[2rem] ">
+        <div className="flex-1 bg-color-secondary-3 mt-[2rem] rounded-lg overflow-auto  p-[3rem] xl:p-[1.5rem] xmd:p-[2rem]  grid grid-cols-4 xlg:grid-cols-3 xmd:grid-cols-2 sm:grid-cols-1 gap-[2rem]  ">
           {investments
             .slice()
             .reverse()

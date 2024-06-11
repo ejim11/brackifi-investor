@@ -81,7 +81,7 @@ const InvestmentItem = ({
         <motion.p layout>{formatDate(dateCreated)}</motion.p>
         <motion.p layout>{investmentState}</motion.p>
       </motion.div>
-      <div className={`px-[2rem] mt-[17rem] flex flex-wrap  justify-between`}>
+      <div className={`px-[1.5rem] mt-[17rem] flex flex-wrap  justify-between`}>
         {data.map((item, i) => (
           <div
             key={i}
