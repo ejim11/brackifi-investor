@@ -144,7 +144,7 @@ const DashboardFirstSec = () => {
   return (
     <div className=" font-nunito  font-bold bg-color-secondary-3  p-[2rem] rounded-lg w-full flex flex-col  xlg:flex-wrap">
       <div className="mb-[1.5rem]">
-        <p className="text-[3rem] font-semibold text-color-primary-1 capitalize">
+        <p className="text-[3rem] sm:text-[2.5rem] font-semibold text-color-primary-1 capitalize">
           Welcome {name.split(' ')[0]},
         </p>
       </div>
@@ -152,7 +152,7 @@ const DashboardFirstSec = () => {
         {investorPortfolioData.map((item, i: number) => (
           <div
             key={i}
-            className=" h-auto rounded-md flex    flex-col items-center  text-center  bg-[#161616] px-[1rem] py-[2rem] shadow-md  text-color-secondary-1 text-[1.7rem] font-bold "
+            className=" h-auto rounded-md flex    flex-col items-center  text-center  bg-[#161616] px-[1rem] py-[2rem] shadow-md  text-color-secondary-1 text-[1.7rem] font-bold"
           >
             <div className="flex flex-col items-center  mb-[.5rem]">
               <div className=" text-color-primary-1 mb-[1rem]">

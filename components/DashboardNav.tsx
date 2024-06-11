@@ -50,7 +50,7 @@ const DashboardNav = () => {
     <header
       className={`w-full h-[8rem]  ${
         menuOpen ? 'sm:h-auto' : 'sm:h-[7rem] sm:overflow-hidden'
-      } px-[5rem] xlg:px-[5rem] xmd:px-[3.5rem] smd:px-[2.5rem]   ssm:px-[1.5rem] flex items-center absolute top-0 left-0 right-0 justify-between bg-[#161616] z-[50] sm:flex-wrap sm:justify-start sm:items-start sm:px-0`}
+      } px-[5rem] xlg:px-[5rem] xmd:px-[3.5rem]    ssm:px-[1.5rem] flex items-center absolute top-0 left-0 right-0 justify-between bg-[#161616] z-[50] sm:flex-wrap sm:justify-start sm:items-start sm:px-0`}
     >
       <div
         className={` sm:transition-all sm:duration-100 sm:ease-in sm:px-[1.8rem] ssm:px-[1.5rem] flex items-center sm:justify-statrt  sm:w-full sm:h-[7rem] `}
@@ -58,9 +58,9 @@ const DashboardNav = () => {
         <Image
           src={logo}
           alt="logo"
-          className="mx-auto w-[4rem] h-[4rem] smd:w-[3rem] smd:h-[3rem] sm:mx-0"
+          className="mx-auto w-[4rem] h-[4rem] sm:w-[3rem] sm:h-[3rem] sm:mx-0"
         />
-        <p className="logo-animation text-color-secondary-1 text-[3rem] smd:text-[2.5rem]  font-nunito font-semibold uppercase ml-[1rem]">
+        <p className="logo-animation text-color-secondary-1 text-[3rem] sm:text-[2.5rem]  font-nunito font-semibold uppercase ml-[1rem]">
           Brackifi
         </p>
         <div className="hidden sm:block sm:ml-auto ">
