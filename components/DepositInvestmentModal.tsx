@@ -23,7 +23,9 @@ const DepositInvestmentModal = () => {
             with Base network).
           </li>
           <li>Make payment to the wallet address.</li>
-          <li>Input your wallet address and the amount you paid.</li>
+          <li>
+            Input your wallet address, maximum drawdown and the amount you paid.
+          </li>
           <li>Create an investment and wait for it to be verified. </li>
         </ol>
       </div>

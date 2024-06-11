@@ -37,7 +37,7 @@ const CreateInvestmentModal = () => {
           investmentType === 'buy' ? 'sm:h-[80vh]' : 'sm:h-auto'
         }  xlg:w-[70%] lg:w-[80%] md:w-[90%] rounded-lg overflow-hidden`}
       >
-        <div className="bg-order-bg bg-no-repeat bg-center bg-cover p-[2rem] w-[30rem] smd:hidden"></div>
+        <div className="bg-order-bg bg-no-repeat bg-center bg-cover p-[2rem] w-[30rem] sm:hidden"></div>
         <div className="overflow-y-auto w-full">
           <p className="w-full py-[2rem] px-[1rem] text-[2rem] border border-color-light-black text-color-primary-1 font-bold uppercase">
             Create {investmentType === 'buy' ? 'an investment' : 'Sell'}
