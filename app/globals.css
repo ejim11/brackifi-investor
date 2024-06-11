@@ -26,7 +26,7 @@ html {
     font-size: 62.5%; /*1rem = 10px;*/
   }
 
-  @media all and (max-width: 300px) {
+  @media all and (max-width: 650px) {
     font-size: 56.25%; /*1rem = 9px;*/
   }
 }
@@ -41,6 +41,11 @@ img {
 
 input {
   font-size: 16px !important;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 #customers {
@@ -154,4 +159,17 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type='number'] {
   -moz-appearance: textfield;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after,
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+.swiper-pagination-bullet {
+  background-color: bisque !important;
+}
+.swiper-pagination-bullet-active {
+  background: rgba(210, 183, 116, 1) !important;
 }

@@ -44,7 +44,7 @@ const Performance = ({
         />
       </div>
       <div>
-        <p className="text-[1.8rem] text-color-secondary-1 font-nunito font-bold uppercase mt-[2rem] text-center">
+        <p className="text-[1.8rem] xl:text-[1.65rem] text-color-secondary-1 font-nunito font-bold uppercase mt-[2rem] text-center">
           {title}
         </p>
       </div>

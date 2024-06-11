@@ -5,7 +5,7 @@ import ReturnPerMonthGraph from '@/components/ReturnPerMonthGraph';
 import FundPerformanceCommentary from '@/components/FundPerformanceCommentary';
 import Performance from '@/components/Performance';
 import DocumentLibraryAndReport from '@/components/DocumentLibraryAndReport';
-import Messages from '@/components/News';
+import News from '@/components/News';
 import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { getRoiDetails } from '@/actions/roiValueAction';
 import { getPerformanceReportDispatch } from '@/actions/fundsPerformanceAction';
@@ -48,21 +48,21 @@ const page = () => {
 
   return (
     <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full relative">
-      <section className="bg-order-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full flex-wrap flex-col ">
+      <section className="bg-order-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full flex-wrap flex-col xl:px-[3.5rem] xmd:px-[3rem] sm:px-[2rem]">
         <DashboardFirstSec />
-        <div className="w-full flex mt-[5rem] justify-between">
+        <div className="w-full flex mt-[5rem] justify-between  lg:flex-col lg:items-center">
           <ReturnPerMonthGraph />
           <DocumentLibraryAndReport />
         </div>
       </section>
-      <section className="py-[5rem] px-[5rem] flex justify-between ">
-        <div className=" flex-1 h-[40rem] bg-color-secondary-1 rounded-lg flex flex-col overflow-hidden">
+      <section className="py-[5rem] px-[5rem] flex justify-between xl:flex-wrap  h-auto xl:px-[3.5rem] xmd:px-[3rem] sm:px-[2rem]">
+        <div className=" flex-1 h-[40rem] bg-color-secondary-1 rounded-lg flex flex-col overflow-hidden xl:flex-[45%] xmd:flex-[100%] xmd:h-auto xmd:order-2 xmd:mt-[4rem]">
           <p className="p-[1rem] shadow-md text-[1.8rem] text-color-secondary-1 bg-color-primary-1  font-bold uppercase">
             fund performance commentary
           </p>
           <FundPerformanceCommentary />
         </div>
-        <div className="flex-1 h-[40rem] mx-[3rem] bg-color-secondary-1 flex flex-col rounded-lg overflow-hidden">
+        <div className="flex-1 h-[40rem] xl:ml-[3rem] mx-[3rem] xl:mx-0 bg-color-secondary-1 flex flex-col rounded-lg overflow-hidden xl:flex-[45%] xmd:flex-[100%] xmd:ml-0  xmd:order-1">
           <p className="p-[1rem] shadow-md text-[1.8rem] text-color-secondary-1 bg-color-primary-1 font-bold uppercase">
             Perfomance Metrics
           </p>
@@ -78,11 +78,11 @@ const page = () => {
             />
           </div>
         </div>
-        <div className=" flex-1  h-[40rem] bg-color-secondary-1 rounded-lg flex flex-col overflow-hidden">
+        <div className=" flex-1  h-[40rem] bg-color-secondary-1 rounded-lg flex flex-col overflow-hidden xl:flex-[100%] xl:mt-[4rem] xmd:order-3 xmd:h-auto">
           <p className="p-[1rem] shadow-md text-[1.8rem] text-color-secondary-1 bg-color-primary-1 font-bold uppercase">
             Business News
           </p>
-          <Messages />
+          <News />
         </div>
       </section>
       {/* <section className="bg-home-bg h-[50rem] bg-center bg-no-repeat bg-cover"></section> */}

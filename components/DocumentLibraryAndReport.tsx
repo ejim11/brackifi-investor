@@ -26,7 +26,7 @@ const DocumentLibraryAndReport = () => {
       : 'https://brackifi-be.onrender.com';
 
   return (
-    <div className="w-[45%] h-[40rem] bg-color-secondary-1 rounded-lg shadow-lg flex flex-col overflow-hidden">
+    <div className="w-[45%] xlg:w-[48%] lg:w-[85%] lg:mt-[4rem] h-[40rem] bg-color-secondary-1 rounded-lg shadow-lg flex flex-col overflow-hidden lg:h-auto xmd:w-full">
       <p className="p-[1rem] shadow-md text-[1.8rem] font-semibold text-color-secondary-1 bg-[#161616] uppercase">
         Document Library And Reports
       </p>
@@ -43,7 +43,7 @@ const DocumentLibraryAndReport = () => {
           {reports.map((report: any, i: number) => (
             <div
               key={i}
-              className="w-full flex p-[1.5rem] mb-[1.5rem] last:mb-0 items-center  bg-color-black-light-2 rounded-lg sm:flex-col"
+              className="w-full flex p-[1.5rem] mb-[1.5rem] last:mb-0 items-center  bg-color-black-light-2 rounded-lg "
             >
               <div className="w-[10rem] h-[10rem]  rounded-md">
                 <Image
