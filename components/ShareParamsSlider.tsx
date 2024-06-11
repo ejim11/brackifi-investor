@@ -16,7 +16,7 @@ const ShareParamsSlider = ({ shareParams }: { shareParams: any }) => {
   ];
 
   return (
-    <div className="w-full h-[20rem] mt-[3rem] sm:block hidden ">
+    <div className="w-full h-[20rem] mt-[3rem] sm:mt-0 sm:block hidden ">
       <Swiper
         // install Swiper modules
         modules={[Navigation, Pagination, EffectFade, Autoplay]}

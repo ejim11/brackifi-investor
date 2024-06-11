@@ -37,12 +37,12 @@ const page = () => {
   }, []);
 
   return (
-    <div className="min-h-screen font-nunito">
-      <section className="bg-portfolio-bg bg-no-repeat bg-cover bg-center h-[40rem] bg-color-primary-1 rounded-bl-lg rounded-br-lg pt-[10rem] px-[10rem]">
-        <div className="flex w-full h-full items-center">
+    <div className="overflow-auto h-screen font-nunito">
+      <section className="bg-portfolio-bg bg-no-repeat bg-cover bg-center h-[40rem] bg-color-primary-1 rounded-bl-lg rounded-br-lg pt-[10rem] px-[10rem] sm:h-auto xlg:px-[3.5rem] sm:px-[2.5rem]">
+        <div className="flex w-full h-full items-center sm:flex-col">
           <label
             htmlFor="profileImg"
-            className=" w-[20rem] h-[20rem] bg-color-secondary-1 mr-[3rem] rounded-full flex items-center justify-center relative"
+            className=" w-[20rem] h-[20rem] sm:mb-[2rem] sm:mr-0 bg-color-secondary-1 mr-[3rem] rounded-full flex items-center justify-center relative"
           >
             <Image
               src={profileImg}
@@ -62,7 +62,7 @@ const page = () => {
               <FaRegEdit className="w-[2.3rem] h-[2.3rem] text-color-white" />
             </div>
           </label>
-          <div className="w-[50rem]  bg-color-secondary-1 p-[1.5rem] rounded-lg font-nunito capitalize">
+          <div className="w-[50rem] xlg:flex-1 sm:w-full sm:mb-[3rem]   bg-color-secondary-1 p-[1.5rem] rounded-lg font-nunito capitalize">
             <p className="text-[1.8rem] font-semibold text-color-secondary-2 mb-[.5rem]">
               Full Name: <span>{name}</span>
             </p>
@@ -78,14 +78,14 @@ const page = () => {
           </div>
         </div>
       </section>
-      <section className="flex justify-between px-[10rem] py-[5rem] bg-color-primary-2">
-        <div className="p-[2.5rem] bg-color-white rounded-lg w-[45%]">
+      <section className="flex justify-between px-[10rem] py-[5rem] bg-color-primary-2 xlg:px-[3.5rem] sm:flex-col sm:px-[2.5rem]">
+        <div className="p-[2.5rem] bg-color-white rounded-lg w-[45%] xlg:w-[48%] sm:w-full sm:p-[1.5rem]">
           <p className="text-[1.8rem] text-color-primary-1 font-semibold mb-[1.5rem] uppercase">
             Update Info
           </p>
           <UpdateShareholderInfo />
         </div>
-        <div className="p-[2.5rem] bg-color-white rounded-lg w-[45%] self-start">
+        <div className="p-[2.5rem] bg-color-white rounded-lg w-[45%] self-start  xlg:w-[48%] sm:w-full sm:mt-[3rem] sm:p-[1.5rem]">
           <p className="text-[1.8rem] text-color-primary-1 font-semibold mb-[1.5rem] uppercase">
             Update Password
           </p>
