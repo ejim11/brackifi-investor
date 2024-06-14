@@ -75,7 +75,7 @@ export const getInvestorService = async (
 ) => {
   return await investor.get(`/${investorId}`, {
     headers: {
-      Authorization: 'Bearer ' + jwtToken,
+      Authorization: 'Bearer ' + jwtToken + ' investor',
     },
   });
 };
