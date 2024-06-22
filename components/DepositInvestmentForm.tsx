@@ -108,7 +108,7 @@ const DepositInvestmentForm = () => {
       <InputComponent
         placeholder={'50000'}
         type={'number'}
-        label="Amount paid"
+        label="Amount paid (USDC)"
         register={register}
         error={errors}
         name={'amountPaid'}

@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import logo from '../assets/logo2.png';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const Header = () => {
   const pathname: string = usePathname();
@@ -13,7 +14,7 @@ const Header = () => {
         pathname.includes('add-member') ? 'bg-color-primary-1' : ''
       }`}
     >
-      <div className="flex items-center cursor-pointer">
+      <Link href={'/auth/login'} className="flex items-center cursor-pointer">
         <Image
           src={logo}
           alt="logo"
@@ -22,7 +23,7 @@ const Header = () => {
         <p className="logo-animation text-color-secondary-1 text-[3rem] smd:text-[2.8rem] ssm:text-[2.5rem] font-nunito font-semibold uppercase ml-[1rem]">
           Brackifi
         </p>
-      </div>
+      </Link>
     </header>
   );
 };
