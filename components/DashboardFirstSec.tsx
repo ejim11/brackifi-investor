@@ -11,11 +11,12 @@ import { formatNumber } from '@/utils/numberFormatter';
 import formatDate from '@/utils/dateFormatter';
 import { dateDiffInDays } from '@/utils/helperFns';
 import ShareParamsSlider from './ShareParamsSlider';
+import modifyNum from '@/utils/modifyAmount';
 
 export const getLatestInvRoi = (inv: any) => {
   let roi = inv.activeDate
     ? dateDiffInDays(new Date(inv.activeDate).getTime(), new Date().getTime()) *
-      0.1
+      0.16
     : 0;
 
   if (roi >= inv.maximumDrawdown) {
@@ -32,7 +33,7 @@ const DashboardFirstSec = () => {
   ).filter((inv: InvestmentItemType) => inv.investmentState === 'active');
 
   const avgRoi = () => {
-    let staticRoi = 0.1;
+    let staticRoi = 0.16;
     const roi = investments
       .map((inv: InvestmentItemType) => {
         const dateDiff = dateDiffInDays(
@@ -58,13 +59,10 @@ const DashboardFirstSec = () => {
           new Date(inv.activeDate).getTime(),
           new Date().getTime()
         );
-        const newRoi = dateDiff * 0.1;
+        const newRoi = dateDiff * 0.16;
         return {
           amount: inv.amount,
-          roi:
-            newRoi >= inv.maximumDrawdown
-              ? inv.maximumDrawdown
-              : dateDiff * 0.1,
+          roi: newRoi >= inv.maximumDrawdown ? inv.maximumDrawdown : newRoi,
         };
       })
       .map((inv: { amount: number; roi: number }) => {
@@ -92,10 +90,12 @@ const DashboardFirstSec = () => {
 
   const latestInv = getLatestInvestment();
 
+  console.log(getOverallInvestmentValue());
+
   const investorPortfolioData = [
     {
       title: 'Investment value',
-      value: `$ ${formatNumber(getOverallInvestmentValue())}`,
+      value: `$ ${modifyNum(String(Math.round(getOverallInvestmentValue())))}`,
       icon: (
         <MdAccountBalanceWallet className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
       ),
