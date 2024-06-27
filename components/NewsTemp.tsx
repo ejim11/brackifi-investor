@@ -47,21 +47,21 @@ const NewsTemp = ({
       <div
         className={`w-[8rem] h-[8rem] ${
           type === 'business'
-            ? 'xl:w-[15rem] xl:h-[15rem]'
-            : 'lg:w-[10rem] xl:h-[15rem] xmd:w-[15rem]'
-        }  mr-[1.5rem] bg`}
+            ? 'xl:w-[15rem] xl:h-[15rem] sm:w-[10rem]'
+            : 'lg:w-[10rem] xl:h-[15rem] xmd:w-[15rem] sm:w-[10rem]'
+        }   `}
       >
         <Image
           src={`${imgHost}/${image}`}
           alt=""
-          width={100}
-          height={100}
+          width={500}
+          height={500}
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="flex-1 ">
+      <div className="flex-1 p-[1rem]">
         <p
-          className={`text-[1.7rem] 2xl:text-[1.6rem]   ${
+          className={`text-[1.7rem]  2xl:text-[1.6rem] sm:text-[1.5rem]   ${
             onHoverState ? 'text-color-primary-3' : 'text-color-primary-1'
           } `}
         >
@@ -72,7 +72,7 @@ const NewsTemp = ({
             onHoverState ? 'text-color-secondary-1' : 'text-color-secondary-2'
           } `}
         >
-          {summary.slice(0, 100)}...
+          {summary.slice(0, 90)}...
         </p>
       </div>
     </motion.a>

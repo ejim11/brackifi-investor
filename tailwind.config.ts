@@ -57,8 +57,8 @@ const config: Config = {
       // => @media (max-width: 700px) { ... }
       sm: { max: '650px' },
       // => @media (max-width: 500px) { ... }
-      ssm: { max: '300px' },
-      // => @media (max-width: 500px) { ... }
+      ssm: { max: '380px' },
+      // => @media (max-width: 380px) { ... }
     },
     extend: {
       backgroundImage: {

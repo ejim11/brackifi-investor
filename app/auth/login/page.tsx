@@ -15,7 +15,7 @@ const page = () => {
           Login
         </p>
         <p className="text-center text-[1.4rem] text-color-secondary-2 border  border-[#e7bc1f] bg-[rgba(231,188,31,.1)] p-[1rem] mb-[4rem]">
-          You need to sign in or sign up before continuing.
+          You need to sign in or sign up before access.
         </p>
         <LoginForm />
         <div className="flex flex-col items-center mt-[2rem] text-color-secondary-1">

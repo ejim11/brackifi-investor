@@ -56,8 +56,8 @@ const page = () => {
               src={profileImg}
               alt="profile-img"
               className="w-full h-full rounded-full object-cover"
-              width={100}
-              height={100}
+              width={300}
+              height={300}
             />
             <input
               type="file"

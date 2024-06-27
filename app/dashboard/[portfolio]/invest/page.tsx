@@ -56,7 +56,7 @@ const page = () => {
   return (
     <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full">
       <AnimatePresence>{isOpen && <CreateInvestmentModal />}</AnimatePresence>
-      <section className="bg-order-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full  flex-col h-screen xl:px-[3rem]">
+      <section className="bg-order-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] sm:pt-[10rem] px-[5rem] flex pb-[5rem] w-full  flex-col h-screen xl:px-[3rem] sm:px-[1.5rem]">
         <div className="w-full flex justify-end ">
           <div className="bg-color-primary-3  w-auto flex rounded-lg overflow-hidden ">
             <p className="bg-color-primary-1 text-color-primary-3 px-[1.5rem] invest-text-clip flex items-center justify-center">

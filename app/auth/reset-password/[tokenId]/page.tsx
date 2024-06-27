@@ -49,6 +49,7 @@ const page = () => {
   };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
+    console.log(pathname.split('/')[3]);
     dispatch(
       resetPasswordDispatch(
         data,
