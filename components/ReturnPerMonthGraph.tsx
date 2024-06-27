@@ -6,6 +6,7 @@ import { labels, returnMonthsData } from '@/utils/returnsPerMonthGraphData';
 import { useAppSelector } from '@/hooks/customHook';
 import GraphSkeleton from './skeletons/GraphSkeleton';
 import { useMediaQuery } from 'react-responsive';
+import { motion } from 'framer-motion';
 
 ChartJS.register(...registerables);
 
@@ -97,7 +98,13 @@ const ReturnPerMonthGraph = () => {
     },
   };
   return (
-    <div className=" flex  flex-col w-[50%] lg:w-[85%] xmd:w-full  bg-color-secondary-1 rounded-lg shadow-lg overflow-hidden xlg:w-[48%] sm:h-[50rem]">
+    <motion.div
+      initial={{ x: -100, opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeIn' }}
+      viewport={{ once: true }}
+      className=" flex  flex-col w-[50%] lg:w-[85%] xmd:w-full  bg-color-secondary-1 rounded-lg shadow-lg overflow-hidden xlg:w-[48%] sm:h-[50rem]"
+    >
       <p className="p-[1rem]  shadow-md text-[1.8rem] font-semibold text-color-secondary-1 bg-[#161616] uppercase">
         Return on Investment
       </p>
@@ -116,7 +123,7 @@ const ReturnPerMonthGraph = () => {
           <GraphSkeleton />
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

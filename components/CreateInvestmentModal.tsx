@@ -8,6 +8,7 @@ import { useAppSelector } from '@/hooks/customHook';
 import { motion } from 'framer-motion';
 import { investmentActions } from '@/slices/investmentSlice';
 import DepositInvestmentModal from './DepositInvestmentModal';
+import { RxCross2 } from 'react-icons/rx';
 
 const CreateInvestmentModal = () => {
   const dispatchFn = useAppDispatch();
@@ -17,35 +18,48 @@ const CreateInvestmentModal = () => {
   );
 
   const closeInvestmentModal = (e: any) => {
-    if (e.target.dataset.close) {
-      dispatchFn(investmentActions.toggleInvestmentModal());
+    if (
+      e.target.dataset.close === 'true' ||
+      e.target.dataset.closer === 'true'
+    ) {
+      dispatchFn(investmentActions.toggleInvestmentModal(false));
       dispatchFn(investmentActions.setInvestmentType(''));
     }
   };
 
   return (
-    <div
-      className="flex justify-center items-center fixed top-0 bottom-0 right-0 left-0 bg-color-light-black cursor-pointer z-40"
+    <motion.div
+      initial={{ opacity: 0, x: 300 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      exit={{ opacity: 0, x: 300 }}
+      className="flex justify-end w-full mt-[8rem] sm:mt-[7rem] items-center  fixed top-0 bottom-0 right-0 left-0 bg-color-black-light cursor-pointer z-40"
       onClick={closeInvestmentModal}
       data-close="true"
     >
       <motion.div
-        initial={{ scale: 0.8 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-        className={`bg-[#BACD92]  flex font-nunito w-[60%] h-[80vh] ${
-          investmentType === 'buy' ? 'sm:h-[80vh]' : 'sm:h-auto'
-        }  xlg:w-[70%] lg:w-[80%] md:w-[90%] rounded-lg overflow-hidden`}
+        className={`bg-[#BACD92]  flex font-nunito w-[30%] 2xl:w-[40%] xl:w-[50%]  h-full  xlg:w-[70%] lg:w-[80%] md:w-full rounded-tl-lg rounded-bl-lg md:rounded-none overflow-hidden`}
+        data-keep="true"
       >
-        <div className="bg-order-bg bg-no-repeat bg-center bg-cover p-[2rem] w-[30rem] sm:hidden"></div>
         <div className="overflow-y-auto w-full">
-          <p className="w-full py-[2rem] px-[1rem] text-[2rem] border border-color-light-black text-color-primary-1 font-bold uppercase">
-            Create {investmentType === 'buy' ? 'an investment' : 'Sell'}
-          </p>
+          <div className="py-[1.5rem] px-[1rem]  border-b border-color-light-black flex items-center justify-between">
+            {investmentType && (
+              <p className="w-full md:w-auto md:text-left text-center  text-[2rem]  text-color-primary-1 font-bold uppercase">
+                Create {investmentType === 'buy' ? 'an investment' : 'Sell'}
+              </p>
+            )}
+
+            <RxCross2
+              className="md:block hidden w-[2.8rem] h-[2.8rem] text-color-primary-1"
+              onClick={closeInvestmentModal}
+              data-closer="true"
+            />
+          </div>
+
           {investmentType === 'buy' && <DepositInvestmentModal />}
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 

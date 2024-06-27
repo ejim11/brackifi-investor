@@ -20,6 +20,11 @@ const InvestmentItem = ({
   payoutAvailable,
   nextPayout,
 }: InvestmentItemType) => {
+  const itemVariant = {
+    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 30 },
+  };
+
   const dispatchFn = useAppDispatch();
 
   const [isAnimateScrollUp, setisAnimateScrollUp] = useState<boolean>(false);
@@ -62,7 +67,9 @@ const InvestmentItem = ({
   );
 
   return (
-    <div
+    <motion.div
+      variants={itemVariant}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
       className={`border border-color-primary-1 w-full h-[45rem]  rounded-lg overflow-hidden bg-color-primary-1 text-color-primary-3 flex flex-col justify-between pb-[2rem] relative`}
       onMouseOver={() => {
         setisAnimateScrollUp(true);
@@ -110,7 +117,7 @@ const InvestmentItem = ({
           'Request Withdrawal'
         )}
       </button>
-    </div>
+    </motion.div>
   );
 };
 

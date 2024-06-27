@@ -4,8 +4,30 @@ import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { getAllReportsDispatch } from '@/actions/docsAndReportsAction';
 import ReportsSkeleton from './skeletons/ReportsSkeleton';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const DocumentLibraryAndReport = () => {
+  const list = {
+    visible: {
+      opacity: 1,
+      transition: {
+        when: 'beforeChildren',
+        staggerChildren: 0.5,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: 'afterChildren',
+      },
+    },
+  };
+
+  const item = {
+    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: -100 },
+  };
+
   const dispatch = useAppDispatch();
 
   const { reports }: { reports: any } = useAppSelector(
@@ -22,11 +44,17 @@ const DocumentLibraryAndReport = () => {
 
   const imgHost =
     process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
-      ? `http://127.0.0.1:3009`
-      : 'https://brackifi-be.onrender.com';
+      ? process.env.NEXT_PUBLIC_LOCAL_HOST
+      : process.env.NEXT_PUBLIC_WEB_HOST;
 
   return (
-    <div className="w-[45%] xlg:w-[48%] lg:w-[85%] lg:mt-[4rem] h-[40rem] bg-color-secondary-1 rounded-lg shadow-lg flex flex-col overflow-hidden lg:h-auto xmd:w-full">
+    <motion.div
+      initial={{ x: 100, opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: 'easeIn' }}
+      className="w-[45%] xlg:w-[48%] lg:w-[85%] lg:mt-[4rem] h-[40rem] bg-color-secondary-1 rounded-lg shadow-lg flex flex-col overflow-hidden lg:h-auto xmd:w-full"
+    >
       <p className="p-[1rem] shadow-md text-[1.8rem] font-semibold text-color-secondary-1 bg-[#161616] uppercase">
         Document Library And Reports
       </p>
@@ -39,9 +67,15 @@ const DocumentLibraryAndReport = () => {
         </div>
       )}
       {!isLoading && (
-        <div className="w-full flex flex-col  overflow-y-auto flex-1 mt-[1rem] p-[1rem]">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={list}
+          className="w-full flex flex-col  overflow-y-auto flex-1 mt-[1rem] p-[1rem]"
+        >
           {reports.map((report: any, i: number) => (
-            <div
+            <motion.div
+              variants={item}
               key={i}
               className="w-full flex p-[1.5rem] mb-[1.5rem] last:mb-0 items-center  bg-color-black-light-2 rounded-lg "
             >
@@ -71,11 +105,11 @@ const DocumentLibraryAndReport = () => {
               >
                 View
               </a>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

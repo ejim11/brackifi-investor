@@ -1,17 +1,16 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAppSelector } from '@/hooks/customHook';
 import { MdAccountBalanceWallet } from 'react-icons/md';
 import { PiKeyReturnFill } from 'react-icons/pi';
-import { IoMdTrendingDown } from 'react-icons/io';
 import { RiStackFill } from 'react-icons/ri';
 import { HiCircleStack } from 'react-icons/hi2';
 import { InvestmentItemType } from '@/app/dashboard/[portfolio]/invest/page';
-import { formatNumber } from '@/utils/numberFormatter';
 import formatDate from '@/utils/dateFormatter';
 import { dateDiffInDays } from '@/utils/helperFns';
 import ShareParamsSlider from './ShareParamsSlider';
 import modifyNum from '@/utils/modifyAmount';
+import { easeIn, motion } from 'framer-motion';
 
 export const getLatestInvRoi = (inv: any) => {
   let roi = inv.activeDate
@@ -27,6 +26,27 @@ export const getLatestInvRoi = (inv: any) => {
 
 const DashboardFirstSec = () => {
   const { name } = useAppSelector((state) => state.investor.details);
+
+  const list = {
+    visible: {
+      opacity: 1,
+      transition: {
+        when: 'beforeChildren',
+        staggerChildren: 0.3,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: 'afterChildren',
+      },
+    },
+  };
+
+  const itemVariant = {
+    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, x: -50 },
+  };
 
   const investments = useAppSelector(
     (state) => state.investments.investments
@@ -90,8 +110,6 @@ const DashboardFirstSec = () => {
 
   const latestInv = getLatestInvestment();
 
-  console.log(getOverallInvestmentValue());
-
   const investorPortfolioData = [
     {
       title: 'Investment value',
@@ -101,7 +119,7 @@ const DashboardFirstSec = () => {
       ),
     },
     {
-      title: 'Roi',
+      title: 'Total Roi',
       value: `${avgRoi()} %`,
       icon: (
         <PiKeyReturnFill className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
@@ -133,8 +151,9 @@ const DashboardFirstSec = () => {
       ),
       value: `$ ${
         latestInv
-          ? formatNumber(
-              Math.round((latestInv?.amount * getLatestInvRoi(latestInv)) / 100)
+          ? Math.round(
+              (latestInv?.amount * getLatestInvRoi(latestInv)) / 100 +
+                latestInv?.amount
             )
           : 0
       }`,
@@ -142,16 +161,28 @@ const DashboardFirstSec = () => {
   ];
 
   return (
-    <div className=" font-nunito  font-bold bg-color-secondary-3  p-[2rem] rounded-lg w-full flex flex-col  xlg:flex-wrap">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: easeIn }}
+      className=" font-nunito  font-bold bg-color-secondary-3  p-[2rem] rounded-lg w-full flex flex-col  xlg:flex-wrap"
+    >
       <div className="mb-[1.5rem]">
         <p className="text-[3rem] sm:text-[2.5rem] font-semibold text-color-primary-1 capitalize">
           Welcome {name.split(' ')[0]},
         </p>
       </div>
-      <div className="grid grid-cols-4 xmd:grid-cols-2 gap-[2rem] font-nunito justify-between font-bold  rounded-lg w-full sm:hidden">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={list}
+        className="grid grid-cols-4 xmd:grid-cols-2 gap-[2rem] font-nunito justify-between font-bold  rounded-lg w-full sm:hidden"
+      >
         {investorPortfolioData.map((item, i: number) => (
-          <div
+          <motion.div
+            variants={itemVariant}
             key={i}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
             className=" h-auto rounded-md flex    flex-col items-center  text-center  bg-[#161616] px-[1rem] py-[2rem] shadow-md  text-color-secondary-1 text-[1.7rem] font-bold"
           >
             <div className="flex flex-col items-center  mb-[.5rem]">
@@ -163,11 +194,11 @@ const DashboardFirstSec = () => {
               </p>
               <p>{item.value}</p>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
       <ShareParamsSlider shareParams={investorPortfolioData} />
-    </div>
+    </motion.div>
   );
 };
 

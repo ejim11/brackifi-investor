@@ -8,8 +8,8 @@ const investmentSlice = createSlice({
     investments: [],
   },
   reducers: {
-    toggleInvestmentModal: (state) => {
-      state.isOpen = !state.isOpen;
+    toggleInvestmentModal: (state, action) => {
+      state.isOpen = action.payload;
     },
     setInvestmentType: (state, action) => {
       state.investmentType = action.payload;

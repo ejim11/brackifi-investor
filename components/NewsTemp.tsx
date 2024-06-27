@@ -1,4 +1,5 @@
 'use client';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
@@ -17,15 +18,22 @@ const NewsTemp = ({
   link?: string;
   type?: string;
 }) => {
+  const item = {
+    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, x: -30 },
+  };
+
   const [onHoverState, setOnHoverState] = useState<boolean>(false);
 
   const imgHost =
     process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
-      ? `http://127.0.0.1:3009`
-      : 'https://brackifi-be.onrender.com';
+      ? process.env.NEXT_PUBLIC_LOCAL_HOST
+      : process.env.NEXT_PUBLIC_WEB_HOST;
 
   return (
-    <a
+    <motion.a
+      variants={item}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
       href={`${file ? `${imgHost}/${file}` : link}`}
       target="blank"
       className="flex mb-[1rem] items-center bg-color-black-light-2 hover:bg-color-black-light duration-150 transition-all ease-in cursor-pointer rounded-lg hover:text-color-secondary-1 "
@@ -67,7 +75,7 @@ const NewsTemp = ({
           {summary.slice(0, 100)}...
         </p>
       </div>
-    </a>
+    </motion.a>
   );
 };
 

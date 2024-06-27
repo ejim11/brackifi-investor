@@ -8,6 +8,7 @@ import { useAppSelector } from '@/hooks/customHook';
 import { usePathname, useRouter } from 'next/navigation';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { MdOutlineClose } from 'react-icons/md';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const DashboardNav = () => {
   const router = useRouter();
@@ -77,24 +78,26 @@ const DashboardNav = () => {
           )}
         </div>
       </div>
+
       <div
+        // initial={{ opacity: 0, y: -100 }}
+        // animate={{ opacity: 0, y: 0 }}
+        // exit={{ opacity: 0, y: -100 }}
         onClick={() => {
           setMenuOpen(false);
         }}
-        className={`items-center   sm:text-color-secondary-1 sm:w-full flex   sm:flex sm:flex-col sm:transition-all sm:duration-100 sm:ease-in  ${
-          menuOpen ? 'sm:opacity-100' : 'sm:opacity-0 '
-        }  `}
+        className={`items-center   sm:text-color-secondary-1 sm:w-full flex sm:flex   sm:flex-col sm:transition-all sm:duration-100 sm:ease-in `}
       >
         <div className="text-[1.6rem] text-color-primary-2 mr-[3rem] flex items-center sm:flex-col sm:mr-0 sm:w-full">
           {navData.map((item, i) => (
             <Link
               key={i}
               href={item.link}
-              className={`mr-[1.5rem] capitalize text-[1.8rem] hover:text-color-secondary-1 transition-all duration-150 ease-in ${
+              className={`mr-[1.5rem] sm:mr-0 sm:first:border-t sm:border-b sm:border-color-secondary-1  sm:w-full capitalize text-[1.8rem] hover:text-color-secondary-1 transition-all duration-150 ease-in ${
                 item.link === pathname
                   ? 'text-color-secondary-1'
                   : 'text-color-white'
-              } sm:mr-0 sm:py-[1.5rem] flex sm:border-b sm:border-color-secondary-1 sm:w-full sm:justify-center sm:first:border-t`}
+              } sm:py-[1.5rem] flex  sm:w-full sm:justify-center `}
             >
               {item.text}
             </Link>

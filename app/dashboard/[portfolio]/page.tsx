@@ -13,6 +13,7 @@ import { getAllBusinessNewsDispatch } from '@/actions/businessNewsAction';
 import { InvestmentItemType } from './invest/page';
 import { dateDiffInDays } from '@/utils/helperFns';
 import { getInvestorDispatch } from '@/actions/investorAction';
+import { motion } from 'framer-motion';
 
 const page = () => {
   const dispatch = useAppDispatch();
@@ -56,13 +57,25 @@ const page = () => {
         </div>
       </section>
       <section className="py-[5rem] px-[5rem] flex justify-between xl:flex-wrap  h-auto xl:px-[3.5rem] xmd:px-[3rem] sm:px-[2rem]">
-        <div className=" flex-1 h-[40rem] bg-color-secondary-1 rounded-lg flex flex-col overflow-hidden xl:flex-[45%] xmd:flex-[100%] xmd:h-auto xmd:order-2 xmd:mt-[4rem]">
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: 'easeIn', delay: 0 }}
+          viewport={{ once: true }}
+          className=" flex-1 h-[40rem] bg-color-secondary-1 rounded-lg flex flex-col overflow-hidden xl:flex-[45%] xmd:flex-[100%] xmd:h-auto xmd:order-2 xmd:mt-[4rem]"
+        >
           <p className="p-[1rem] shadow-md text-[1.8rem] text-color-secondary-1 bg-color-primary-1  font-bold uppercase">
             fund performance commentary
           </p>
           <FundPerformanceCommentary />
-        </div>
-        <div className="flex-1 h-[40rem] xl:ml-[3rem] mx-[3rem] xl:mx-0 bg-color-secondary-1 flex flex-col rounded-lg overflow-hidden xl:flex-[45%] xmd:flex-[100%] xmd:ml-0  xmd:order-1">
+        </motion.div>
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: 'easeIn', delay: 0.3 }}
+          viewport={{ once: true }}
+          className="flex-1 h-[40rem] xl:ml-[3rem] mx-[3rem] xl:mx-0 bg-color-secondary-1 flex flex-col rounded-lg overflow-hidden xl:flex-[45%] xmd:flex-[100%] xmd:ml-0  xmd:order-1"
+        >
           <p className="p-[1rem] shadow-md text-[1.8rem] text-color-secondary-1 bg-color-primary-1 font-bold uppercase">
             Perfomance Metrics
           </p>
@@ -77,13 +90,19 @@ const page = () => {
               report={prevMonthData?.report ? prevMonthData.report : ''}
             />
           </div>
-        </div>
-        <div className=" flex-1  h-[40rem] bg-color-secondary-1 rounded-lg flex flex-col overflow-hidden xl:flex-[100%] xl:mt-[4rem] xmd:order-3 xmd:h-auto">
+        </motion.div>
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: 'easeIn', delay: 0.6 }}
+          viewport={{ once: true }}
+          className=" flex-1  h-[40rem] bg-color-secondary-1 rounded-lg flex flex-col overflow-hidden xl:flex-[100%] xl:mt-[4rem] xmd:order-3 xmd:h-auto"
+        >
           <p className="p-[1rem] shadow-md text-[1.8rem] text-color-secondary-1 bg-color-primary-1 font-bold uppercase">
             Business News
           </p>
           <News />
-        </div>
+        </motion.div>
       </section>
       {/* <section className="bg-home-bg h-[50rem] bg-center bg-no-repeat bg-cover"></section> */}
     </main>

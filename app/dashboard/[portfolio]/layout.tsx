@@ -6,7 +6,7 @@ import DashboardNav from '@/components/DashboardNav';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Brackifi',
+  title: 'Brackifi | Investor',
   description:
     'The future of assets management. We drive a new system of future focused partnerships.',
 };
