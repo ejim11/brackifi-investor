@@ -15,6 +15,8 @@ const page = () => {
     (state) => state.investor.details
   );
 
+  console.log(image);
+
   const token = useAppSelector((state: any) => state.investor.token);
 
   const dispatch = useAppDispatch();
@@ -30,8 +32,8 @@ const page = () => {
 
   const imgHost =
     process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
-      ? `http://127.0.0.1:3009`
-      : 'https://brackifi-be.onrender.com';
+      ? process.env.NEXT_PUBLIC_LOCAL_HOST
+      : process.env.NEXT_PUBLIC_WEB_HOST;
 
   useEffect(() => {
     if (image) setProfileImg(`${imgHost}/${image}`);

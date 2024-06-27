@@ -14,6 +14,18 @@ const nextConfig = {
         // port: '3009',
         pathname: '/img/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'brackifi-be-hqia.onrender.com',
+        // port: '3009',
+        pathname: '/img/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'brackifi-be-hqia.onrender.com',
+        // port: '3009',
+        pathname: '/img/**',
+      },
     ],
   },
 };
