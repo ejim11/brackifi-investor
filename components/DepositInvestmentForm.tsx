@@ -46,7 +46,7 @@ const DepositInvestmentForm = () => {
   };
 
   const closeInvestModal = (e: any) => {
-    dispatchFn(investmentActions.toggleInvestmentModal());
+    dispatchFn(investmentActions.toggleInvestmentModal(false));
     dispatchFn(investmentActions.setInvestmentType(''));
   };
 
