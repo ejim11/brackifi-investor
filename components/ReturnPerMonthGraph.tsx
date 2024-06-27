@@ -106,7 +106,7 @@ const ReturnPerMonthGraph = () => {
       className=" flex  flex-col w-[50%] lg:w-[85%] xmd:w-full  bg-color-secondary-1 rounded-lg shadow-lg overflow-hidden xlg:w-[48%] sm:h-[50rem]"
     >
       <p className="p-[1rem]  shadow-md text-[1.8rem] font-semibold text-color-secondary-1 bg-[#161616] uppercase">
-        Return on Investment
+        General Return on Investment
       </p>
       {history.length !== 0 && (
         <div className="p-[1rem] sm:p-0 flex-1 w-full items-center   flex justify-center">

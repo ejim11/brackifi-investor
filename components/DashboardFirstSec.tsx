@@ -151,9 +151,13 @@ const DashboardFirstSec = () => {
       ),
       value: `$ ${
         latestInv
-          ? Math.round(
-              (latestInv?.amount * getLatestInvRoi(latestInv)) / 100 +
-                latestInv?.amount
+          ? modifyNum(
+              String(
+                Math.round(
+                  (latestInv?.amount * getLatestInvRoi(latestInv)) / 100 +
+                    latestInv?.amount
+                )
+              )
             )
           : 0
       }`,

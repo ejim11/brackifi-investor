@@ -53,7 +53,7 @@ const config: Config = {
       // => @media (max-width: 950px) { ... }
       md: { max: '850px' },
       // => @media (max-width: 850px) { ... }
-      // smd: { max: '700px' },
+      smd: { max: '700px' },
       // => @media (max-width: 700px) { ... }
       sm: { max: '650px' },
       // => @media (max-width: 500px) { ... }

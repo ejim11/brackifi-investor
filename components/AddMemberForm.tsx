@@ -33,10 +33,14 @@ const AddMemberForm = () => {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [proofOfIdentityImg, setProofOfIdentityImg] = useState<any>();
+  const [proofOfIdentityImg, setProofOfIdentityImg] = useState<any>(noImg);
+  const [proofOfIdentityFileName, setProofOfIdentityFileName] =
+    useState<string>('');
   const [proofOfIdentityImgObj, setProofOfIdentityImgObj] = useState<any>();
-  const [proofOfAddressImg, setProofOfAddressImg] = useState<any>();
+  const [proofOfAddressImg, setProofOfAddressImg] = useState<any>(noImg);
   const [proofOfAddressImgObj, setProofOfAddressImgObj] = useState<any>();
+  const [proofOfAddressFileName, setProofOfAddressFileName] =
+    useState<string>('');
   const [identityErr, setIdentityErr] = useState<boolean>(false);
   const [addressErr, setAddressErr] = useState<boolean>(false);
 
@@ -62,12 +66,23 @@ const AddMemberForm = () => {
   });
 
   const proofOfIdentityImgHandler = (e: { target: { files: any } }) => {
-    setProofOfIdentityImg(fileHandler(e.target.files[0]));
+    if (e.target.files[0].type.includes('image')) {
+      setProofOfIdentityImg(fileHandler(e.target.files[0]));
+    } else {
+      setProofOfIdentityImg(undefined);
+      setProofOfIdentityFileName(e.target.files[0].name);
+    }
+
     setProofOfIdentityImgObj(e.target.files[0]);
   };
 
   const proofOfAddressImgHandler = (e: { target: { files: any } }) => {
-    setProofOfAddressImg(fileHandler(e.target.files[0]));
+    if (e.target.files[0].type.includes('image')) {
+      setProofOfAddressImg(fileHandler(e.target.files[0]));
+    } else {
+      setProofOfAddressImg(undefined);
+      setProofOfAddressFileName(e.target.files[0].name);
+    }
     setProofOfAddressImgObj(e.target.files[0]);
   };
 
@@ -95,19 +110,21 @@ const AddMemberForm = () => {
   };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    if (!proofOfAddressImg) {
+    if (!proofOfAddressImg && !proofOfAddressFileName) {
       setAddressErr(true);
+      return;
     } else {
       setAddressErr(false);
     }
-    if (!proofOfIdentityImg) {
+    if (!proofOfIdentityImg && !proofOfIdentityFileName) {
       setIdentityErr(true);
+      return;
     } else {
       setIdentityErr(false);
     }
-    if (!proofOfAddressImg || !proofOfIdentityImg) {
-      return;
-    }
+    // if (!proofOfAddressImg || !proofOfIdentityImg) {
+    //   return;
+    // }
     if (data.password !== data.confirmPassword) {
       console.log(data.confirmPassword);
       toastError(
@@ -199,11 +216,15 @@ const AddMemberForm = () => {
             <ProofImgComp
               name="Proof of Identity"
               img={proofOfIdentityImg}
+              fileName={proofOfIdentityFileName}
+              setFileName={setProofOfIdentityFileName}
               setImg={proofOfIdentityImgHandler}
               text="Passports, Drivers license, Id card, Birth certificate, etc"
               err={identityErr}
             />
             <ProofImgComp
+              fileName={proofOfAddressFileName}
+              setFileName={setProofOfAddressFileName}
               name="Proof of Address"
               img={proofOfAddressImg}
               setImg={proofOfAddressImgHandler}

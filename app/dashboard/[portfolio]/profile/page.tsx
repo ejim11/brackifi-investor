@@ -8,6 +8,7 @@ import { fileHandler } from '@/utils/helperFns';
 import { FaRegEdit } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { updateInvestorProfileImgDispatch } from '@/actions/investorAction';
+import { motion } from 'framer-motion';
 
 const page = () => {
   const { name, email, phoneNumber, address, image } = useAppSelector(
@@ -37,9 +38,14 @@ const page = () => {
   }, []);
 
   return (
-    <div className="overflow-auto h-screen font-nunito">
+    <motion.div className="overflow-auto h-screen font-nunito">
       <section className="bg-portfolio-bg bg-no-repeat bg-cover bg-center h-[40rem] bg-color-primary-1 rounded-bl-lg rounded-br-lg pt-[10rem] px-[10rem] sm:h-auto xlg:px-[3.5rem] sm:px-[2.5rem]">
-        <div className="flex w-full h-full items-center sm:flex-col">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          className="flex w-full h-full items-center sm:flex-col"
+        >
           <label
             htmlFor="profileImg"
             className=" w-[20rem] h-[20rem] sm:mb-[2rem] sm:mr-0 bg-color-secondary-1 mr-[3rem] rounded-full flex items-center justify-center relative"
@@ -76,23 +82,35 @@ const page = () => {
               Phone Number: <span>{phoneNumber}</span>
             </p>
           </div>
-        </div>
+        </motion.div>
       </section>
       <section className="flex justify-between px-[10rem] py-[5rem] bg-color-primary-2 xlg:px-[3.5rem] sm:flex-col sm:px-[2.5rem]">
-        <div className="p-[2.5rem] bg-color-white rounded-lg w-[45%] xlg:w-[48%] sm:w-full sm:p-[1.5rem]">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          className="p-[2.5rem] bg-color-white rounded-lg w-[45%] xlg:w-[48%] sm:w-full sm:p-[1.5rem]"
+        >
           <p className="text-[1.8rem] text-color-primary-1 font-semibold mb-[1.5rem] uppercase">
             Update Info
           </p>
           <UpdateShareholderInfo />
-        </div>
-        <div className="p-[2.5rem] bg-color-white rounded-lg w-[45%] self-start  xlg:w-[48%] sm:w-full sm:mt-[3rem] sm:p-[1.5rem]">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: 'easeInOut', delay: 0.3 }}
+          className="p-[2.5rem] bg-color-white rounded-lg w-[45%] self-start  xlg:w-[48%] sm:w-full sm:mt-[3rem] sm:p-[1.5rem]"
+        >
           <p className="text-[1.8rem] text-color-primary-1 font-semibold mb-[1.5rem] uppercase">
             Update Password
           </p>
           <UpdatePasswordForm />
-        </div>
+        </motion.div>
       </section>
-    </div>
+    </motion.div>
   );
 };
 

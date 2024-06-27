@@ -2,7 +2,6 @@ import React from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { ChangeEventHandler } from 'react';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
-import noImg from '../assets/no-image-svgrepo-com.svg';
 
 const ProofImgComp = ({
   name,
@@ -10,12 +9,16 @@ const ProofImgComp = ({
   setImg,
   text,
   err,
+  fileName,
+  setFileName,
 }: {
   name: string;
-  img: StaticImageData;
+  img: string;
   setImg: ChangeEventHandler<HTMLInputElement>;
   text: string;
   err: boolean;
+  fileName: string;
+  setFileName: Function;
 }) => {
   return (
     <div className="w-[45%] sm:w-full sm:mb-[2rem]">
@@ -26,17 +29,23 @@ const ProofImgComp = ({
         htmlFor={name}
         className="border border-color-primary-1 w-full  flex justify-center items-center rounded-md h-[15rem] cursor-pointer flex-col "
       >
-        <Image
-          src={img || noImg}
-          alt="proof of identity img"
-          width={8}
-          height={8}
-          className="w-[5rem] h-[5rem]"
-        />
+        {img ? (
+          <Image
+            src={img}
+            alt="proof of identity img"
+            width={8}
+            height={8}
+            className="w-[5rem] h-[5rem]"
+          />
+        ) : (
+          <p className="p-[0.5rem] bg-color-primary-3 text-color-primary-1 rounded-md border border-color-primary-1">
+            {fileName}
+          </p>
+        )}
         <input
           type="file"
           className="hidden"
-          accept="image/*"
+          accept="*"
           onChange={setImg}
           id={name}
         />
@@ -44,7 +53,7 @@ const ProofImgComp = ({
           htmlFor={name}
           className="text-color-white bg-color-primary-1 rounded-md py-[.5rem] px-[1rem] text-[1.6rem] mt-[2rem] cursor-pointer text-center"
         >
-          Upload Image
+          {!fileName ? 'Upload File' : 'Change File'}
         </label>
       </label>
       <div className="text-color-secondary-2 mt-[1rem] flex items-center">
