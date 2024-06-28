@@ -27,7 +27,7 @@ const ProofImgComp = ({
       </p>
       <label
         htmlFor={name}
-        className="border border-color-primary-1 w-full  flex justify-center items-center rounded-md h-[15rem] cursor-pointer flex-col "
+        className="border p-[1rem] border-color-primary-1 w-full  flex justify-center items-center rounded-md h-[15rem] cursor-pointer flex-col"
       >
         {img ? (
           <Image
@@ -38,7 +38,7 @@ const ProofImgComp = ({
             className="w-[5rem] h-[5rem]"
           />
         ) : (
-          <p className="p-[0.5rem] bg-color-primary-3 text-color-primary-1 rounded-md border border-color-primary-1">
+          <p className=" text-center  p-[0.5rem] break-all bg-color-primary-3 text-color-primary-1 rounded-md border border-color-primary-1 text-wrap">
             {fileName}
           </p>
         )}

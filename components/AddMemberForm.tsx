@@ -66,6 +66,9 @@ const AddMemberForm = () => {
   });
 
   const proofOfIdentityImgHandler = (e: { target: { files: any } }) => {
+    if (!e.target.files[0]) {
+      return;
+    }
     if (e.target.files[0].type.includes('image')) {
       setProofOfIdentityImg(fileHandler(e.target.files[0]));
     } else {
@@ -77,6 +80,9 @@ const AddMemberForm = () => {
   };
 
   const proofOfAddressImgHandler = (e: { target: { files: any } }) => {
+    if (!e.target.files[0]) {
+      return;
+    }
     if (e.target.files[0].type.includes('image')) {
       setProofOfAddressImg(fileHandler(e.target.files[0]));
     } else {
