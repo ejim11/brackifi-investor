@@ -1,6 +1,6 @@
 'use client';
-import React from 'react';
-import { useAppSelector } from '@/hooks/customHook';
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { MdAccountBalanceWallet } from 'react-icons/md';
 import { PiKeyReturnFill } from 'react-icons/pi';
 import { RiStackFill } from 'react-icons/ri';
@@ -11,6 +11,7 @@ import { dateDiffInDays } from '@/utils/helperFns';
 import ShareParamsSlider from './ShareParamsSlider';
 import modifyNum from '@/utils/modifyAmount';
 import { easeIn, motion } from 'framer-motion';
+import { getAllInvestmentsDispatch } from '@/actions/investmentAction';
 
 export const getLatestInvRoi = (inv: any) => {
   let roi = inv.activeDate
@@ -21,11 +22,14 @@ export const getLatestInvRoi = (inv: any) => {
   if (roi >= inv.maximumDrawdown) {
     return inv.maximumDrawdown;
   }
+  console.log(roi);
   return roi;
 };
 
 const DashboardFirstSec = () => {
-  const { name } = useAppSelector((state) => state.investor.details);
+  const { name, id } = useAppSelector((state) => state.investor.details);
+  const { token } = useAppSelector((state) => state.investor);
+  const dispatch = useAppDispatch();
 
   const list = {
     visible: {
@@ -154,8 +158,7 @@ const DashboardFirstSec = () => {
           ? modifyNum(
               String(
                 Math.round(
-                  (latestInv?.amount * getLatestInvRoi(latestInv)) / 100 +
-                    latestInv?.amount
+                  (latestInv?.amount * getLatestInvRoi(latestInv)) / 100
                 )
               )
             )
@@ -163,6 +166,10 @@ const DashboardFirstSec = () => {
       }`,
     },
   ];
+
+  useEffect(() => {
+    dispatch(getAllInvestmentsDispatch(token, id));
+  }, []);
 
   return (
     <motion.div

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { registrationOption } from '@/utils/inputValidators';
-import { toastError, toastSuccess } from '@/utils/helperFns';
+import { futureMonth, toastError, toastSuccess } from '@/utils/helperFns';
 import { FallingLines } from 'react-loader-spinner';
 import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { createInvestmentDispatch } from '@/actions/investmentAction';
@@ -17,6 +17,7 @@ const DepositInvestmentForm = () => {
   const { token } = useAppSelector((state) => state.investor);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [contractPeriod, setContractPeriod] = useState<any>(futureMonth(8));
 
   type FormData = {
     address: string;
@@ -54,6 +55,7 @@ const DepositInvestmentForm = () => {
     const newData = {
       address: data.address,
       amount: data.amountPaid,
+      contractPeriod,
       maximumDrawdown: data.maxDrawDown,
     };
 
@@ -105,10 +107,33 @@ const DepositInvestmentForm = () => {
         validation={registrationOption.maxDrawDown}
         labelTextColor="text-color-primary-1"
       />
+      <div className="w-full mb-[2rem]">
+        <label
+          htmlFor="contract-period"
+          className="capitalize  text-color-primary-1  "
+        >
+          Contract period
+        </label>
+        <select
+          name="contract-period"
+          id="contract-period"
+          className="mt-[.5rem] w-full py-[1rem] rounded-md border border-color-primary-1 text-color-primary-1 focus:border-0 focus:outline-none focus:ring-0 ring-0 outline-none"
+          onChange={(val) => {
+            setContractPeriod(val.target.value);
+          }}
+        >
+          <option value={`${futureMonth(8)}`}>8 months</option>
+          <option value={`${futureMonth(12)}`}>1 year</option>
+          <option value={`${futureMonth(16)}`}>1 year and 4 months</option>
+          <option value={`${futureMonth(20)}`}>1 year and 8 months</option>
+          <option value={`${futureMonth(24)}`}>2 years</option>
+        </select>
+      </div>
+
       <InputComponent
         placeholder={'50000'}
         type={'number'}
-        label="Amount paid (USDC)"
+        label="Amount (USDT BEP20)"
         register={register}
         error={errors}
         name={'amountPaid'}

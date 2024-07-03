@@ -23,7 +23,7 @@ const ProofImgComp = ({
   return (
     <div className="w-[45%] sm:w-full sm:mb-[2rem]">
       <p className="text-color-secondary-2 mb-[1rem] font-nunito font-medium">
-        {name}
+        {name} <span className="text-[1.2rem]">(jpg, png, pdf)</span>
       </p>
       <label
         htmlFor={name}
