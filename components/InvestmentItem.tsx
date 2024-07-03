@@ -19,6 +19,7 @@ const InvestmentItem = ({
   investmentState,
   payoutAvailable,
   nextPayout,
+  contractPeriod,
 }: InvestmentItemType) => {
   const itemVariant = {
     visible: { opacity: 1, y: 0 },
@@ -48,6 +49,10 @@ const InvestmentItem = ({
     {
       text: 'payout available',
       val: `$ ${payoutAvailable}`,
+    },
+    {
+      text: 'contract period',
+      val: `${formatDate(contractPeriod)}`,
     },
     {
       text: 'next payout',
@@ -92,7 +97,7 @@ const InvestmentItem = ({
         {data.map((item, i) => (
           <div
             key={i}
-            className="rounded-lg border border-color-primary-3 p-[.5rem] w-[45%] last:w-full text-[1.3rem] mb-[1rem]"
+            className="rounded-lg border border-color-primary-3 p-[.5rem] w-[45%]  text-[1.3rem] mb-[1rem]"
           >
             <p className="text-color-secondary-1 capitalize mb-[0.3rem]">
               {item.text}
@@ -103,7 +108,7 @@ const InvestmentItem = ({
       </div>
       <button
         disabled={btnText > 0}
-        className="py-[1rem] w-[90%] text-center rounded-lg flex items-center justify-center self-center bg-color-primary-3 text-color-primary-1 font-semibold disabled:bg-[#dee2e6] disabled:text-[#868e96] disabled:cursor-not-allowed "
+        className="py-[1rem] w-[90%] sm:w-[95%] text-center rounded-lg flex items-center justify-center self-center bg-color-primary-3 text-color-primary-1 font-semibold disabled:bg-[#dee2e6] disabled:text-[#868e96] disabled:cursor-not-allowed "
         onClick={withdrawInvestmentHandler}
       >
         {isLoading ? (

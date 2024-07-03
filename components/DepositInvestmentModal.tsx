@@ -7,6 +7,9 @@ import DepositInvestmentForm from './DepositInvestmentForm';
 const DepositInvestmentModal = () => {
   return (
     <div className="flex flex-col w-full">
+      <p className="text-color-primary-1 font-medium text-center mt-[2rem] text-[1.8rem]">
+        USDT (BEP20)
+      </p>
       <div className="flex w-full items-center justify-center mt-[3rem]">
         <QrCode />
       </div>
@@ -20,7 +23,7 @@ const DepositInvestmentModal = () => {
         <ol className="list-decimal text-color-secondary-2">
           <li>
             Copy or scan address for payment. (please make sure your are sending
-            with Base network).
+            with BSC network).
           </li>
           <li>Make payment to the wallet address.</li>
           <li>

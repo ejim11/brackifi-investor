@@ -14,12 +14,20 @@ import { InvestmentItemType } from './invest/page';
 import { dateDiffInDays } from '@/utils/helperFns';
 import { getInvestorDispatch } from '@/actions/investorAction';
 import { motion } from 'framer-motion';
+import { labels } from '@/utils/returnsPerMonthGraphData 2';
 
 const page = () => {
   const dispatch = useAppDispatch();
   const prevMonthData: any = useAppSelector((state) => state.roivalue.history)
     .slice()
     .reverse()[0];
+
+  const history = useAppSelector((state) => state.roivalue.history);
+
+  const lastQuarterROi = history
+    .slice(-4)
+    .map((item: { value: number; month: string }) => item.value)
+    .reduce((acc, cur) => acc + cur, 0);
 
   const { token, details } = useAppSelector((state: any) => state.investor);
 
@@ -36,6 +44,10 @@ const page = () => {
       )[0];
 
     return inv;
+  };
+
+  const getLastQuarterRoi = (): number => {
+    return 5;
   };
 
   const latestInv = getLatestInvestment();
@@ -77,12 +89,12 @@ const page = () => {
           className="flex-1 h-[40rem] xl:ml-[3rem] mx-[3rem] xl:mx-0 bg-color-secondary-1 flex flex-col rounded-lg overflow-hidden xl:flex-[45%] xmd:flex-[100%] xmd:ml-0  xmd:order-1"
         >
           <p className="p-[1rem] shadow-md text-[1.8rem] text-color-secondary-1 bg-color-primary-1 font-bold uppercase">
-            Perfomance Metrics
+            Brackifi Perfomance Metrics
           </p>
           <div className="flex w-full  px-[2rem] py-[3rem] justify-between flex-1  ">
             <Performance
-              percentage={latestInv ? latestInv.maximumDrawdown : 0}
-              title="Maximum Drawdown"
+              percentage={lastQuarterROi ?? 0}
+              title="Last Quarter ROI"
             />
             <Performance
               percentage={prevMonthData ? prevMonthData.value : 0}
@@ -104,6 +116,11 @@ const page = () => {
           <News />
         </motion.div>
       </section>
+      <div>
+        <p className="py-[1rem] bg-color-secondary-1 text-color-secondary-2 text-center">
+          © Brackifi | 2024
+        </p>
+      </div>
       {/* <section className="bg-home-bg h-[50rem] bg-center bg-no-repeat bg-cover"></section> */}
     </main>
   );

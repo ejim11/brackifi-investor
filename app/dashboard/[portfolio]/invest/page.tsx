@@ -20,6 +20,7 @@ export type InvestmentItemType = {
   isActive?: boolean | string;
   payoutAvailable: any;
   nextPayout: string;
+  contractPeriod: string;
 };
 
 const page = () => {
@@ -76,7 +77,7 @@ const page = () => {
           initial="hidden"
           animate="visible"
           variants={list}
-          className="flex-1 bg-color-secondary-3 mt-[2rem] rounded-lg overflow-auto  p-[3rem] xl:p-[1.5rem] xmd:p-[2rem]  grid grid-cols-4 xlg:grid-cols-3 xmd:grid-cols-2 sm:grid-cols-1 gap-[2rem]  "
+          className="flex-1 bg-color-secondary-3 mt-[2rem] rounded-lg overflow-auto  p-[3rem] xl:p-[1.5rem] xmd:p-[2rem]  grid grid-cols-4 xxl:grid-cols-3 xmd:grid-cols-2 sm:grid-cols-1 gap-[2rem]  "
         >
           {investments
             .slice()
@@ -91,13 +92,13 @@ const page = () => {
                 roi={getLatestInvRoi(investment)}
                 maximumDrawdown={investment.maximumDrawdown}
                 investmentState={investment.investmentState}
+                contractPeriod={investment.contractPeriod}
                 payoutAvailable={
                   getLatestInvRoi(investment)
                     ? formatNumber(
                         Math.round(
                           (investment.amount * getLatestInvRoi(investment)) /
-                            100 +
-                            investment.amount
+                            100
                         )
                       )
                     : 0

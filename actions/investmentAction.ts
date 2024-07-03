@@ -40,6 +40,7 @@ export const getAllInvestmentsDispatch =
   ) => {
     try {
       const res = await getAllInvestmentsService(jwtToken, investorId);
+      console.log('investments: ', res);
       dispatch(investmentActions.setInvestmentsList(res.data.data.docs));
     } catch (e) {
       console.log(e);
