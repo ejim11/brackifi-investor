@@ -122,14 +122,6 @@ const page = () => {
             </button>
           </form>
         </div>
-
-        {/* <p className="text-color-secondary-2 text-center">
-          Please{' '}
-          <span className="text-color-secondary-1">
-            <a href="mailto:favourejim56@gmail.com">email our help desk</a>
-          </span>{' '}
-          with any login-related issues.
-        </p> */}
       </div>
     </div>
   );

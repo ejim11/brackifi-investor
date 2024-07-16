@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 
 const page = () => {
-  console.log(process.env.NEXT_PUBLIC_ENVIROMENT);
   return (
     <div className="w-full h-screen bg-home-bg bg-no-repeat bg-cover bg-center flex justify-center items-center font-nunito">
       <div className="bg-color-primary-2 w-[38%] 2xl:w-[36%] xlg:w-[40%] lg:w-[50%] md:w-[60%] smd:w-[90%]  rounded-md p-[3rem] sm:p-[1.5rem]">
@@ -22,13 +21,6 @@ const page = () => {
           <Link href={'/auth/forgot-password'}>Forgot password?</Link>
           <Link href={'/auth/add-member'}>Need access?</Link>
         </div>
-        {/* <p className="text-color-secondary-2 text-center">
-          Please{' '}
-          <span className="text-color-secondary-1">
-            <a href="mailto:favourejim56@gmail.com">email our help desk</a>
-          </span>{' '}
-          with any login-related issues.
-        </p> */}
       </div>
     </div>
   );

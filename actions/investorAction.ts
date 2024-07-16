@@ -1,5 +1,4 @@
 import {
-  applyToBeInvestor,
   forgotPassword,
   login,
   resetPassword,
@@ -25,13 +24,11 @@ export const createInvestorDispatch =
   async (dispatch: any) => {
     setIsLoading(true);
     try {
-      const res = await signUp(data);
-      console.log(res);
+      await signUp(data);
       toastSuccess('Application submitted!', iconSuccess);
       resetForm();
       setIsLoading(false);
     } catch (err: any) {
-      console.log(err);
       setIsLoading(false);
       toastError(err.response.data.message, iconError);
     }
@@ -59,7 +56,6 @@ export const loginInvestorHandler = (
         address,
         image,
       } = res.data.data.investor;
-      console.log(res.data.data.investor);
       dispatch(investorAction.setInvestorToken(res.data.token));
       dispatch(
         investorAction.setInvestorDetails({
@@ -80,7 +76,6 @@ export const loginInvestorHandler = (
       setIsLoading(false);
     } catch (err: any) {
       setIsLoading(false);
-      console.log(err);
       toastError(err.response.data.message, iconError);
     }
   };
@@ -100,8 +95,7 @@ export const forgotPasswordDispatch =
     setIsLoading(true);
 
     try {
-      const res = await forgotPassword(data);
-      console.log(res);
+      await forgotPassword(data);
       setIsLoading(false);
       toastSuccess('Email sent successfully!', iconSuccess);
       resetForm();
@@ -127,14 +121,12 @@ export const resetPasswordDispatch =
   async (dispatch: any) => {
     setIsLoading(true);
     try {
-      const res = await resetPassword(data, resetToken);
-      console.log(res);
+      await resetPassword(data, resetToken);
       setIsLoading(false);
       toastSuccess('Password reset successfully!', iconSuccess);
       resetForm();
       navFunc();
     } catch (err: any) {
-      console.log(err);
       setIsLoading(false);
       toastError(err.response.data.message, iconError);
     }
@@ -165,7 +157,6 @@ export const updateMyPasswordDispatch =
       resetForm();
       logoutHandler();
     } catch (err: any) {
-      console.log(err);
       setIsLoading(false);
       toastError(err.response.data.message, iconError);
     }
@@ -194,7 +185,6 @@ export const updateInfoDispatch =
         address,
       } = res.data.data.investor;
       setIsLoading(false);
-      // dispatch(investorAction.setInvestorActionToken(res.data.token));
       dispatch(
         investorAction.setInvestorDetails({
           id,
@@ -204,12 +194,10 @@ export const updateInfoDispatch =
           address,
         })
       );
-      // navFunc({ id, name });
       setIsLoading(false);
       toastSuccess('Updated successfully!', iconSuccess);
       resetForm();
     } catch (err: any) {
-      console.log(err);
       setIsLoading(false);
       toastError(err.response.data.message, iconError);
     }
@@ -219,7 +207,6 @@ export const getInvestorDispatch =
   (investorId: string, jwtToken: string) => async (dispatch: any) => {
     try {
       const res = await getInvestorService(investorId, jwtToken);
-      console.log(res);
       const { name, email, id, phoneNumber, address, shareholding, image } =
         res.data.data.doc;
 
@@ -235,7 +222,7 @@ export const getInvestorDispatch =
         })
       );
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -244,8 +231,7 @@ export const updateInvestorProfileImgDispatch =
     try {
       const res = await updateInvestorProfileImg(jwtToken, imgFile);
       dispatch(investorAction.updateProfileImage(res.data.data.image));
-      console.log(res);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };

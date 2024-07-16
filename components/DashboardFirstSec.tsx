@@ -22,7 +22,6 @@ export const getLatestInvRoi = (inv: any) => {
   if (roi >= inv.maximumDrawdown) {
     return inv.maximumDrawdown;
   }
-  console.log(roi);
   return roi;
 };
 

@@ -128,11 +128,8 @@ const AddMemberForm = () => {
     } else {
       setIdentityErr(false);
     }
-    // if (!proofOfAddressImg || !proofOfIdentityImg) {
-    //   return;
-    // }
+
     if (data.password !== data.confirmPassword) {
-      console.log(data.confirmPassword);
       toastError(
         `Passwords don't match `,
         <LuBadgeAlert className="w-[2.3rem] h-[2.3rem] text-color-red" />
