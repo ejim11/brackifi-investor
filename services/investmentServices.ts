@@ -177,7 +177,7 @@ export const getTransactionsByAddress: Function = async (hash: string) => {
     page: 1,
     offset: 100,
     sort: 'asc',
-    apikey: '7ZCT25DYXW4C11WV584GKH1U2VXZHQPH97',
+    apikey: process.env.NEXT_PUBLIC_API_KEY_BSC,
   };
 
   const res = await axios.get(url, { params });
