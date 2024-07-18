@@ -10,11 +10,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { getRoiDetails } from '@/actions/roiValueAction';
 import { getPerformanceReportDispatch } from '@/actions/fundsPerformanceAction';
 import { getAllBusinessNewsDispatch } from '@/actions/businessNewsAction';
-import { InvestmentItemType } from './invest/page';
-import { dateDiffInDays } from '@/utils/helperFns';
 import { getInvestorDispatch } from '@/actions/investorAction';
 import { motion } from 'framer-motion';
-import { labels } from '@/utils/returnsPerMonthGraphData 2';
 
 const page = () => {
   const dispatch = useAppDispatch();
@@ -30,27 +27,6 @@ const page = () => {
     .reduce((acc, cur) => acc + cur, 0);
 
   const { token, details } = useAppSelector((state: any) => state.investor);
-
-  const investments = useAppSelector(
-    (state) => state.investments.investments
-  ).filter((inv: InvestmentItemType) => inv.investmentState === 'active');
-
-  const getLatestInvestment = (): InvestmentItemType => {
-    const inv = investments
-      .slice()
-      .sort(
-        (a: any, b: any) =>
-          new Date(a.dateCreated).getTime() - new Date(b.dateCreated).getTime()
-      )[0];
-
-    return inv;
-  };
-
-  const getLastQuarterRoi = (): number => {
-    return 5;
-  };
-
-  const latestInv = getLatestInvestment();
 
   useEffect(() => {
     dispatch(getRoiDetails());
@@ -121,7 +97,6 @@ const page = () => {
           © Brackifi | 2024
         </p>
       </div>
-      {/* <section className="bg-home-bg h-[50rem] bg-center bg-no-repeat bg-cover"></section> */}
     </main>
   );
 };
