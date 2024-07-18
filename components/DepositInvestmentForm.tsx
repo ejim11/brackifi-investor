@@ -21,6 +21,7 @@ const DepositInvestmentForm = () => {
 
   type FormData = {
     address: string;
+    hash: string;
     amountPaid: string;
     maxDrawDown: number;
   };
@@ -34,6 +35,7 @@ const DepositInvestmentForm = () => {
     defaultValues: {
       address: '',
       amountPaid: '',
+      hash: '',
       maxDrawDown: undefined,
     },
   });
@@ -42,6 +44,7 @@ const DepositInvestmentForm = () => {
     reset({
       address: '',
       amountPaid: '',
+      hash: '',
       maxDrawDown: undefined,
     });
   };
@@ -55,6 +58,7 @@ const DepositInvestmentForm = () => {
     const newData = {
       address: data.address,
       amount: data.amountPaid,
+      hash: data.hash,
       contractPeriod,
       maximumDrawdown: data.maxDrawDown,
     };
@@ -82,6 +86,18 @@ const DepositInvestmentForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <InputComponent
+        placeholder={process.env.NEXT_PUBLIC_PAYMENT_ADDRESS}
+        type={'text'}
+        label="Transaction Hash"
+        register={register}
+        error={errors}
+        name={'hash'}
+        pl="pl-[2rem]"
+        validation={registrationOption.hash}
+        inputBg="bg-color-primary-2"
+        labelTextColor="text-color-primary-1"
+      />
       <InputComponent
         placeholder={process.env.NEXT_PUBLIC_PAYMENT_ADDRESS}
         type={'text'}

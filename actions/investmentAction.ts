@@ -2,6 +2,7 @@ import { investmentActions } from '@/slices/investmentSlice';
 import {
   createInvestmentService,
   getAllInvestmentsService,
+  getTransactionsByAddress,
   makeWithdrawalRequestService,
 } from '@/services/investmentServices';
 
@@ -17,8 +18,13 @@ export const createInvestmentDispatch =
   async (dispatch: Function) => {
     setIsLoading(true);
     try {
-      const res = await createInvestmentService(data, jwtToken);
-      dispatch(investmentActions.createInvestment(res.data.data.doc));
+      // before you create an investment, check whether the user actually has sent the money
+      const txn = await getTransactionsByAddress(data.hash);
+
+      console.log(txn);
+
+      // const res = await createInvestmentService(data, jwtToken);
+      // dispatch(investmentActions.createInvestment(res.data.data.doc));
       resetForm();
       closeModal();
       setIsLoading(false);

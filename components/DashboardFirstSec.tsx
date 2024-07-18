@@ -12,6 +12,12 @@ import ShareParamsSlider from './ShareParamsSlider';
 import modifyNum from '@/utils/modifyAmount';
 import { easeIn, motion } from 'framer-motion';
 import { getAllInvestmentsDispatch } from '@/actions/investmentAction';
+import {
+  getAllTransactions,
+  getLatestBlockNumber,
+  getTransactionsByAddress,
+  getTransactionsToAddress,
+} from '@/services/investmentServices';
 
 export const getLatestInvRoi = (inv: any) => {
   let roi = inv.activeDate

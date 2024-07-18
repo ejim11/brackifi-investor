@@ -87,4 +87,15 @@ export const registrationOption = {
       message: 'Address name cannot be greater than 42 characters',
     },
   },
+  hash: {
+    required: 'Wallet Address is required',
+    minLength: {
+      value: 42,
+      message: 'Address name cannot be less than 42 characters',
+    },
+    maxLength: {
+      value: 82,
+      message: 'Address name cannot be greater than 42 characters',
+    },
+  },
 };
