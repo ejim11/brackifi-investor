@@ -18,7 +18,7 @@ const DepositInvestmentModal = () => {
       </div>
       <div className="py-[2rem] pl-[3rem] pr-[2rem]">
         <p className="text-[1.8rem] text-color-primary-1 font-semibold ">
-          Instructions on how to buy shares
+          Instructions on how to make payment.
         </p>
         <ol className="list-decimal text-color-secondary-2">
           <li>

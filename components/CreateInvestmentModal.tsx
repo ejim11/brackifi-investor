@@ -38,7 +38,7 @@ const CreateInvestmentModal = () => {
       data-close="true"
     >
       <motion.div
-        className={`bg-[#BACD92]  flex font-nunito w-[30%] 2xl:w-[40%] xl:w-[50%]  h-full  xlg:w-[70%] lg:w-[80%] md:w-full rounded-tl-lg rounded-bl-lg md:rounded-none overflow-hidden`}
+        className={`bg-[#BACD92]  flex font-nunito w-[33%] 2xl:w-[40%] xl:w-[50%]  h-full  xlg:w-[70%] lg:w-[80%] md:w-full rounded-tl-lg rounded-bl-lg md:rounded-none overflow-hidden`}
         data-keep="true"
       >
         <div className="overflow-y-auto w-full">
