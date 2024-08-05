@@ -12,19 +12,15 @@ import ShareParamsSlider from './ShareParamsSlider';
 import modifyNum from '@/utils/modifyAmount';
 import { easeIn, motion } from 'framer-motion';
 import { getAllInvestmentsDispatch } from '@/actions/investmentAction';
-import {
-  getAllTransactions,
-  getLatestBlockNumber,
-  getTransactionsByAddress,
-  getTransactionsToAddress,
-} from '@/services/investmentServices';
 
+// get the latest roi so we use it to calculate the payout available
 export const getLatestInvRoi = (inv: any) => {
   let roi = inv.activeDate
     ? dateDiffInDays(new Date(inv.activeDate).getTime(), new Date().getTime()) *
       0.16
     : 0;
 
+  // if the roi is greater than the choosen max drawdown for that particular inv then set the max drawdown as the roi
   if (roi >= inv.maximumDrawdown) {
     return inv.maximumDrawdown;
   }
@@ -32,9 +28,15 @@ export const getLatestInvRoi = (inv: any) => {
 };
 
 const DashboardFirstSec = () => {
+  // dispatch function
+  const dispatch = useAppDispatch();
+
+  // states
   const { name, id } = useAppSelector((state) => state.investor.details);
   const { token } = useAppSelector((state) => state.investor);
-  const dispatch = useAppDispatch();
+  const investments = useAppSelector(
+    (state) => state.investments.investments
+  ).filter((inv: InvestmentItemType) => inv.investmentState === 'active');
 
   const list = {
     visible: {
@@ -57,13 +59,10 @@ const DashboardFirstSec = () => {
     hidden: { opacity: 0, x: -50 },
   };
 
-  const investments = useAppSelector(
-    (state) => state.investments.investments
-  ).filter((inv: InvestmentItemType) => inv.investmentState === 'active');
-
-  const avgRoi = () => {
+  const totalRoi = () => {
     let staticRoi = 0.16;
     const roi = investments
+      .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
       .map((inv: InvestmentItemType) => {
         const dateDiff = dateDiffInDays(
           new Date(inv.activeDate).getTime(),
@@ -83,24 +82,8 @@ const DashboardFirstSec = () => {
 
   const getOverallInvestmentValue = () => {
     const investmentValue = investments
-      .map((inv: InvestmentItemType) => {
-        const dateDiff = dateDiffInDays(
-          new Date(inv.activeDate).getTime(),
-          new Date().getTime()
-        );
-        const newRoi = dateDiff * 0.16;
-        return {
-          amount: inv.amount,
-          roi: newRoi >= inv.maximumDrawdown ? inv.maximumDrawdown : newRoi,
-        };
-      })
-      .map((inv: { amount: number; roi: number }) => {
-        if (inv.roi === 0) {
-          return inv.amount;
-        } else {
-          return (inv.amount * inv.roi) / 100 + inv.amount;
-        }
-      })
+      .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
+      .map((inv: InvestmentItemType) => inv.amount)
       .reduce((acc, cur) => acc + cur, 0);
 
     return investmentValue;
@@ -108,6 +91,7 @@ const DashboardFirstSec = () => {
 
   const getLatestInvestment = (): InvestmentItemType => {
     const inv = investments
+      .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
       .slice()
       .sort(
         (a: any, b: any) =>
@@ -119,9 +103,18 @@ const DashboardFirstSec = () => {
 
   const latestInv = getLatestInvestment();
 
+  const totalPayoutAvailable = investments
+    .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
+    .map((inv: InvestmentItemType) =>
+      Math.round((inv.amount * getLatestInvRoi(inv)) / 100)
+    )
+    .reduce((acc, cur) => acc + cur, 0);
+
+  // console.log(totalPayoutAvailable);
+
   const investorPortfolioData = [
     {
-      title: 'Investment value',
+      title: 'Investment Amount',
       value: `$ ${modifyNum(String(Math.round(getOverallInvestmentValue())))}`,
       icon: (
         <MdAccountBalanceWallet className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
@@ -129,20 +122,11 @@ const DashboardFirstSec = () => {
     },
     {
       title: 'Total Roi',
-      value: `${avgRoi()} %`,
+      value: `${totalRoi()} %`,
       icon: (
         <PiKeyReturnFill className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
       ),
     },
-    // {
-    //   title: 'Maximum drawdown',
-    //   valueInUsd: '',
-    //   valueInPercent: '20.00',
-    //   valueInToken: '',
-    //   icon: (
-    //     <IoMdTrendingDown className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
-    //   ),
-    // },
     {
       title: 'Next Payout',
       icon: (
@@ -154,21 +138,11 @@ const DashboardFirstSec = () => {
           : formatDate(latestInv.nextPayout),
     },
     {
-      title: 'Payout available',
+      title: 'Total Payout available',
       icon: (
         <HiCircleStack className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
       ),
-      value: `$ ${
-        latestInv
-          ? modifyNum(
-              String(
-                Math.round(
-                  (latestInv?.amount * getLatestInvRoi(latestInv)) / 100
-                )
-              )
-            )
-          : 0
-      }`,
+      value: `$ ${latestInv ? modifyNum(String(totalPayoutAvailable)) : 0}`,
     },
   ];
 

@@ -170,7 +170,7 @@ export const getTransactionsByAddress: Function = async (hash: string) => {
   const url = 'https://api.bscscan.com/api';
   const params = {
     module: 'account',
-    action: 'txlist',
+    action: 'tokentx',
     address: '0xF2188d49351CfA84DF6c6d09eaC783BAbc09F63f',
     startblock: 0,
     endblock: 99999999,
@@ -183,6 +183,10 @@ export const getTransactionsByAddress: Function = async (hash: string) => {
   const res = await axios.get(url, { params });
 
   const txns = res.data.result;
+
+  console.log('txns: ', txns);
+
+  // const filters = txns.filter((txn: any) => txn.hash === hash);
 
   const filteredTxn = txns
     .filter((txn: any) => txn.hash === hash)

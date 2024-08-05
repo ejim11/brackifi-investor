@@ -21,10 +21,16 @@ export const createInvestmentDispatch =
       // before you create an investment, check whether the user actually has sent the money
       const txn = await getTransactionsByAddress(data.hash);
 
-      console.log(txn);
+      if (txn.from.toLowerCase() !== data.address.toLowerCase()) {
+        console.log('This is not the address that made the transaction');
+      }
 
-      // const res = await createInvestmentService(data, jwtToken);
-      // dispatch(investmentActions.createInvestment(res.data.data.doc));
+      if (Math.round(txn.value / 1e18) !== data.amountPaid) {
+        console.log('This is not the amount that was paid');
+      }
+
+      const res = await createInvestmentService(data, jwtToken);
+      dispatch(investmentActions.createInvestment(res.data.data.doc));
       resetForm();
       closeModal();
       setIsLoading(false);
