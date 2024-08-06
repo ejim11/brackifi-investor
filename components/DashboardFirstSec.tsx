@@ -24,7 +24,7 @@ export const getLatestInvRoi = (inv: any) => {
   if (roi >= inv.maximumDrawdown) {
     return inv.maximumDrawdown;
   }
-  return Math.round(roi);
+  return roi.toFixed(2);
 };
 
 const DashboardFirstSec = () => {
