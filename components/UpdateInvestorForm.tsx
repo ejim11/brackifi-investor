@@ -7,7 +7,7 @@ import { FaRegCircleCheck } from 'react-icons/fa6';
 import { LuBadgeAlert } from 'react-icons/lu';
 import { updateInfoDispatch } from '@/actions/investorAction';
 
-const UpdateShareholderForm = () => {
+const UpdateInvestorForm = () => {
   const dispatch = useAppDispatch();
 
   const { token }: { token: string } = useAppSelector(
@@ -36,7 +36,7 @@ const UpdateShareholderForm = () => {
     setNextOfKinAddress('');
   };
 
-  const handleUpdateShareholderInfo = (e: any) => {
+  const handleUpdateInvestorInfo = (e: any) => {
     e.preventDefault();
 
     const data: any = {
@@ -79,7 +79,7 @@ const UpdateShareholderForm = () => {
   };
 
   return (
-    <form onSubmit={handleUpdateShareholderInfo}>
+    <form onSubmit={handleUpdateInvestorInfo}>
       <PlainInputComponent
         inputName="fullName"
         inputType="Text"
@@ -153,4 +153,4 @@ const UpdateShareholderForm = () => {
   );
 };
 
-export default UpdateShareholderForm;
+export default UpdateInvestorForm;

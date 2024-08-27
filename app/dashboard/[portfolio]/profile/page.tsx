@@ -9,6 +9,7 @@ import { FaRegEdit } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { updateInvestorProfileImgDispatch } from '@/actions/investorAction';
 import { motion } from 'framer-motion';
+import UpdateInvestorForm from '@/components/UpdateInvestorForm';
 
 const page = () => {
   const { name, email, phoneNumber, address, image } = useAppSelector(
@@ -97,7 +98,7 @@ const page = () => {
           <p className="text-[1.8rem] text-color-primary-1 font-semibold mb-[1.5rem] uppercase">
             Update Info
           </p>
-          <UpdateShareholderInfo />
+          <UpdateInvestorForm />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}

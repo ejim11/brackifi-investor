@@ -24,7 +24,6 @@ export const createInvestorDispatch =
   async (dispatch: any) => {
     setIsLoading(true);
     try {
-      await signUp(data);
       toastSuccess('Application submitted!', iconSuccess);
       resetForm();
       setIsLoading(false);
