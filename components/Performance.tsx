@@ -14,7 +14,7 @@ const Performance = ({
   report?: any;
 }) => {
   return (
-    <div className="shadow-lg w-[48%]  h-full bg-color-black-light rounded-lg flex items-center flex-col p-[1.5rem]">
+    <div className="shadow-lg w-[48%]   bg-color-black-light rounded-lg flex items-center flex-col p-[1.5rem]">
       <div className="w-[13rem] h-[13rem]">
         <CircularProgressbar
           value={percentage}
@@ -49,7 +49,7 @@ const Performance = ({
         </p>
       </div>
       {title.includes('Month') ? (
-        <p className="mt-auto px-[1.5rem] py-[0.5rem] bg-color-primary-1 text-color-white border border-color-primary-1 rounded-lg capitalize">
+        <p className="mt-auto xmd:mt-[1.5rem] px-[1.5rem] py-[0.5rem] bg-color-primary-1 text-color-white border border-color-primary-1 rounded-lg capitalize">
           {report}
         </p>
       ) : (

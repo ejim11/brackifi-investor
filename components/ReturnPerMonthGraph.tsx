@@ -103,7 +103,7 @@ const ReturnPerMonthGraph = () => {
       whileInView={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeIn' }}
       viewport={{ once: true }}
-      className=" flex  flex-col w-[50%] lg:w-[85%] xmd:w-full  bg-color-secondary-1 rounded-lg shadow-lg overflow-hidden xlg:w-[48%] sm:h-[45rem] "
+      className=" flex  flex-col w-[50%] lg:w-[55%] xmd:w-full  bg-color-secondary-1 rounded-lg shadow-lg overflow-hidden sm:h-[45rem] "
     >
       <p className="p-[1rem]  shadow-md text-[1.8rem] font-semibold text-color-secondary-1 bg-[#161616] uppercase">
         General Return on Investment

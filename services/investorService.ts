@@ -48,10 +48,10 @@ export const updateInfo = async (data: any, jwtToken: string) => {
 
 export const signUp = async (data: any) => {
   const config = {
-    headers: { 'content-type': 'multipart/form-data' },
+    headers: {
+      'content-type': 'multipart/form-data',
+    },
   };
-
-  console.log();
 
   let formData = new FormData();
   formData.append('name', data.name);
@@ -66,7 +66,7 @@ export const signUp = async (data: any) => {
   formData.append('password', data.password);
   formData.append('passwordConfirm', data.passwordConfirm);
 
-  return await investor.post('/', formData, config);
+  return await investor.post('/business-news', formData, config);
 };
 
 export const getInvestorService = async (
