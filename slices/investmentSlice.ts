@@ -17,6 +17,8 @@ const investmentSlice = createSlice({
     createInvestment: (state: any, action: { payload: any }) => {
       if (action.payload) {
         state.investments.push(action.payload);
+
+        localStorage.setItem('investments', JSON.stringify(state.investments));
       }
     },
     setInvestmentsList: (state: any, action: any) => {
