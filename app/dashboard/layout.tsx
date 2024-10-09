@@ -17,11 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <div className="relative w-full">
-      <ProtectRoutes>
-        <div className="w-full bg-color-primary-2 flex  relative flex-col font-nunito">
-          {children}
-        </div>
-      </ProtectRoutes>
+      <div className="w-full bg-color-primary-2 flex  relative flex-col font-nunito">
+        {children}
+      </div>
     </div>
   );
 }
