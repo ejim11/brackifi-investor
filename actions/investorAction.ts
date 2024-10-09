@@ -10,6 +10,9 @@ import {
 } from '@/services/investorService';
 import { investmentActions } from '@/slices/investmentSlice';
 import { investorAction } from '@/slices/investorSlice';
+import calculateExpirationTime from '@/utils/calculateExpirationTime';
+
+let logoutTimer: any;
 
 export const createInvestorDispatch =
   (
@@ -55,7 +58,21 @@ export const loginInvestorHandler = (
         address,
         image,
       } = res.data.data.investor;
-      dispatch(investorAction.setInvestorToken(res.data.token));
+
+      // login expires an hour
+      const expirationTime = new Date(new Date().getTime() + 3600 * 1000);
+
+      // calculating the remaining time
+      const remainingTime = calculateExpirationTime(
+        expirationTime.toISOString()
+      );
+
+      dispatch(
+        investorAction.setInvestorToken({
+          token: res.data.token,
+          expirationTime: expirationTime.toISOString(),
+        })
+      );
       dispatch(
         investorAction.setInvestorDetails({
           id,
@@ -72,11 +89,32 @@ export const loginInvestorHandler = (
       navFunc({ id, name });
       toastSuccess('Login successfully!', iconSuccess);
       resetForm();
+
+      // setting a logout timer as soon as one logs in
+      logoutTimer = setTimeout(() => {
+        dispatch(investorAction.autoLogoutHandler());
+      }, remainingTime);
+
       setIsLoading(false);
     } catch (err: any) {
       setIsLoading(false);
       toastError(err.response.data.message, iconError);
     }
+  };
+};
+
+export const userLogout = () => {
+  return (dispatch: any) => {
+    dispatch(investorAction.logoutHandler({ logoutTimer }));
+  };
+};
+
+// autologout when page is refreshed
+export const autoLogout = (tokenDuration: any) => {
+  return (dispatch: any) => {
+    logoutTimer = setTimeout(() => {
+      dispatch(investorAction.autoLogoutHandler());
+    }, tokenDuration);
   };
 };
 
