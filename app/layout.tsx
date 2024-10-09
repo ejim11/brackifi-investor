@@ -5,6 +5,7 @@ import { NextFontWithVariable } from 'next/dist/compiled/@next/font';
 import ReduxProviderWrapper from '@/components/ReduxProviderWrapper';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AppWrapper from '@/components/AppWrapper';
 
 export const metadata: Metadata = {
   title: 'Brackifi | Investor',
@@ -32,7 +33,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${nunito.variable} ${dmSans.variable}`}>
         <ReduxProviderWrapper>
-          {children}
+          <AppWrapper>{children}</AppWrapper>
           <ToastContainer />
         </ReduxProviderWrapper>
       </body>
