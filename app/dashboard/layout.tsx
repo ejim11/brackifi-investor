@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import ProtectRoutes from '@/components/ProtectRoutes';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
