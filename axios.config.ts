@@ -1,46 +1,48 @@
 import axios from 'axios';
 export const investor = axios.create({
-  baseURL:
+  baseURL: `${
     process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
-      ? process.env.NEXT_PUBLIC_DEV_BASE_URL
-      : process.env.NEXT_PUBLIC_PROD_BASE_URL,
+      ? process.env.NEXT_PUBLIC_LOCAL_HOST
+      : process.env.NEXT_PUBLIC_WEB_HOST
+  }/api/v1/investors`,
 });
 
 export const reports = axios.create({
-  baseURL:
+  baseURL: `${
     process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
-      ? process.env.NEXT_PUBLIC_DEV_BASE_URL_2
-      : process.env.NEXT_PUBLIC_PROD_BASE_URL_2,
+      ? process.env.NEXT_PUBLIC_LOCAL_HOST
+      : process.env.NEXT_PUBLIC_WEB_HOST
+  }/api/v1/reports`,
 });
 
 export const investments = axios.create({
-  baseURL:
+  baseURL: `${
     process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
-      ? process.env.NEXT_PUBLIC_DEV_INVESTMENT_URL
-      : process.env.NEXT_PUBLIC_PROD_INVESTMENT_URL,
+      ? process.env.NEXT_PUBLIC_LOCAL_HOST
+      : process.env.NEXT_PUBLIC_WEB_HOST
+  }/api/v1/investments`,
 });
 
 export const roiValue = axios.create({
-  baseURL:
+  baseURL: `${
     process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
-      ? process.env.NEXT_PUBLIC_DEV_ROIVALUE_URL
-      : process.env.NEXT_PUBLIC_PROD_ROIVALUE_URL,
+      ? process.env.NEXT_PUBLIC_LOCAL_HOST
+      : process.env.NEXT_PUBLIC_WEB_HOST
+  }/api/v1/roivalue`,
 });
 
 export const fundsPerformance = axios.create({
-  baseURL:
+  baseURL: `${
     process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
-      ? process.env.NEXT_PUBLIC_FUND_PERFORMANCE_URL_DEV
-      : process.env.NEXT_PUBLIC_FUND_PERFORMANCE_URL_PROD,
+      ? process.env.NEXT_PUBLIC_LOCAL_HOST
+      : process.env.NEXT_PUBLIC_WEB_HOST
+  }/api/v1/fundPerformanceCommentaries`,
 });
 
 export const businessNews = axios.create({
-  baseURL:
+  baseURL: `${
     process.env.NEXT_PUBLIC_ENVIROMENT === 'development'
-      ? process.env.NEXT_PUBLIC_BUSINESS_NEWS_URL_DEV
-      : process.env.NEXT_PUBLIC_BUSINESS_NEWS_URL_PROD,
+      ? process.env.NEXT_PUBLIC_LOCAL_HOST
+      : process.env.NEXT_PUBLIC_WEB_HOST
+  }/api/v1/business-news`,
 });
-
-// process.env.ENVIROMENT === 'development'
-// ? process.env.DEV_BASE_URL
-// : process.env.PROD_BASE_URL,
