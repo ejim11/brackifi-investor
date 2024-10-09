@@ -146,9 +146,9 @@ const DashboardFirstSec = () => {
     },
   ];
 
-  useEffect(() => {
-    dispatch(getAllInvestmentsDispatch(token, id));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getAllInvestmentsDispatch(token, id));
+  // }, []);
 
   return (
     <motion.div
