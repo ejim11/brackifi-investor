@@ -4,14 +4,15 @@ import Image from 'next/image';
 import logo from '../assets/logo2.png';
 import Link from 'next/link';
 import { FaUser } from 'react-icons/fa6';
-import { useAppSelector } from '@/hooks/customHook';
+import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { usePathname, useRouter } from 'next/navigation';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { MdOutlineClose } from 'react-icons/md';
 import { AnimatePresence, motion } from 'framer-motion';
+import { userLogout } from '@/actions/investorAction';
 
 const DashboardNav = () => {
-  const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
@@ -41,10 +42,7 @@ const DashboardNav = () => {
   };
 
   const logoutHandler = () => {
-    localStorage.removeItem('shareholderToken');
-    localStorage.removeItem('shareholderDetails');
-    router.replace('/auth/login');
-    console.log('logout');
+    dispatch(userLogout());
   };
 
   return (
