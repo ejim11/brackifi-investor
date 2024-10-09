@@ -1,12 +1,21 @@
+import { retrieveStoredToken } from '@/utils/calculateExpirationTime';
 import { createSlice } from '@reduxjs/toolkit';
 
-// const storedToken = window.localStorage.getItem('investorToken');
+// retrieving the stored token, investor details and expiration time
+const tokenData: any = retrieveStoredToken();
+let storedToken;
+let storedDuration;
+if (tokenData) {
+  storedToken = tokenData.token;
+  storedDuration = tokenData.duration;
+}
 
 const investorSlice = createSlice({
   name: 'investor',
   initialState: {
-    isLoggedIn: false,
-    token: '',
+    isLoggedIn: !!storedToken || false,
+    token: storedToken || '',
+    remainingTime: storedDuration || 0,
     details: {
       id: '',
       name: '',
@@ -20,9 +29,11 @@ const investorSlice = createSlice({
     },
   },
   reducers: {
-    setInvestorToken(state, action: { payload: string }) {
-      state.token = action.payload;
-      localStorage.setItem('investorToken', action.payload);
+    setInvestorToken(state, action: { payload: any }) {
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+      localStorage.setItem('expirationTime', action.payload.expirationTime);
+      localStorage.setItem('investorToken', action.payload.token);
     },
     setInvestorDetails(state, action) {
       if (!action.payload) {
@@ -36,6 +47,34 @@ const investorSlice = createSlice({
       state.details.image = action.payload.image;
       localStorage.setItem('investorDetails', JSON.stringify(action.payload));
     },
+    // logout handler
+    logoutHandler(state: any, action) {
+      state.token = '';
+      state.isLoggedIn = false;
+      state.details.name = '';
+      state.details.email = '';
+      state.details.id = '';
+      state.details.address = '';
+      state.details.phoneNumber = '';
+      state.details.image = '';
+      emptyLocalStorage();
+
+      if (action.payload.logoutTimer) {
+        clearTimeout(action.payload.logoutTimer);
+      }
+    },
+    // auto logout
+    autoLogoutHandler(state: any) {
+      state.token = '';
+      state.isLoggedIn = false;
+      state.details.name = '';
+      state.details.email = '';
+      state.details.id = '';
+      state.details.address = '';
+      state.details.phoneNumber = '';
+      state.details.image = '';
+      emptyLocalStorage();
+    },
     updateInvestor(state, action) {
       state.token = action.payload.token;
       // state.details = action.payload.details;
@@ -45,6 +84,13 @@ const investorSlice = createSlice({
     },
   },
 });
+
+function emptyLocalStorage() {
+  localStorage.removeItem('investorToken');
+  localStorage.removeItem('expirationTime');
+  localStorage.removeItem('investorDetails');
+  localStorage.removeItem('investments');
+}
 
 export const investorAction = investorSlice.actions;
 
