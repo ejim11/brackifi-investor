@@ -50,9 +50,9 @@ const page = () => {
     dispatchFn(investmentActions.setInvestmentType('buy'));
   };
 
-  useEffect(() => {
-    dispatchFn(getAllInvestmentsDispatch(token, details.id));
-  }, []);
+  // useEffect(() => {
+  //   dispatchFn(getAllInvestmentsDispatch(token, details.id));
+  // }, []);
 
   return (
     <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full">

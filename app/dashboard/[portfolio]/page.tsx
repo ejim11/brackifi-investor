@@ -12,6 +12,8 @@ import { getPerformanceReportDispatch } from '@/actions/fundsPerformanceAction';
 import { getAllBusinessNewsDispatch } from '@/actions/businessNewsAction';
 import { getInvestorDispatch } from '@/actions/investorAction';
 import { motion } from 'framer-motion';
+import { investorAction } from '@/slices/investorSlice';
+import { investmentActions } from '@/slices/investmentSlice';
 
 const page = () => {
   const dispatch = useAppDispatch();
@@ -26,18 +28,33 @@ const page = () => {
     .map((item: { value: number; month: string }) => item.value)
     .reduce((acc, cur) => acc + cur, 0);
 
-  const { token, details } = useAppSelector((state: any) => state.investor);
-
   useEffect(() => {
-    dispatch(getRoiDetails());
-    dispatch(getPerformanceReportDispatch());
-    dispatch(getAllBusinessNewsDispatch());
-    dispatch(getInvestorDispatch(details.id, token));
+    if (typeof window !== 'undefined') {
+      const { name, id, email, phoneNumber, address } = JSON.parse(
+        window.localStorage.getItem('investorDetails') || '{}'
+      );
+      const investments = JSON.parse(
+        window.localStorage.getItem('investments') || '[]'
+      );
+      dispatch(
+        investorAction.setInvestorDetails({
+          name,
+          id,
+          email,
+          phoneNumber,
+          address,
+        })
+      );
+      dispatch(investmentActions.setInvestmentsList(investments));
+      dispatch(getRoiDetails());
+      dispatch(getPerformanceReportDispatch());
+      dispatch(getAllBusinessNewsDispatch());
+    }
   }, []);
 
   return (
-    <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full relative">
-      <section className="bg-order-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full flex-wrap flex-col xl:px-[3.5rem] xmd:px-[3rem] sm:px-[2rem] sm:pt-[10rem]">
+    <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full relative min-h-screen flex flex-col">
+      <section className="bg-order-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full flex-wrap flex-col xl:px-[3.5rem] xmd:px-[3rem] sm:px-[2rem] sm:pt-[10rem] flex-1">
         <DashboardFirstSec />
         <div className="w-full flex mt-[5rem] sm:mt-[3rem] justify-between xmd:flex-col xmd:items-center  ">
           <ReturnPerMonthGraph />
