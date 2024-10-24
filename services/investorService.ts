@@ -66,7 +66,7 @@ export const signUp = async (data: any) => {
   formData.append('password', data.password);
   formData.append('passwordConfirm', data.passwordConfirm);
 
-  return await investor.post('/business-news', formData, config);
+  return await investor.post('/', formData, config);
 };
 
 export const getInvestorService = async (
