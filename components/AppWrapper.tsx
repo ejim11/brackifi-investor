@@ -1,11 +1,13 @@
 'use client';
 import { autoLogout } from '@/actions/investorAction';
 import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
 const AppWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const router = useRouter();
+
+  const pathname = usePathname();
 
   const dispatchFn = useAppDispatch();
 
@@ -26,6 +28,8 @@ const AppWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         router.replace(
           `/dashboard/${navName.toLowerCase().slice().split(' ').join('-')}`
         );
+      } else if (pathname.includes('reset')) {
+        return;
       } else {
         router.replace('/auth/login');
       }
