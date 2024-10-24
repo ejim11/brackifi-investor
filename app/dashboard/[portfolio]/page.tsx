@@ -2,15 +2,11 @@
 import React, { useEffect } from 'react';
 import DashboardFirstSec from '@/components/DashboardFirstSec';
 import ReturnPerMonthGraph from '@/components/ReturnPerMonthGraph';
-import FundPerformanceCommentary from '@/components/FundPerformanceCommentary';
 import Performance from '@/components/Performance';
-import DocumentLibraryAndReport from '@/components/DocumentLibraryAndReport';
-import News from '@/components/News';
 import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { getRoiDetails } from '@/actions/roiValueAction';
 import { getPerformanceReportDispatch } from '@/actions/fundsPerformanceAction';
 import { getAllBusinessNewsDispatch } from '@/actions/businessNewsAction';
-import { getInvestorDispatch } from '@/actions/investorAction';
 import { motion } from 'framer-motion';
 import { investorAction } from '@/slices/investorSlice';
 import { investmentActions } from '@/slices/investmentSlice';
