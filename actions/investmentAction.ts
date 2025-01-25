@@ -5,6 +5,7 @@ import {
   getTransactionsByAddress,
   makeWithdrawalRequestService,
 } from '@/services/investmentServices';
+import { ReactNode } from 'react';
 
 // create an investment
 export const createInvestmentDispatch =
@@ -13,21 +14,43 @@ export const createInvestmentDispatch =
     jwtToken: string,
     resetForm: Function,
     closeModal: Function,
-    setIsLoading: Function
+    setIsLoading: Function,
+    toastSuccess: any,
+    toastError: any,
+    iconSuccess: ReactNode,
+    iconError: ReactNode
   ) =>
   async (dispatch: Function) => {
     setIsLoading(true);
+
     try {
-      // before you create an investment, check whether the user actually has sent the money
-      const txn = await getTransactionsByAddress(data.hash);
+      // if (
+      //   data.address.toLowerCase() ===
+      //   '0xF2188d49351CfA84DF6c6d09eaC783BAbc09F63f'
+      // ) {
+      //   toastError('This is not your address');
+      //   return;
+      // }
 
-      if (txn.from.toLowerCase() !== data.address.toLowerCase()) {
-        console.log('This is not the address that made the transaction');
-      }
+      // // before you create an investment, check whether the user actually has sent the money
+      // const txn = await getTransactionsByAddress(data.hash);
 
-      if (Math.round(txn.value / 1e18) !== data.amountPaid) {
-        console.log('This is not the amount that was paid');
-      }
+      // if (!txn) {
+      //   toastError(`Cannot find transaction with hash, try again!`, iconError);
+      //   return;
+      // }
+
+      // if (txn.from.toLowerCase() !== data.address.toLowerCase()) {
+      //   toastError(
+      //     'This is not the address that made the transaction',
+      //     iconError
+      //   );
+      //   return;
+      // }
+
+      // if (Math.round(txn.value / 1e18) !== data.amountPaid) {
+      //   toastError('This is not the amount that was paid', iconError);
+      // }
 
       const res = await createInvestmentService(data, jwtToken);
       dispatch(investmentActions.createInvestment(res.data.data.doc));
@@ -42,7 +65,7 @@ export const createInvestmentDispatch =
 
 //   get all the investments from the investor
 export const getAllInvestmentsDispatch =
-  (jwtToken: string, investorId: string) =>
+  (jwtToken: string, investorId: string, setIsLoading: Function) =>
   async (
     dispatch: (
       arg0:
@@ -50,12 +73,15 @@ export const getAllInvestmentsDispatch =
         | { payload: any; type: 'investment/setInvestmentsList' }
     ) => void
   ) => {
+    setIsLoading(true);
     try {
       const res = await getAllInvestmentsService(jwtToken, investorId);
-      console.log('investments: ', res);
+      console.log(res.data.data.docs[0]);
       dispatch(investmentActions.setInvestmentsList(res.data.data.docs));
+      setIsLoading(false);
     } catch (e) {
       console.log(e);
+      setIsLoading(false);
     }
   };
 
