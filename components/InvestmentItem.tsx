@@ -66,10 +66,8 @@ const InvestmentItem = ({
     );
   };
 
-  const btnText = dateDiffInDays(
-    new Date(data[4].val).getTime(),
-    new Date().getTime()
-  );
+  const isWithdrawalActive: boolean =
+    dateDiffInDays(new Date(data[4].val).getTime(), new Date().getTime()) < 0;
 
   return (
     <motion.div
@@ -107,7 +105,7 @@ const InvestmentItem = ({
         ))}
       </div>
       <button
-        disabled={btnText > 0}
+        disabled={isWithdrawalActive}
         className="py-[1rem] w-[90%] sm:w-[95%] text-center rounded-lg flex items-center justify-center self-center bg-color-primary-3 text-color-primary-1 font-semibold disabled:bg-[#dee2e6] disabled:text-[#868e96] disabled:cursor-not-allowed "
         onClick={withdrawInvestmentHandler}
       >
