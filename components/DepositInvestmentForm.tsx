@@ -10,6 +10,8 @@ import { createInvestmentDispatch } from '@/actions/investmentAction';
 // import { ordersAction } from '@/slices/ordersSlice';
 import InputComponent from './InputComponent';
 import { investmentActions } from '@/slices/investmentSlice';
+import { FaRegCircleCheck } from 'react-icons/fa6';
+import { LuBadgeAlert } from 'react-icons/lu';
 
 const DepositInvestmentForm = () => {
   const dispatchFn = useAppDispatch();
@@ -58,8 +60,9 @@ const DepositInvestmentForm = () => {
     const newData = {
       address: data.address,
       amount: data.amountPaid,
-      hash: data.hash,
+      // hash: data.hash,
       contractPeriod,
+      nextPayout: contractPeriod,
       maximumDrawdown: data.maxDrawDown,
     };
 
@@ -69,7 +72,11 @@ const DepositInvestmentForm = () => {
         token,
         resetForm,
         closeInvestModal,
-        setIsLoading
+        setIsLoading,
+        toastSuccess,
+        toastError,
+        <FaRegCircleCheck className="w-[2.3rem] h-[2.3rem] text-color-primary-1" />,
+        <LuBadgeAlert className="w-[2.3rem] h-[2.3rem] red" />
       )
     );
 
@@ -86,7 +93,7 @@ const DepositInvestmentForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <InputComponent
+      {/* <InputComponent
         placeholder={process.env.NEXT_PUBLIC_PAYMENT_ADDRESS}
         type={'text'}
         label="Transaction Hash"
@@ -97,7 +104,7 @@ const DepositInvestmentForm = () => {
         validation={registrationOption.hash}
         inputBg="bg-color-primary-2"
         labelTextColor="text-color-primary-1"
-      />
+      /> */}
       <InputComponent
         placeholder={process.env.NEXT_PUBLIC_PAYMENT_ADDRESS}
         type={'text'}
