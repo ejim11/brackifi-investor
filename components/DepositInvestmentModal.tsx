@@ -27,8 +27,8 @@ const DepositInvestmentModal = () => {
           </li>
           <li>Make payment to the wallet address.</li>
           <li>
-            Input your Transaction hash, wallet address, maximum drawdown and
-            the amount you paid.
+            Input your wallet address, maximum drawdown, contract period and the
+            amount you paid.
           </li>
           <li>Create an investment and wait for it to be verified. </li>
         </ol>
