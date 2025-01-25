@@ -16,7 +16,7 @@ const DashboardNav = () => {
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
-  const { name, id } = useAppSelector((state) => state.investor.details);
+  const { name } = useAppSelector((state) => state.investor.details);
 
   const pathname = usePathname();
 
