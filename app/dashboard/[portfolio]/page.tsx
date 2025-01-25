@@ -9,9 +9,7 @@ import { getPerformanceReportDispatch } from '@/actions/fundsPerformanceAction';
 import { getAllBusinessNewsDispatch } from '@/actions/businessNewsAction';
 import { motion } from 'framer-motion';
 import { investorAction } from '@/slices/investorSlice';
-import { investmentActions } from '@/slices/investmentSlice';
 import { getAllInvestmentsDispatch } from '@/actions/investmentAction';
-import DashboardSkeleton from '@/components/skeletons/DashboardSkeleton';
 
 const page = () => {
   const dispatch = useAppDispatch();
@@ -56,7 +54,7 @@ const page = () => {
   return (
     <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full relative min-h-screen flex flex-col">
       <section className="bg-order-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full flex-wrap flex-col xl:px-[3.5rem] xmd:px-[3rem] sm:px-[2rem] sm:pt-[10rem] flex-1">
-       <DashboardFirstSec isLoading = {isLoading} />
+        <DashboardFirstSec isLoading={isLoading} />
         <div className="w-full flex mt-[5rem] sm:mt-[3rem] justify-between xmd:flex-col xmd:items-center  ">
           <ReturnPerMonthGraph />
           {/* <DocumentLibraryAndReport /> */}
