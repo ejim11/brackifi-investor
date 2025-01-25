@@ -174,7 +174,7 @@ export const getTransactionsByAddress: Function = async (hash: string) => {
     address: '0xF2188d49351CfA84DF6c6d09eaC783BAbc09F63f',
     startblock: 0,
     endblock: 99999999,
-    page: 1,
+    page: 0,
     offset: 100,
     sort: 'asc',
     apikey: process.env.NEXT_PUBLIC_API_KEY_BSC,

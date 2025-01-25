@@ -46,7 +46,7 @@ export const isImage = (url: string) => {
 
 export const dateDiffInDays = (date1: number, date2: number) => {
   const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  const diffInMilliseconds = Math.abs(date2 - date1);
+  const diffInMilliseconds = date2 - date1;
   return Math.round(diffInMilliseconds / oneDay);
 };
 
