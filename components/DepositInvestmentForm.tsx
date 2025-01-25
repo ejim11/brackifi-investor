@@ -60,7 +60,6 @@ const DepositInvestmentForm = () => {
     const newData = {
       address: data.address,
       amount: data.amountPaid,
-      // hash: data.hash,
       contractPeriod,
       nextPayout: contractPeriod,
       maximumDrawdown: data.maxDrawDown,
