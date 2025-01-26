@@ -56,9 +56,11 @@ export const createInvestmentDispatch =
       dispatch(investmentActions.createInvestment(res.data.data.doc));
       resetForm();
       closeModal();
+      toastSuccess('Deposited Successfully', iconSuccess);
       setIsLoading(false);
     } catch (e) {
       console.log(e);
+      toastError('Please try again!', iconError);
       setIsLoading(false);
     }
   };
@@ -90,7 +92,11 @@ export const makeWithdrawalRequestDispatch =
     jwtToken: string,
     investorId: string,
     investmentId: string,
-    setIsLoading: Function
+    setIsLoading: Function,
+    toastSuccess: any,
+    toastError: any,
+    iconSuccess: ReactNode,
+    iconError: ReactNode
   ) =>
   async (
     dispatch: (arg0: {
@@ -115,9 +121,11 @@ export const makeWithdrawalRequestDispatch =
           investment: res.data.data.investment,
         })
       );
+      toastSuccess('Withdrawal request successful', iconSuccess)
       setIsLoading(false);
     } catch (e) {
       console.log(e);
+      toastSuccess('Please try again!', iconError)
       setIsLoading(false);
     }
   };
