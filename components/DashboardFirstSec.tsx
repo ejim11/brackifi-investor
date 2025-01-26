@@ -68,7 +68,7 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
 
   const itemVariant = {
     visible: { opacity: 1, x: 0 },
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, x: -30 },
   };
 
   const totalRoi = () => {
