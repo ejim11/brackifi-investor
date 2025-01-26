@@ -8,7 +8,9 @@ import { useAppDispatch, useAppSelector } from '@/hooks/customHook';
 import { investmentActions } from '@/slices/investmentSlice';
 import { makeWithdrawalRequestDispatch } from '@/actions/investmentAction';
 import { FallingLines } from 'react-loader-spinner';
-import { dateDiffInDays } from '@/utils/helperFns';
+import { dateDiffInDays, toastError, toastSuccess } from '@/utils/helperFns';
+import { FaRegCircleCheck } from 'react-icons/fa6';
+import { LuBadgeAlert } from 'react-icons/lu';
 
 const InvestmentItem = ({
   _id,
@@ -62,7 +64,16 @@ const InvestmentItem = ({
 
   const withdrawInvestmentHandler = () => {
     dispatchFn(
-      makeWithdrawalRequestDispatch(token, details.id, _id, setIsLoading)
+      makeWithdrawalRequestDispatch(
+        token,
+        details.id,
+        _id,
+        setIsLoading,
+        toastSuccess,
+        toastError,
+        <FaRegCircleCheck className="w-[2.3rem] h-[2.3rem] text-color-primary-1" />,
+        <LuBadgeAlert className="w-[2.3rem] h-[2.3rem] red" />
+      )
     );
   };
 
@@ -105,7 +116,7 @@ const InvestmentItem = ({
         ))}
       </div>
       <button
-        disabled={isWithdrawalActive}
+        disabled={isWithdrawalActive || investmentState === 'withdraw pending'}
         className="py-[1rem] w-[90%] sm:w-[95%] text-center rounded-lg flex items-center justify-center self-center bg-color-primary-3 text-color-primary-1 font-semibold disabled:bg-[#dee2e6] disabled:text-[#868e96] disabled:cursor-not-allowed "
         onClick={withdrawInvestmentHandler}
       >
