@@ -21,6 +21,7 @@ type FormData = {
   phoneNumber: string;
   proofOfIdentity: string;
   proofOfAddress: string;
+  ubitexId?: string;
   nextOfKinName: string;
   nextOfKinEmail: string;
   nextOfKinAddress: string;
@@ -57,6 +58,7 @@ const AddMemberForm = () => {
       phoneNumber: '',
       proofOfAddress: '',
       proofOfIdentity: ' ',
+      ubitexId: '',
       nextOfKinName: '',
       nextOfKinEmail: '',
       nextOfKinAddress: '',
@@ -93,26 +95,24 @@ const AddMemberForm = () => {
   };
 
   const resetForm = () => {
-    reset({
-      fullName: '',
-      email: '',
-      address: '',
-      phoneNumber: '',
-      proofOfIdentity: '',
-      proofOfAddress: '',
-      nextOfKinName: '',
-      nextOfKinEmail: '',
-      nextOfKinAddress: '',
-      password: '',
-      confirmPassword: '',
-    });
-
-    setProofOfIdentityImg(noImg);
-    setProofOfIdentityImgObj(noImg);
-    router.push('/auth/login');
-
-    setProofOfAddressImg(noImg);
-    setProofOfAddressImgObj(noImg);
+    // reset({
+    //   fullName: '',
+    //   email: '',
+    //   address: '',
+    //   phoneNumber: '',
+    //   proofOfIdentity: '',
+    //   proofOfAddress: '',
+    //   nextOfKinName: '',
+    //   nextOfKinEmail: '',
+    //   nextOfKinAddress: '',
+    //   password: '',
+    //   confirmPassword: '',
+    // });
+    // setProofOfIdentityImg(noImg);
+    // setProofOfIdentityImgObj(noImg);
+    // router.push('/auth/login');
+    // setProofOfAddressImg(noImg);
+    // setProofOfAddressImgObj(noImg);
   };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
@@ -143,6 +143,7 @@ const AddMemberForm = () => {
       phoneNumber: data.phoneNumber,
       address: data.address,
       proofOfIdentityFile: proofOfIdentityImgObj,
+      ubitexId: data.ubitexId ?? undefined,
       proofOfAddressFile: proofOfAddressImgObj,
       nextOfKinName: data.nextOfKinName,
       nextOfKinEmail: data.nextOfKinEmail,
@@ -150,6 +151,8 @@ const AddMemberForm = () => {
       password: data.password,
       passwordConfirm: data.confirmPassword,
     };
+
+    console.log(potentialInvestorData);
 
     dispatch(
       createInvestorDispatch(
@@ -172,7 +175,7 @@ const AddMemberForm = () => {
         </p>
         <div className="flex flex-wrap  w-full justify-between">
           <InputComponent
-            placeholder={'Adams West'}
+            placeholder={'Enter full name'}
             type={'text'}
             register={register}
             error={errors}
@@ -183,7 +186,7 @@ const AddMemberForm = () => {
             validation={registrationOption.name}
           />
           <InputComponent
-            placeholder={'adams@gmail.com'}
+            placeholder={'Enter email address'}
             type={'email'}
             register={register}
             error={errors}
@@ -194,7 +197,7 @@ const AddMemberForm = () => {
             validation={registrationOption.email}
           />
           <InputComponent
-            placeholder={'0204-9384-8393'}
+            placeholder={'Enter phone number'}
             type={'text'}
             register={register}
             error={errors}
@@ -205,7 +208,7 @@ const AddMemberForm = () => {
             validation={registrationOption.phoneNumber}
           />
           <InputComponent
-            placeholder={'Ibiza, Spain'}
+            placeholder={'Enter home address'}
             type={'text'}
             register={register}
             error={errors}
@@ -214,6 +217,17 @@ const AddMemberForm = () => {
             label="Address"
             containerWidth="w-[45%] smd:w-[48%] sm:w-full"
             validation={registrationOption.address}
+          />
+          <InputComponent
+            placeholder={'Enter UbitexId'}
+            type={'text'}
+            register={register}
+            error={errors}
+            name={'ubitexId'}
+            pl="pl-[1rem]"
+            label="Ubitex Id (Optional)"
+            containerWidth="w-[45%] smd:w-[48%] sm:w-full"
+            validation={registrationOption.ubitexId}
           />
           <div className="w-full mt-[1rem] mb-[3rem] flex justify-between  sm:flex-col">
             <ProofImgComp
@@ -243,7 +257,7 @@ const AddMemberForm = () => {
         </p>
         <div className="flex flex-wrap  w-full justify-between">
           <InputComponent
-            placeholder={'Sandra Jones'}
+            placeholder={'Enter next of kin name'}
             type={'text'}
             register={register}
             error={errors}
@@ -254,7 +268,7 @@ const AddMemberForm = () => {
             validation={registrationOption.name}
           />
           <InputComponent
-            placeholder={'sandraj@gmail.com'}
+            placeholder={'Enter next of kin email'}
             type={'email'}
             register={register}
             error={errors}
@@ -266,7 +280,7 @@ const AddMemberForm = () => {
           />
         </div>
         <InputComponent
-          placeholder={'Ibiza, Spain'}
+          placeholder={'Enter next of kin address'}
           type={'text'}
           register={register}
           error={errors}
