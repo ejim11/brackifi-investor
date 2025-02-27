@@ -95,24 +95,24 @@ const AddMemberForm = () => {
   };
 
   const resetForm = () => {
-    // reset({
-    //   fullName: '',
-    //   email: '',
-    //   address: '',
-    //   phoneNumber: '',
-    //   proofOfIdentity: '',
-    //   proofOfAddress: '',
-    //   nextOfKinName: '',
-    //   nextOfKinEmail: '',
-    //   nextOfKinAddress: '',
-    //   password: '',
-    //   confirmPassword: '',
-    // });
-    // setProofOfIdentityImg(noImg);
-    // setProofOfIdentityImgObj(noImg);
-    // router.push('/auth/login');
-    // setProofOfAddressImg(noImg);
-    // setProofOfAddressImgObj(noImg);
+    reset({
+      fullName: '',
+      email: '',
+      address: '',
+      phoneNumber: '',
+      proofOfIdentity: '',
+      proofOfAddress: '',
+      nextOfKinName: '',
+      nextOfKinEmail: '',
+      nextOfKinAddress: '',
+      password: '',
+      confirmPassword: '',
+    });
+    setProofOfIdentityImg(noImg);
+    setProofOfIdentityImgObj(noImg);
+    router.push('/auth/login');
+    setProofOfAddressImg(noImg);
+    setProofOfAddressImgObj(noImg);
   };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
