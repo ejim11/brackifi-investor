@@ -50,6 +50,17 @@ export const registrationOption = {
       message: 'Address name cannot be greater than 150 characters',
     },
   },
+  ubitexId: {
+    required: false,
+    minLength: {
+      value: 2,
+      message: 'UbitexID name must have at least 2 characters',
+    },
+    maxLength: {
+      value: 15,
+      message: 'UbitexID name cannot be greater than 150 characters',
+    },
+  },
   amountPaid: {
     required: 'Amount paid is required',
     min: {
