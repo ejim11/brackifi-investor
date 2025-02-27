@@ -57,6 +57,7 @@ export const signUp = async (data: any) => {
   formData.append('name', data.name);
   formData.append('email', data.email);
   formData.append('address', data.address);
+  formData.append('ubitexId', data.ubitexId);
   formData.append('phoneNumber', data.phoneNumber);
   formData.append('proofOfIdentity', data.proofOfIdentityFile);
   formData.append('proofOfAddress', data.proofOfAddressFile);
