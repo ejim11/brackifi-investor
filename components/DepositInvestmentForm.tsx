@@ -160,7 +160,7 @@ const DepositInvestmentForm = () => {
         error={errors}
         name={'amountPaid'}
         pl="pl-[2rem]"
-        min={10000}
+        min={100}
         inputBg="bg-color-primary-2"
         validation={registrationOption.amountPaid}
         labelTextColor="text-color-primary-1"
