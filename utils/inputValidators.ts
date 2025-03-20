@@ -64,15 +64,15 @@ export const registrationOption = {
   amountPaid: {
     required: 'Amount paid is required',
     min: {
-      value: 1000,
-      message: 'You cannot buy shares with less than $1,000',
+      value: 100,
+      message: 'You cannot invest with less than $100',
     },
   },
   maxDrawDown: {
     required: 'Amount paid is required',
     min: {
-      value: 20,
-      message: 'You cannot buy shares with less than 20%',
+      value: 10,
+      message: 'You cannot invesst with less than 10%',
     },
     max: {
       value: 100,
@@ -80,13 +80,12 @@ export const registrationOption = {
     },
   },
   amountToSell: {
-    required: 'Amount to sell is required',
+    required: 'Amount to withdraw is required',
     min: {
-      value: 1000,
-      message: 'You cannot sell less than 1,000 BRAC',
+      value: 100,
+      message: 'You cannot withdraw less than $100',
     },
   },
-
   walletAddress: {
     required: 'Wallet Address is required',
     minLength: {
