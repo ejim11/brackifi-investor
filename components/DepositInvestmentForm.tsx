@@ -19,6 +19,7 @@ const DepositInvestmentForm = () => {
   const { token } = useAppSelector((state) => state.investor);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
   const [contractPeriod, setContractPeriod] = useState<any>(futureMonth(8));
 
   type FormData = {
@@ -165,10 +166,24 @@ const DepositInvestmentForm = () => {
         validation={registrationOption.amountPaid}
         labelTextColor="text-color-primary-1"
       />
+      <div className="flex items-center">
+        <input
+          type="checkbox"
+          name="terms"
+          id="terms"
+          checked={acceptTerms}
+          onChange={() => {
+            setAcceptTerms((prevState) => !prevState);
+          }}
+        />
+        <label htmlFor="terms" className="ml-[0.5rem] cursor-pointer">
+          Accept terms and conditions
+        </label>
+      </div>
       <button
-        disabled={isLoading}
+        disabled={!acceptTerms || isLoading}
         type="submit"
-        className={`mt-[2rem] py-[1rem] flex justify-center items-center bg-color-primary-1 px-[3rem] sm:w-full sm:mt-[3rem] text-color-white  border border-color-primary-1 rounded-lg transition-all duration-300 ease-in ${
+        className={`mt-[2rem] py-[1rem] flex justify-center items-center bg-color-primary-1 px-[3rem] sm:w-full sm:mt-[3rem] text-color-white  border border-color-primary-1 rounded-lg transition-all duration-300 ease-in disabled:bg-gray-300 disabled:cursor-not-allowed  ${
           isLoading && 'opacity-75'
         }`}
       >
