@@ -18,8 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <div className="relative">
-      <DashboardNav />
-      {children}
+      <DashboardNav>{children}</DashboardNav>
     </div>
   );
 }
