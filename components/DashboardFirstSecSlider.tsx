@@ -7,6 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
+import { useMediaQuery } from 'react-responsive';
 
 const DashboardFirstSecSlider = ({ data }: { data: any }) => {
   const slideBgColors = [
@@ -14,6 +15,10 @@ const DashboardFirstSecSlider = ({ data }: { data: any }) => {
     'bg-color-primary-2',
     'bg-color-black',
   ];
+
+  const isMobile = useMediaQuery({
+    query: '(max-width: 650px)',
+  });
 
   return (
     <div className="w-full h-[20rem] mt-[3rem] sm:mt-0 sm:block hidden ">
@@ -29,10 +34,10 @@ const DashboardFirstSecSlider = ({ data }: { data: any }) => {
           disableOnInteraction: false,
         }}
         effect="fade"
-        loop
+        loop={isMobile}
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        className="w-full h-full"
+        className="w-full h-full hidden sm:block"
       >
         {data.map((params: any, i: number) => (
           <SwiperSlide key={i}>
