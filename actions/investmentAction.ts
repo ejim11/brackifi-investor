@@ -13,7 +13,7 @@ export const createInvestmentDispatch =
     data: any,
     jwtToken: string,
     resetForm: Function,
-    closeModal: Function,
+
     setIsLoading: Function,
     toastSuccess: any,
     toastError: any,
@@ -55,7 +55,6 @@ export const createInvestmentDispatch =
       const res = await createInvestmentService(data, jwtToken);
       dispatch(investmentActions.createInvestment(res.data.data.doc));
       resetForm();
-      closeModal();
       toastSuccess('Deposited Successfully', iconSuccess);
       setIsLoading(false);
     } catch (e) {
@@ -78,7 +77,6 @@ export const getAllInvestmentsDispatch =
     setIsLoading(true);
     try {
       const res = await getAllInvestmentsService(jwtToken, investorId);
-      console.log(res.data.data.docs[0]);
       dispatch(investmentActions.setInvestmentsList(res.data.data.docs));
       setIsLoading(false);
     } catch (e) {
@@ -112,7 +110,6 @@ export const makeWithdrawalRequestDispatch =
         investmentId,
         { investmentState: 'withdraw pending', investmentId }
       );
-      console.log(res);
 
       //   dispatch(investmentActions.setInvestmentsList(res.data.data.docs));
       dispatch(
@@ -121,11 +118,11 @@ export const makeWithdrawalRequestDispatch =
           investment: res.data.data.investment,
         })
       );
-      toastSuccess('Withdrawal request successful', iconSuccess)
+      toastSuccess('Withdrawal request successful', iconSuccess);
       setIsLoading(false);
     } catch (e) {
       console.log(e);
-      toastSuccess('Please try again!', iconError)
+      toastSuccess('Please try again!', iconError);
       setIsLoading(false);
     }
   };
