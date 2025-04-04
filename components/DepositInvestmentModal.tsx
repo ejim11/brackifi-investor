@@ -33,7 +33,7 @@ const DepositInvestmentModal = () => {
           <li>Create an investment and wait for it to be verified. </li>
         </ol>
       </div>
-      <div className="px-[2rem] pb-[4rem]">
+      <div className="px-[2rem] smd:px-[1.5rem] pb-[4rem]">
         <DepositInvestmentForm />
       </div>
     </div>
