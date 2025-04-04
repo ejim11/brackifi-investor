@@ -10,6 +10,8 @@ import { getAllBusinessNewsDispatch } from '@/actions/businessNewsAction';
 import { motion } from 'framer-motion';
 import { investorAction } from '@/slices/investorSlice';
 import { getAllInvestmentsDispatch } from '@/actions/investmentAction';
+import { getInvestorDispatch } from '@/actions/investorAction';
+import InvestorGraph from '@/components/InvestorGraph';
 
 const page = () => {
   const dispatch = useAppDispatch();
@@ -45,6 +47,7 @@ const page = () => {
         })
       );
       dispatch(getAllInvestmentsDispatch(investorToken, id, setIsLoading));
+      dispatch(getInvestorDispatch(id, investorToken));
       dispatch(getRoiDetails());
       dispatch(getPerformanceReportDispatch());
       dispatch(getAllBusinessNewsDispatch());
@@ -52,9 +55,10 @@ const page = () => {
   }, []);
 
   return (
-    <main className="bg-[#161616] bg-no-repeat bg-cover bg-center font-nunito w-full relative min-h-screen flex flex-col">
-      <section className="bg-order-bg bg-no-repeat bg-cover bg-center rounded-br-lg rounded-bl-lg  pt-[12rem] px-[5rem] flex pb-[5rem] w-full flex-wrap flex-col xl:px-[3.5rem] xmd:px-[3rem] sm:px-[2rem] sm:pt-[10rem] flex-1">
+    <main className=" font-nunito w-full relative flex flex-col">
+      <section className=" rounded-br-lg rounded-bl-lg  flex w-full flex-wrap flex-col  flex-1">
         <DashboardFirstSec isLoading={isLoading} />
+        <InvestorGraph />
         <div className="w-full flex mt-[5rem] sm:mt-[3rem] justify-between xmd:flex-col xmd:items-center  ">
           <ReturnPerMonthGraph />
           {/* <DocumentLibraryAndReport /> */}
@@ -63,7 +67,7 @@ const page = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.3, ease: 'easeIn', delay: 0.3 }}
             viewport={{ once: true }}
-            className="w-[45%] lg:w-[40%] xmd:w-full xmd:mt-[3rem] bg-color-secondary-1 flex flex-col rounded-lg overflow-hidden "
+            className="w-[47%] lg:w-[40%] xmd:w-full xmd:mt-[3rem] bg-color-secondary-1 flex flex-col rounded-lg overflow-hidden "
           >
             <p className="p-[1rem] shadow-md text-[1.8rem] text-color-secondary-1 bg-color-black font-bold uppercase">
               Brackifi Perfomance Metrics
@@ -82,11 +86,6 @@ const page = () => {
           </motion.div>
         </div>
       </section>
-      <div>
-        <p className="py-[1rem] bg-color-secondary-1 text-color-secondary-2 text-center">
-          © Brackifi | 2024
-        </p>
-      </div>
     </main>
   );
 };
