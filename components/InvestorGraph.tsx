@@ -117,7 +117,7 @@ const InvestorGraph = () => {
               ))}
             </div>
 
-            <div className="flex-1 h-[40rem] sm:h-[100rem]     ml-[5rem] smd:ml-0   ">
+            <div className="flex-1 h-[40rem] sm:h-[60rem]     ml-[5rem] smd:ml-0   ">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   // width={400}
