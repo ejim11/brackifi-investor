@@ -73,7 +73,7 @@ const LoginForm = () => {
         register={register}
         error={errors}
         name={'email'}
-        validation={registrationOption.email}
+        validation={registrationOption.email(true)}
         icon={
           <AiOutlineMail className="absolute w-[2.2rem] h-[2.2rem] top-[1rem] left-[1rem] text-color-primary-1" />
         }

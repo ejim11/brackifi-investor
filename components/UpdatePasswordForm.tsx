@@ -75,42 +75,48 @@ const UpdatePasswordForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <InputComponent
-        placeholder={'Current Password'}
-        label="Current Password"
-        type={'password'}
-        register={register}
-        error={errors}
-        name={'passwordCurrent'}
-        validation={registrationOption.password}
-        icon={
-          <IoMdLock className="absolute w-[2.2rem] h-[2.2rem] top-[1rem] left-[1rem] text-color-primary-1" />
-        }
-      />
-      <InputComponent
-        placeholder={'New Password'}
-        type={'password'}
-        label="New Password"
-        register={register}
-        error={errors}
-        name={'newPassword'}
-        validation={registrationOption.password}
-        icon={
-          <IoMdLock className="absolute w-[2.2rem] h-[2.2rem] top-[1rem] left-[1rem] text-color-primary-1" />
-        }
-      />
-      <InputComponent
-        placeholder={'New Password Confirm'}
-        type={'password'}
-        label="New Password Confirm"
-        register={register}
-        error={errors}
-        name={'confirmNewPassword'}
-        validation={registrationOption.password}
-        icon={
-          <IoMdLock className="absolute w-[2.2rem] h-[2.2rem] top-[1rem] left-[1rem] text-color-primary-1" />
-        }
-      />
+      <div className="flex flex-wrap  w-full justify-between">
+        <InputComponent
+          placeholder={'Current Password'}
+          label="Current Password"
+          type={'password'}
+          register={register}
+          error={errors}
+          name={'passwordCurrent'}
+          containerWidth="w-[45%] xmd:w-[48%] sm:w-full"
+          validation={registrationOption.password}
+          icon={
+            <IoMdLock className="absolute w-[2.2rem] h-[2.2rem] top-[1rem] left-[1rem] text-color-primary-1" />
+          }
+        />
+        <InputComponent
+          placeholder={'New Password'}
+          type={'password'}
+          label="New Password"
+          register={register}
+          error={errors}
+          containerWidth="w-[45%] xmd:w-[48%] sm:w-full"
+          name={'newPassword'}
+          validation={registrationOption.password}
+          icon={
+            <IoMdLock className="absolute w-[2.2rem] h-[2.2rem] top-[1rem] left-[1rem] text-color-primary-1" />
+          }
+        />
+        <InputComponent
+          placeholder={'New Password Confirm'}
+          type={'password'}
+          label="New Password Confirm"
+          register={register}
+          error={errors}
+          containerWidth="w-[45%] xmd:w-[48%] sm:w-full"
+          name={'confirmNewPassword'}
+          validation={registrationOption.password}
+          icon={
+            <IoMdLock className="absolute w-[2.2rem] h-[2.2rem] top-[1rem] left-[1rem] text-color-primary-1" />
+          }
+        />
+      </div>
+
       <button
         disabled={isLoading}
         type="submit"
