@@ -157,7 +157,7 @@ const DashboardNav: React.FC<{ children: ReactNode }> = ({ children }) => {
                 return (
                   <div
                     key={item.title}
-                    className=" pl-[1rem] pb-[2rem] mt-auto"
+                    className=" pl-[1rem] mb-[2rem] mt-auto sm:mt-[2rem] "
                   >
                     <p className="p-[1.5rem] uppercase text-[1.3rem] text-gray-400">
                       {item.title}
@@ -234,7 +234,7 @@ const DashboardNav: React.FC<{ children: ReactNode }> = ({ children }) => {
             })}
           </div>
         </div>
-        <div className="flex-1 bg-color-secondary-2 p-[3rem] h-full flex flex-col overflow-y-auto">
+        <div className="flex-1 bg-color-secondary-2 p-[3rem] sm:p-[2rem] h-full flex flex-col overflow-y-auto">
           {children}
 
           <div className="mt-auto">
