@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { InvestmentItemType } from '@/app/dashboard/[portfolio]/invest/page';
+import { InvestmentItemType } from '@/app/dashboard/[portfolio]/investments/page';
 import { motion } from 'framer-motion';
 import formatDate from '@/utils/dateFormatter';
 import { formatNumber } from '@/utils/numberFormatter';
