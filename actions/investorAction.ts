@@ -260,7 +260,7 @@ export const getInvestorDispatch =
         })
       );
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   };
 
@@ -270,6 +270,6 @@ export const updateInvestorProfileImgDispatch =
       const res = await updateInvestorProfileImg(jwtToken, imgFile);
       dispatch(investorAction.updateProfileImage(res.data.data.image));
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   };
