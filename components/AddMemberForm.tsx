@@ -152,8 +152,6 @@ const AddMemberForm = () => {
       passwordConfirm: data.confirmPassword,
     };
 
-    console.log(potentialInvestorData);
-
     dispatch(
       createInvestorDispatch(
         potentialInvestorData,
@@ -183,7 +181,7 @@ const AddMemberForm = () => {
             label="Full Name"
             pl="pl-[1rem]"
             containerWidth="w-[45%] smd:w-[48%] sm:w-full"
-            validation={registrationOption.name}
+            validation={registrationOption.name(true)}
           />
           <InputComponent
             placeholder={'Enter email address'}
@@ -194,7 +192,7 @@ const AddMemberForm = () => {
             pl="pl-[1rem]"
             label="Email"
             containerWidth="w-[45%] smd:w-[48%] sm:w-full"
-            validation={registrationOption.email}
+            validation={registrationOption.email(true)}
           />
           <InputComponent
             placeholder={'Enter phone number'}
@@ -205,7 +203,7 @@ const AddMemberForm = () => {
             pl="pl-[1rem]"
             label="Phone Number"
             containerWidth="w-[45%] smd:w-[48%] sm:w-full"
-            validation={registrationOption.phoneNumber}
+            validation={registrationOption.phoneNumber(true)}
           />
           <InputComponent
             placeholder={'Enter home address'}
@@ -216,7 +214,7 @@ const AddMemberForm = () => {
             pl="pl-[1rem]"
             label="Address"
             containerWidth="w-[45%] smd:w-[48%] sm:w-full"
-            validation={registrationOption.address}
+            validation={registrationOption.address(true)}
           />
           <InputComponent
             placeholder={'Enter UbitexId'}
@@ -265,7 +263,7 @@ const AddMemberForm = () => {
             label="Full Name"
             pl="pl-[1rem]"
             containerWidth="w-[45%] smd:w-[48%] sm:w-full"
-            validation={registrationOption.name}
+            validation={registrationOption.name(true)}
           />
           <InputComponent
             placeholder={'Enter next of kin email'}
@@ -276,7 +274,7 @@ const AddMemberForm = () => {
             pl="pl-[1rem]"
             label="Email"
             containerWidth="w-[45%] smd:w-[48%] sm:w-full"
-            validation={registrationOption.email}
+            validation={registrationOption.email(true)}
           />
         </div>
         <InputComponent
@@ -288,7 +286,7 @@ const AddMemberForm = () => {
           pl="pl-[1rem]"
           label="Address"
           containerWidth="w-[45%] smd:w-[48%] sm:w-full"
-          validation={registrationOption.address}
+          validation={registrationOption.address(true)}
         />
       </div>
       <div className="flex justify-between mt-[2rem] sm:flex-col">
