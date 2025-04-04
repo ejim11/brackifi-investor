@@ -37,7 +37,6 @@ const AppWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   }, [token, isLoggedIn, router]);
 
   useEffect(() => {
-    console.log(remainingTime);
     if (remainingTime) {
       dispatchFn(autoLogout(remainingTime));
     }
