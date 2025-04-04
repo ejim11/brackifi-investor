@@ -11,6 +11,29 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      '3xl': { max: '1535px' },
+      // => @media (max-width: 1535px) { ... }
+      '2xl': { max: '1350px' },
+      // => @media (max-width: 1535px) { ... }
+      xl: { max: '1279px' },
+      // => @media (max-width: 1279px) { ... }
+      xxl: { max: '1200px' },
+      xlg: { max: '1150px' },
+      // => @media (max-width: 1150px) { ... }
+      lg: { max: '1024px' },
+      // => @media (max-width: 1023px) { ... }
+      xmd: { max: '950px' },
+      // => @media (max-width: 950px) { ... }
+      md: { max: '850px' },
+      // => @media (max-width: 850px) { ... }
+      smd: { max: '700px' },
+      // => @media (max-width: 700px) { ... }
+      sm: { max: '650px' },
+      // => @media (max-width: 500px) { ... }
+      ssm: { max: '380px' },
+      // => @media (max-width: 380px) { ... }
+    },
     extend: {
       fontFamily: {
         dmsans: ['var(--font-dmSans'],
@@ -39,29 +62,7 @@ const config: Config = {
           2: 'rgba(0, 0, 0, 0.8)',
         },
       },
-      screens: {
-        '3xl': { max: '1535px' },
-        // => @media (max-width: 1535px) { ... }
-        '2xl': { max: '1350px' },
-        // => @media (max-width: 1535px) { ... }
-        xl: { max: '1279px' },
-        // => @media (max-width: 1279px) { ... }
-        xxl: { max: '1200px' },
-        xlg: { max: '1150px' },
-        // => @media (max-width: 1150px) { ... }
-        lg: { max: '1024px' },
-        // => @media (max-width: 1023px) { ... }
-        xmd: { max: '950px' },
-        // => @media (max-width: 950px) { ... }
-        md: { max: '850px' },
-        // => @media (max-width: 850px) { ... }
-        smd: { max: '700px' },
-        // => @media (max-width: 700px) { ... }
-        sm: { max: '650px' },
-        // => @media (max-width: 500px) { ... }
-        ssm: { max: '380px' },
-        // => @media (max-width: 380px) { ... }
-      },
+
       backgroundImage: {
         'home-bg':
           'linear-gradient(to right bottom,  rgba(67, 104, 80, .9) 15%,  rgba(0,0,0,1) 100%), url(../assets/home-bg.jpg)',
