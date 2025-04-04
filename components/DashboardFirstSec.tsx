@@ -5,7 +5,7 @@ import { MdAccountBalanceWallet } from 'react-icons/md';
 import { PiKeyReturnFill } from 'react-icons/pi';
 import { RiStackFill } from 'react-icons/ri';
 import { HiCircleStack } from 'react-icons/hi2';
-import { InvestmentItemType } from '@/app/dashboard/[portfolio]/invest/page';
+import { InvestmentItemType } from '@/app/dashboard/[portfolio]/investments/page';
 import formatDate from '@/utils/dateFormatter';
 import { dateDiffInDays } from '@/utils/helperFns';
 import ShareParamsSlider from './DashboardFirstSecSlider';
@@ -77,7 +77,6 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
     const roi = investments
       .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
       .map((inv: InvestmentItemType) => {
-        console.log(inv);
         const dateDiff = dateDiffInDays(
           new Date(inv.activeDate).getTime(),
           new Date().getTime()
@@ -153,21 +152,21 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
         <PiKeyReturnFill className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
       ),
     },
-    {
-      title: 'Next Payout',
-      icon: (
-        <RiStackFill className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
-      ),
-      value:
-        investments.length <= 0
-          ? 'No Active Investment'
-          : dateDiffInDays(
-              new Date(latestInv.nextPayout).getTime(),
-              new Date().getTime()
-            ) > 0
-          ? 'Available'
-          : formatDate(latestInv.nextPayout),
-    },
+    // {
+    //   title: 'Next Payout',
+    //   icon: (
+    //     <RiStackFill className="w-[2.5rem] h-[2.5rem] text-color-curentColor" />
+    //   ),
+    //   value:
+    //     investments.length <= 0
+    //       ? 'No Active Investment'
+    //       : dateDiffInDays(
+    //           new Date(latestInv.nextPayout).getTime(),
+    //           new Date().getTime()
+    //         ) > 0
+    //       ? 'Available'
+    //       : formatDate(latestInv.nextPayout),
+    // },
     {
       title: 'Total Payout available',
       icon: (
@@ -200,14 +199,14 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
           initial="hidden"
           animate="visible"
           variants={list}
-          className="grid grid-cols-4 xmd:grid-cols-2 gap-[2rem] font-nunito justify-between font-bold  rounded-lg w-full sm:hidden"
+          className="grid grid-cols-3 xmd:grid-cols-2 gap-[2rem] font-nunito justify-between font-bold  rounded-lg w-full sm:hidden"
         >
           {investorPortfolioData.map((item, i: number) => (
             <motion.div
               variants={itemVariant}
               key={i}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className=" h-auto rounded-md flex    flex-col items-center  text-center  bg-[#161616] px-[1rem] py-[2rem] shadow-md  text-color-secondary-1 text-[1.7rem] font-bold"
+              className=" h-auto rounded-md flex  flex-1   flex-col items-center  text-center  bg-[#161616] px-[1rem] py-[2rem] shadow-md  text-color-secondary-1 text-[1.7rem] font-bold"
             >
               <div className="flex flex-col items-center  mb-[.5rem]">
                 <div className=" text-color-primary-1 mb-[1rem]">
@@ -216,7 +215,7 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
                 <p className="text-[1.8rem] font-semibold text-color-primary-1 uppercase mb-[1rem]">
                   {item.title}
                 </p>
-                <p>{item.value}</p>
+                <p className="mt-auto">{item.value}</p>
               </div>
             </motion.div>
           ))}
