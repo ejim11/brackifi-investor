@@ -169,7 +169,7 @@ const AddMemberForm = () => {
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="w-full">
       <div>
         <p className="mb-[1.5rem] text-[1.8rem] text-color-secondary-1">
-          Shareholder Info
+          Investor Info
         </p>
         <div className="flex flex-wrap  w-full justify-between">
           <InputComponent
