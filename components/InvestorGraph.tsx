@@ -28,7 +28,8 @@ const InvestorGraph = () => {
   const data = investments
     .filter(
       (investment: InvestmentItemType) =>
-        investment.investmentState === 'active'
+        investment.investmentState === 'active' ||
+        investment.investmentState === 'up for withdrawal'
     )
     .map((inv: InvestmentItemType) => ({
       type: inv.investmentType,
