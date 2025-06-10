@@ -48,7 +48,11 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
 
   const investments = useAppSelector(
     (state) => state.investments.investments
-  ).filter((inv: InvestmentItemType) => inv.investmentState === 'active');
+  ).filter(
+    (inv: InvestmentItemType) =>
+      inv.investmentState === 'active' ||
+      inv.investmentState === 'up for withdrawal'
+  );
 
   const list = {
     visible: {
@@ -75,7 +79,7 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
     let staticRoi = 0.16;
 
     const roi = investments
-      .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
+      // .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
       .map((inv: InvestmentItemType) => {
         const dateDiff = dateDiffInDays(
           new Date(inv.activeDate).getTime(),
@@ -109,7 +113,7 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
 
   const getOverallInvestmentValue = () => {
     const investmentValue = investments
-      .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
+      // .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
       .map((inv: InvestmentItemType) => inv.amount)
       .reduce((acc, cur) => acc + cur, 0);
 
@@ -118,7 +122,7 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
 
   const getLatestInvestment = (): InvestmentItemType => {
     const inv = investments
-      .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
+      // .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
       .slice()
       .sort(
         (a: any, b: any) =>
@@ -131,7 +135,7 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
   const latestInv = getLatestInvestment();
 
   const totalPayoutAvailable = investments
-    .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
+    // .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
     .map((inv: InvestmentItemType) =>
       Math.round((inv.amount * getLatestInvRoi(inv)) / 100)
     )
