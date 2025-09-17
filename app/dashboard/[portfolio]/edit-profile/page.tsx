@@ -12,9 +12,8 @@ import { motion } from 'framer-motion';
 import UpdateInvestorForm from '@/components/UpdateInvestorForm';
 
 export default function editProfile() {
-  const { name, email, phoneNumber, address, image } = useAppSelector(
-    (state) => state.investor.details
-  );
+  const { name, email, phoneNumber, address, image, bank, accountNumber } =
+    useAppSelector((state) => state.investor.details);
 
   const token = useAppSelector((state: any) => state.investor.token);
 
@@ -81,6 +80,26 @@ export default function editProfile() {
             </p>
             <p className="text-[1.8rem] font-semibold text-color-secondary-2 ">
               Phone Number: <span>{phoneNumber}</span>
+            </p>
+            <p className="text-[1.8rem] font-semibold text-color-secondary-2 ">
+              Bank:{' '}
+              {bank ? (
+                <span>{bank}</span>
+              ) : (
+                <span className="text-red-500">
+                  Please update your bank name
+                </span>
+              )}
+            </p>
+            <p className="text-[1.8rem] font-semibold text-color-secondary-2 ">
+              Acoount number:{' '}
+              {accountNumber ? (
+                <span>{accountNumber}</span>
+              ) : (
+                <span className="text-red-500">
+                  Please update your account number
+                </span>
+              )}
             </p>
           </div>
         </motion.div>
