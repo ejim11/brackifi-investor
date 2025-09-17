@@ -221,6 +221,8 @@ export const updateInfoDispatch =
         _id: id,
         phoneNumber,
         address,
+        bank,
+        accountNumber,
       } = res.data.data.investor;
       setIsLoading(false);
       dispatch(
@@ -230,6 +232,8 @@ export const updateInfoDispatch =
           email,
           phoneNumber,
           address,
+          accountNumber,
+          bank,
         })
       );
       setIsLoading(false);
@@ -245,8 +249,17 @@ export const getInvestorDispatch =
   (investorId: string, jwtToken: string) => async (dispatch: any) => {
     try {
       const res = await getInvestorService(investorId, jwtToken);
-      const { name, email, id, phoneNumber, address, shareholding, image } =
-        res.data.data.doc;
+      const {
+        name,
+        email,
+        id,
+        phoneNumber,
+        address,
+        shareholding,
+        image,
+        accountNumber,
+        bank,
+      } = res.data.data.doc;
 
       dispatch(
         investorAction.setInvestorDetails({
@@ -257,6 +270,8 @@ export const getInvestorDispatch =
           address,
           shareholding,
           image,
+          bank,
+          accountNumber,
         })
       );
     } catch (err) {
