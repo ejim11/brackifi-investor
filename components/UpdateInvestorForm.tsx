@@ -20,6 +20,8 @@ const UpdateInvestorForm = () => {
     nextOfKinName: string;
     nextOfKinEmail: string;
     nextOfKinAddress: string;
+    bank: string;
+    accountNumber: number;
   };
 
   const { token }: { token: string } = useAppSelector(
@@ -40,6 +42,8 @@ const UpdateInvestorForm = () => {
       nextOfKinName: '',
       nextOfKinEmail: '',
       nextOfKinAddress: '',
+      bank: '',
+      accountNumber: undefined,
     },
   });
 
@@ -52,6 +56,8 @@ const UpdateInvestorForm = () => {
       nextOfKinName: '',
       nextOfKinEmail: '',
       nextOfKinAddress: '',
+      bank: '',
+      accountNumber: undefined,
     });
   };
 
@@ -170,6 +176,35 @@ const UpdateInvestorForm = () => {
           containerWidth="w-[45%] xmd:w-[48%] sm:w-full"
           validation={registrationOption.address(false)}
         />
+      </div>
+      <div className="mt-[3rem]">
+        <p className="text-[1.8rem] text-color-primary-1 font-semibold mb-[1.5rem] uppercase">
+          Account Details
+        </p>
+        <div className="flex justify-between">
+          <InputComponent
+            placeholder={'Enter bank name'}
+            type={'text'}
+            register={register}
+            error={errors}
+            name={'bank'}
+            label="Bank name"
+            pl="pl-[1rem]"
+            containerWidth="w-[45%] xmd:w-[48%] sm:w-full"
+            validation={registrationOption.bank(false)}
+          />
+          <InputComponent
+            placeholder={'Enter account number'}
+            type={'number'}
+            register={register}
+            error={errors}
+            name={'accountNumber'}
+            label="Account number"
+            pl="pl-[1rem]"
+            containerWidth="w-[45%] xmd:w-[48%] sm:w-full"
+            validation={registrationOption.accountNumber(false)}
+          />
+        </div>
       </div>
       <button
         disabled={isLoading}
