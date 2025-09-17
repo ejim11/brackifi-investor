@@ -26,10 +26,12 @@ const investorSlice = createSlice({
       nextOfKinName: '',
       nextOfKinEmail: '',
       nextOfKinAddress: '',
+      bank: '',
+      accountNumber: '',
     },
   },
   reducers: {
-    setInvestorToken(state, action: { payload: any }) {
+    setInvestorToken(state: any, action: { payload: any }) {
       state.token = action.payload.token;
       state.isLoggedIn = true;
       localStorage.setItem('expirationTime', action.payload.expirationTime);
@@ -45,6 +47,8 @@ const investorSlice = createSlice({
       state.details.address = action.payload.address;
       state.details.phoneNumber = action.payload.phoneNumber;
       state.details.image = action.payload.image;
+      state.details.bank = action.payload.bank;
+      state.details.accountNumber = action.payload.accountNumber;
       localStorage.setItem('investorDetails', JSON.stringify(action.payload));
     },
     // logout handler
@@ -57,6 +61,8 @@ const investorSlice = createSlice({
       state.details.address = '';
       state.details.phoneNumber = '';
       state.details.image = '';
+      state.details.bank = action.payload.bank;
+      state.details.accountNumber;
       emptyLocalStorage();
 
       if (action.payload.logoutTimer) {
@@ -73,6 +79,8 @@ const investorSlice = createSlice({
       state.details.address = '';
       state.details.phoneNumber = '';
       state.details.image = '';
+      state.details.bank = '';
+      state.details.accountNumber = '';
       emptyLocalStorage();
     },
     updateInvestor(state, action) {
