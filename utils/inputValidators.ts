@@ -14,6 +14,36 @@ export const registrationOption = {
     //   message: 'Full name is required',
     // },
   }),
+  bank: (required: boolean) => ({
+    required: required ? 'Bank Name is required' : false,
+    minLength: {
+      value: 3,
+      message: 'Bank Name must have at least 2 characters',
+    },
+    maxLength: {
+      value: 100,
+      message: 'Bank Name cannot be greater than 100 characters',
+    },
+    // pattern: {
+    //   value: /^[A-Z][a-z]+\s[A-Z][a-z]+$/i,
+    //   message: 'Full name is required',
+    // },
+  }),
+  accountNumber: (required: boolean) => ({
+    required: required ? 'Account number is required' : false,
+    // min: {
+    //   value: 11,
+    //   message: 'Account number must have at least 11 characters',
+    // },
+    // max: {
+    //   value: 11,
+    //   message: 'Account number cannot be greater than 11 characters',
+    // },
+    pattern: {
+      value: /^[0-9]{10}$/,
+      message: 'Please enter a valid account number',
+    },
+  }),
   email: (required: boolean) => ({
     required: required ? 'Email is required' : false,
     pattern: {
