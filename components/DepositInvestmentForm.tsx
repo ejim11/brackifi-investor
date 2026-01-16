@@ -25,7 +25,7 @@ const DepositInvestmentForm = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
-  const [contractPeriod, setContractPeriod] = useState<any>(futureMonth(8));
+  const [contractPeriod, setContractPeriod] = useState<any>(futureMonth(4));
   const [investmentType, setInvestmentType] = useState<string>('crypto');
 
   type FormData = {
@@ -86,7 +86,6 @@ const DepositInvestmentForm = () => {
         newData,
         token,
         resetForm,
-
         setIsLoading,
         toastSuccess,
         toastError,
@@ -165,6 +164,8 @@ const DepositInvestmentForm = () => {
                 setContractPeriod(e.target.value);
               }}
             >
+              <option value={`${futureMonth(4)}`}>4 months</option>
+              <option value={`${futureMonth(6)}`}>6 months</option>
               <option value={`${futureMonth(8)}`}>8 months</option>
               <option value={`${futureMonth(12)}`}>1 year</option>
               <option value={`${futureMonth(16)}`}>1 year and 4 months</option>
