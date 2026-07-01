@@ -9,6 +9,7 @@ import { investmentActions } from '@/slices/investmentSlice';
 import { makeWithdrawalRequestDispatch } from '@/actions/investmentAction';
 import { FallingLines } from 'react-loader-spinner';
 import { dateDiffInDays, toastError, toastSuccess } from '@/utils/helperFns';
+import { ROI_CUTOFF_DATE } from './DashboardFirstSec';
 import { FaRegCircleCheck } from 'react-icons/fa6';
 import { LuBadgeAlert } from 'react-icons/lu';
 
@@ -78,7 +79,8 @@ const InvestmentItem = ({
   };
 
   const isWithdrawalActive: boolean =
-    dateDiffInDays(new Date(data[4].val).getTime(), new Date().getTime()) < 0;
+    dateDiffInDays(new Date(data[4].val).getTime(), ROI_CUTOFF_DATE.getTime()) <
+    0;
 
   return (
     <motion.div

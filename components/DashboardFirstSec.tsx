@@ -15,22 +15,30 @@ import { getAllInvestmentsDispatch } from '@/actions/investmentAction';
 import DashboardSkeleton from './skeletons/DashboardSkeleton';
 import DashboardFirstSecSlider from './DashboardFirstSecSlider';
 
+// the date up to which roi/profit is calculated (instead of today)
+export const ROI_CUTOFF_DATE = new Date('2026-05-30');
+
 // get the latest roi so we use it to calculate the payout available
 export const getLatestInvRoi = (inv: any) => {
   let roi = inv.activeDate
-    ? dateDiffInDays(new Date(inv.activeDate).getTime(), new Date().getTime()) *
-      0.16
+    ? dateDiffInDays(
+        new Date(inv.activeDate).getTime(),
+        ROI_CUTOFF_DATE.getTime(),
+      ) * 0.16
     : 0;
 
   const investmentTime = dateDiffInDays(
     new Date(inv.dateCreated).getTime(),
-    new Date(inv.nextPayout).getTime()
+    new Date(inv.nextPayout).getTime(),
   );
 
   // if the time has passed the next payout date then investment top amount is the static roi x the difference in active date and next payout
 
   if (
-    dateDiffInDays(new Date(inv.nextPayout).getTime(), new Date().getTime()) > 0
+    dateDiffInDays(
+      new Date(inv.nextPayout).getTime(),
+      ROI_CUTOFF_DATE.getTime(),
+    ) > 0
   ) {
     return investmentTime * 0.16;
   }
@@ -47,11 +55,11 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
   const { name } = useAppSelector((state) => state.investor.details);
 
   const investments = useAppSelector(
-    (state) => state.investments.investments
+    (state) => state.investments.investments,
   ).filter(
     (inv: InvestmentItemType) =>
       inv.investmentState === 'active' ||
-      inv.investmentState === 'up for withdrawal'
+      inv.investmentState === 'up for withdrawal',
   );
 
   const list = {
@@ -83,18 +91,18 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
       .map((inv: InvestmentItemType) => {
         const dateDiff = dateDiffInDays(
           new Date(inv.activeDate).getTime(),
-          new Date().getTime()
+          ROI_CUTOFF_DATE.getTime(),
         );
 
         const investmentTime = dateDiffInDays(
           new Date(inv.dateCreated).getTime(),
-          new Date(inv.nextPayout).getTime()
+          new Date(inv.nextPayout).getTime(),
         );
 
         if (
           dateDiffInDays(
             new Date(inv.nextPayout).getTime(),
-            new Date().getTime()
+            ROI_CUTOFF_DATE.getTime(),
           ) > 0
         ) {
           return investmentTime * staticRoi;
@@ -126,7 +134,7 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
       .slice()
       .sort(
         (a: any, b: any) =>
-          new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime()
+          new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime(),
       )[0];
 
     return inv;
@@ -137,7 +145,7 @@ const DashboardFirstSec = ({ isLoading }: { isLoading: boolean }) => {
   const totalPayoutAvailable = investments
     // .filter((inv: InvestmentItemType) => inv.investmentState === 'active')
     .map((inv: InvestmentItemType) =>
-      Math.round((inv.amount * getLatestInvRoi(inv)) / 100)
+      Math.round((inv.amount * getLatestInvRoi(inv)) / 100),
     )
     .reduce((acc, cur) => acc + cur, 0);
 
